@@ -1,0 +1,132 @@
+import { Heart, Instagram, MapPin, Phone, Sparkles } from "lucide-react";
+import { motion } from "motion/react";
+import { SiWhatsapp } from "react-icons/si";
+
+const footerLinks = [
+  { label: "Services", href: "#services" },
+  { label: "Portfolio", href: "#portfolio" },
+  { label: "Celebrity Work", href: "#celebrity" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const handleNavClick = (href: string) => {
+  const el = document.querySelector(href);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
+export function Footer() {
+  const year = new Date().getFullYear();
+  const hostname =
+    typeof window !== "undefined" ? window.location.hostname : "";
+
+  return (
+    <footer className="relative bg-card border-t border-primary/20 overflow-hidden">
+      {/* Glow background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/10 blur-3xl rounded-full" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center">
+                <Sparkles className="w-4 h-4 text-primary" />
+              </div>
+              <span className="font-display text-xl font-bold">
+                <span className="text-foreground">Makeup</span>
+                <span className="text-primary">byshiviagg</span>
+              </span>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              Luxury bridal & celebrity makeup artistry. Transforming faces,
+              creating timeless beauty across India from our Noida studio.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="https://instagram.com/makeupbyshiviagg"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://wa.me/919289562926"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth"
+              >
+                <SiWhatsapp className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-display text-foreground font-semibold mb-5 text-lg">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="font-display text-foreground font-semibold mb-5 text-lg">
+              Studio Address
+            </h3>
+            <div className="space-y-4">
+              <div className="flex gap-3 text-muted-foreground text-sm">
+                <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                <p>
+                  Gaur Sportswood, Sector 79,
+                  <br />
+                  Noida, Uttar Pradesh 201301
+                </p>
+              </div>
+              <a
+                href="tel:09289562926"
+                className="flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center"
+              >
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>+91 92895 62926</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs">
+          <p className="flex items-center gap-1">
+            &copy; {year} Makeupbyshiviagg. Made with{" "}
+            <Heart className="w-3 h-3 text-primary fill-primary" /> in Noida.
+          </p>
+          <a
+            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-smooth"
+          >
+            Built with caffeine.ai
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}
