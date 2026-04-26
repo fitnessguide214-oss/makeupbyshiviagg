@@ -37,17 +37,17 @@ export function Footer() {
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <span className="font-display text-xl font-bold">
-                <span className="text-foreground">Makeup</span>
-                <span className="text-primary">byshiviagg</span>
+                <span className="text-foreground">BEAUTYGRAM</span>
+                <span className="text-primary"> BY UNNATI</span>
               </span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Luxury bridal & celebrity makeup artistry. Transforming faces,
-              creating timeless beauty across India from our Noida studio.
+              creating timeless beauty across India from our Gandhinagar studio.
             </p>
             <div className="flex gap-3">
               <a
-                href="https://instagram.com/makeupbyshiviagg"
+                href="https://instagram.com/beautygrambyunnati"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -56,7 +56,7 @@ export function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/919289562926"
+                href="https://wa.me/917041937373"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -96,17 +96,17 @@ export function Footer() {
               <div className="flex gap-3 text-muted-foreground text-sm">
                 <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                 <p>
-                  Gaur Sportswood, Sector 79,
+                  Plot no. 634/1, Sector-4/C, Sector 4,
                   <br />
-                  Noida, Uttar Pradesh 201301
+                  Gandhinagar, Gujarat 382006
                 </p>
               </div>
               <a
-                href="tel:09289562926"
+                href="tel:07041937373"
                 className="flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center"
               >
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>+91 92895 62926</span>
+                <span>+91 70419 37373</span>
               </a>
             </div>
           </div>
@@ -114,8 +114,9 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs">
           <p className="flex items-center gap-1">
-            &copy; {year} Makeupbyshiviagg. Made with{" "}
-            <Heart className="w-3 h-3 text-primary fill-primary" /> in Noida.
+            &copy; {year} BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with{" "}
+            <Heart className="w-3 h-3 text-primary fill-primary" /> in
+            Gandhinagar.
           </p>
           <a
             href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}

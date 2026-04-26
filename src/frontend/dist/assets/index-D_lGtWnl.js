@@ -27193,7 +27193,7 @@ function FloatingButtons() {
       motion.a,
       {
         "data-ocid": "float-whatsapp",
-        href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20would%20like%20to%20book%20a%20makeup%20session.",
+        href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20would%20like%20to%20book%20a%20makeup%20session.",
         target: "_blank",
         rel: "noopener noreferrer",
         "aria-label": "Chat on WhatsApp",
@@ -27216,7 +27216,7 @@ function FloatingButtons() {
       motion.a,
       {
         "data-ocid": "float-instagram",
-        href: "https://instagram.com/makeupbyshiviagg",
+        href: "https://instagram.com/beautygrambyunnati",
         target: "_blank",
         rel: "noopener noreferrer",
         "aria-label": "Follow on Instagram",
@@ -27260,16 +27260,16 @@ function Footer() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xl font-bold", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "Makeup" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "byshiviagg" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-6", children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Noida studio." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-6", children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio." }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "https://instagram.com/makeupbyshiviagg",
+                href: "https://instagram.com/beautygrambyunnati",
                 target: "_blank",
                 rel: "noopener noreferrer",
                 "aria-label": "Instagram",
@@ -27280,7 +27280,7 @@ function Footer() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "https://wa.me/919289562926",
+                href: "https://wa.me/917041937373",
                 target: "_blank",
                 rel: "noopener noreferrer",
                 "aria-label": "WhatsApp",
@@ -27308,19 +27308,19 @@ function Footer() {
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 text-muted-foreground text-sm", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 text-primary mt-0.5 flex-shrink-0" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                "Gaur Sportswood, Sector 79,",
+                "Plot no. 634/1, Sector-4/C, Sector 4,",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                "Noida, Uttar Pradesh 201301"
+                "Gandhinagar, Gujarat 382006"
               ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "a",
               {
-                href: "tel:09289562926",
+                href: "tel:07041937373",
                 className: "flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4 text-primary flex-shrink-0" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 92895 62926" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 70419 37373" })
                 ]
               }
             )
@@ -27331,10 +27331,10 @@ function Footer() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
           "© ",
           year,
-          " Makeupbyshiviagg. Made with",
+          " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
           " ",
           /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-3 h-3 text-primary fill-primary" }),
-          " in Noida."
+          " in Gandhinagar."
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "a",
@@ -27395,8 +27395,8 @@ function Navigation() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-full bg-primary/10 blur-sm pulse-glow" })
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-lg sm:text-xl font-bold tracking-wide", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "Makeup" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: "byshiviagg" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
                 ] })
               ]
             }
@@ -27418,7 +27418,7 @@ function Navigation() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "tel:09289562926",
+                href: "tel:07041937373",
                 "data-ocid": "nav-cta",
                 className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/20 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/30 transition-smooth shadow-glow-sm",
                 children: "Book Now"
@@ -27463,7 +27463,7 @@ function Navigation() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "a",
             {
-              href: "tel:09289562926",
+              href: "tel:07041937373",
               className: "mt-2 px-4 py-3 rounded-xl bg-primary/20 border border-primary/40 text-primary text-center font-semibold",
               children: "Book Your Transformation"
             }
@@ -27622,7 +27622,7 @@ function CTAPrimary() {
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.7, delay: 0.3 },
                     className: "text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body",
-                    children: "Join hundreds of brides and stars who trusted Shivi to look their most radiant. Your transformation starts with one call."
+                    children: "Join hundreds of brides and stars who trusted Unnati to look their most radiant. Your transformation starts with one call."
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -27636,7 +27636,7 @@ function CTAPrimary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "tel:09289562926",
+                          href: "tel:07041937373",
                           "data-ocid": "cta-primary-book",
                           className: "inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base transition-smooth group relative overflow-hidden",
                           style: {
@@ -27653,7 +27653,7 @@ function CTAPrimary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20a%20bridal%20consultation.",
+                          href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20consultation.",
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-primary-whatsapp",
@@ -27678,7 +27678,7 @@ function CTAPrimary() {
                       "500+ Brides",
                       "Celebrity Clients",
                       "10+ Years Experience",
-                      "Delhi-NCR"
+                      "Gandhinagar, Gujarat"
                     ].map((badge) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1.5", children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-1 h-1 rounded-full bg-primary inline-block" }),
                       badge
@@ -27736,7 +27736,7 @@ function CTASecondary() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Bridal Look" }),
                   " Awaits"
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Shivi craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Unnati craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "div",
                   {
@@ -27757,7 +27757,7 @@ function CTASecondary() {
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mb-0.5", children: "Call or message now" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "09289562926" })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "07041937373" })
                       ] })
                     ]
                   }
@@ -27766,7 +27766,7 @@ function CTASecondary() {
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "a",
                     {
-                      href: "tel:09289562926",
+                      href: "tel:07041937373",
                       "data-ocid": "cta-secondary-call",
                       className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth",
                       style: {
@@ -27783,7 +27783,7 @@ function CTASecondary() {
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "a",
                     {
-                      href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20my%20bridal%20makeup.",
+                      href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20my%20bridal%20makeup.",
                       target: "_blank",
                       rel: "noopener noreferrer",
                       "data-ocid": "cta-secondary-whatsapp",
@@ -27860,7 +27860,7 @@ const celebrities = [
     id: "c1",
     name: "Naina Kapoor",
     role: "Bollywood Film Actress",
-    quote: "Shivi's artistry transformed our entire film shoot. Every frame was perfection — her attention to lighting and camera angles is truly unmatched. She is the only artist I trust for my on-screen looks.",
+    quote: "Unnati's artistry transformed our entire film shoot. Every frame was perfection — her attention to lighting and camera angles is truly unmatched. She is the only artist I trust for my on-screen looks.",
     icon: Clapperboard,
     badge: "Bollywood",
     color: "text-accent",
@@ -27873,7 +27873,7 @@ const celebrities = [
     id: "c2",
     name: "Priya Malhotra",
     role: "Television Personality",
-    quote: "I've worked with many artists across India, but Shivi's skill level is in a different league entirely. My skin looked flawless on 4K cameras — that's rare and speaks to her mastery of the craft.",
+    quote: "I've worked with many artists across India, but Unnati's skill level is in a different league entirely. My skin looked flawless on 4K cameras — that's rare and speaks to her mastery of the craft.",
     icon: Tv,
     badge: "Television",
     color: "text-primary",
@@ -27886,7 +27886,7 @@ const celebrities = [
     id: "c3",
     name: "Aisha Sharma",
     role: "Fashion Model & Influencer",
-    quote: "The editorial look Shivi created for our magazine cover was iconic. Bold, artistic, and perfectly in sync with the creative vision. She understands beauty at an entirely different level.",
+    quote: "The editorial look Unnati created for our magazine cover was iconic. Bold, artistic, and perfectly in sync with the creative vision. She understands beauty at an entirely different level.",
     icon: Crown,
     badge: "Editorial",
     color: "text-secondary",
@@ -28001,7 +28001,7 @@ function CelebritySection() {
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.7, delay: 0.2 },
                 className: "text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed",
-                children: "From Bollywood film sets to red carpet premieres — Shivi's artistry is the entertainment industry's most coveted secret."
+                children: "From Bollywood film sets to red carpet premieres — Unnati's artistry is the entertainment industry's most coveted secret."
               }
             )
           ] }),
@@ -28224,8 +28224,8 @@ function CelebritySection() {
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
                         {
-                          src: "/assets/photos/uploaded-08.png",
-                          alt: "Celebrity editorial makeup work by Shivi",
+                          src: "/assets/photos/beautygram-08.png",
+                          alt: "Celebrity editorial makeup work by Unnati",
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
@@ -28246,8 +28246,8 @@ function CelebritySection() {
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
                         {
-                          src: "/assets/photos/uploaded-09.png",
-                          alt: "Luxury editorial makeup by Shivi",
+                          src: "/assets/photos/beautygram-09.png",
+                          alt: "Luxury editorial makeup by Unnati",
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
@@ -28270,19 +28270,19 @@ function CelebritySection() {
 const contactCards = [
   {
     id: "phone",
-    href: "tel:09289562926",
+    href: "tel:07041937373",
     icon: Phone,
     iconColor: "text-primary",
     iconBg: "bg-primary/10 border-primary/30",
     hoverBg: "group-hover:bg-primary/20",
     hoverText: "group-hover:text-primary",
-    label: "+91 92895 62926",
+    label: "+91 70419 37373",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false
   },
   {
     id: "whatsapp",
-    href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20a%20bridal%20session.",
+    href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-400",
     iconBg: "bg-green-500/10 border-green-500/30",
@@ -28294,26 +28294,26 @@ const contactCards = [
   },
   {
     id: "instagram",
-    href: "https://instagram.com/makeupbyshiviagg",
+    href: "https://instagram.com/beautygrambyunnati",
     icon: Instagram,
     iconColor: "text-primary",
     iconBg: "bg-primary/10 border-primary/30",
     hoverBg: "group-hover:bg-primary/20",
     hoverText: "group-hover:text-primary",
-    label: "@makeupbyshiviagg",
+    label: "@beautygrambyunnati",
     sublabel: "DM for portfolio & bookings",
     external: true
   },
   {
     id: "address",
-    href: "https://maps.google.com/?q=Gaur+Sportswood+Sector+79+Noida",
+    href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
     iconColor: "text-accent",
     iconBg: "bg-accent/10 border-accent/30",
     hoverBg: "group-hover:bg-accent/20",
     hoverText: "group-hover:text-accent",
-    label: "Gaur Sportswood, Sector 79",
-    sublabel: "Noida, Uttar Pradesh 201301",
+    label: "Plot no. 634/1, Sector-4/C",
+    sublabel: "Gandhinagar, Gujarat 382006",
     external: true
   }
 ];
@@ -28367,7 +28367,7 @@ function ContactSection() {
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.7, delay: 0.2 },
                 className: "text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed",
-                children: "Whether it's your wedding day, a special event, or a celebrity photoshoot — Shivi is ready to bring your vision to life. Reach out and let's talk beauty."
+                children: "Whether it's your wedding day, a special event, or a celebrity photoshoot — Unnati is ready to bring your vision to life. Reach out and let's talk beauty."
               }
             )
           ] }),
@@ -28449,7 +28449,7 @@ function ContactSection() {
                         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
                           "Home visits:",
                           " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Delhi-NCR" })
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Gujarat" })
                         ] })
                       ] })
                     ] })
@@ -28458,7 +28458,7 @@ function ContactSection() {
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "a",
                       {
-                        href: "tel:09289562926",
+                        href: "tel:07041937373",
                         "data-ocid": "contact-cta-call",
                         className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-smooth shadow-glow-md text-sm",
                         children: [
@@ -28470,7 +28470,7 @@ function ContactSection() {
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "a",
                       {
-                        href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20a%20bridal%20session.",
+                        href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
                         target: "_blank",
                         rel: "noopener noreferrer",
                         "data-ocid": "contact-cta-whatsapp",
@@ -28506,8 +28506,8 @@ function ContactSection() {
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "iframe",
                           {
-                            title: "Makeupbyshiviagg Studio — Gaur Sportswood, Sector 79, Noida",
-                            src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.7!2d77.42!3d28.57!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5d0f0e8b0b5%3A0xb7b2c74c7dc12f4a!2sGaur%20Sportswood%2C%20Sector%2079%2C%20Noida%2C%20Uttar%20Pradesh%20201301!5e0!3m2!1sen!2sin!4v1234567890",
+                            title: "BEAUTYGRAM BY UNNATI GANDHINAGAR Studio — Plot no. 634/1, Sector-4/C, Gandhinagar",
+                            src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.123456789!2d72.6369!3d23.2156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2a81e2bf67b7%3A0x0!2sSector%204%2C%20Gandhinagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1234567890",
                             style: {
                               border: 0,
                               width: "100%",
@@ -28525,7 +28525,7 @@ function ContactSection() {
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-center text-muted-foreground text-xs mt-3 flex items-center justify-center gap-1.5", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-3.5 h-3.5 text-primary" }),
-                    "Gaur Sportswood, Sector 79, Noida, Uttar Pradesh 201301"
+                    "Plot no. 634/1, Sector-4/C, Sector 4, Gandhinagar, Gujarat 382006"
                   ] })
                 ]
               }
@@ -28539,8 +28539,8 @@ function ContactSection() {
 const faqs = [
   {
     id: "f1",
-    question: "How do I book a makeup session with Makeupbyshiviagg?",
-    answer: "Simply call or WhatsApp us at 09289562926 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment."
+    question: "How do I book a makeup session with BEAUTYGRAM BY UNNATI?",
+    answer: "Simply call or WhatsApp us at 07041937373 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment."
   },
   {
     id: "f2",
@@ -28730,7 +28730,7 @@ function FAQSection() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "https://wa.me/919289562926",
+                href: "https://wa.me/917041937373",
                 target: "_blank",
                 rel: "noopener noreferrer",
                 "data-ocid": "faq-whatsapp-cta",
@@ -80802,7 +80802,7 @@ function HeroSection() {
                         "a",
                         {
                           "data-ocid": "hero-cta-book",
-                          href: "tel:09289562926",
+                          href: "tel:07041937373",
                           className: "px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth shadow-glow-md relative overflow-hidden group",
                           style: {
                             boxShadow: "0 0 30px oklch(0.6 0.25 320 / 0.5), 0 4px 20px oklch(0 0 0 / 0.4)"
@@ -80877,8 +80877,8 @@ function HeroSection() {
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             "img",
                             {
-                              src: "/assets/photos/uploaded-01.png",
-                              alt: "Makeupbyshiviagg — Luxury Bridal Makeup Artist",
+                              src: "/assets/photos/beautygram-01.png",
+                              alt: "BEAUTYGRAM BY UNNATI GANDHINAGAR — Luxury Bridal Makeup Artist",
                               className: "w-full h-full object-cover object-top"
                             }
                           ),
@@ -80895,7 +80895,7 @@ function HeroSection() {
                                 /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-5 h-5 text-accent flex-shrink-0" }),
                                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                                   /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground text-sm font-semibold font-body", children: "Celebrity Makeup Artist" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "Noida, India · Est. 2015" })
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "Gandhinagar, Gujarat · Est. 2015" })
                                 ] })
                               ] })
                             }
@@ -80997,27 +80997,56 @@ function HeroSection() {
   );
 }
 const portfolioPhotos = [
-  { id: "p1", src: "/assets/photos/uploaded-01.png", label: "Bridal Elegance" },
-  { id: "p2", src: "/assets/photos/uploaded-02.png", label: "Bridal Radiance" },
-  { id: "p3", src: "/assets/photos/uploaded-03.png", label: "Editorial Glam" },
+  {
+    id: "p1",
+    src: "/assets/photos/beautygram-01.png",
+    label: "Bridal Elegance"
+  },
+  {
+    id: "p2",
+    src: "/assets/photos/beautygram-02.png",
+    label: "Bridal Radiance"
+  },
+  {
+    id: "p3",
+    src: "/assets/photos/beautygram-03.png",
+    label: "Editorial Glam"
+  },
   {
     id: "p4",
-    src: "/assets/photos/uploaded-04.png",
+    src: "/assets/photos/beautygram-04.png",
     label: "Party Perfection"
   },
-  { id: "p5", src: "/assets/photos/uploaded-05.png", label: "Celebrity Ready" },
-  { id: "p6", src: "/assets/photos/uploaded-06.png", label: "Engagement Glow" },
+  {
+    id: "p5",
+    src: "/assets/photos/beautygram-05.png",
+    label: "Celebrity Ready"
+  },
+  {
+    id: "p6",
+    src: "/assets/photos/beautygram-06.png",
+    label: "Engagement Glow"
+  },
   {
     id: "p7",
-    src: "/assets/photos/uploaded-07.png",
+    src: "/assets/photos/beautygram-07.png",
     label: "Masterclass Work"
   },
   {
     id: "p8",
-    src: "/assets/photos/uploaded-08.png",
+    src: "/assets/photos/beautygram-08.png",
     label: "Bridal Tradition"
   },
-  { id: "p9", src: "/assets/photos/uploaded-09.png", label: "Luxe Editorial" }
+  {
+    id: "p9",
+    src: "/assets/photos/beautygram-09.png",
+    label: "Luxe Editorial"
+  },
+  {
+    id: "p10",
+    src: "/assets/photos/beautygram-10.png",
+    label: "Signature Look"
+  }
 ];
 function PortfolioSection() {
   const { ref, isInView } = useScrollAnimation(0.1);
@@ -81100,42 +81129,42 @@ const testimonials = [
     id: "t1",
     name: "Priya Sharma",
     role: "Bride",
-    quote: "Shivi transformed my wedding look beyond anything I had imagined. I walked into the mandap feeling like an absolute queen. My guests couldn't stop complimenting me — even my mother-in-law said I looked like a Bollywood star. The makeup lasted through tears of joy and all the dancing!",
+    quote: "Unnati transformed my wedding look beyond anything I had imagined. I walked into the mandap feeling like an absolute queen. My guests couldn't stop complimenting me — even my mother-in-law said I looked like a Bollywood star. The makeup lasted through tears of joy and all the dancing!",
     stars: 5
   },
   {
     id: "t2",
     name: "Anjali Verma",
     role: "Bride",
-    quote: "I was so nervous before my big day but Shivi made me feel completely at ease. She listened to every detail of my vision and created a bridal look that was breathtakingly perfect. Eight hours later at the reception, I still looked freshly made up. Truly the best investment for my wedding.",
+    quote: "I was so nervous before my big day but Unnati made me feel completely at ease. She listened to every detail of my vision and created a bridal look that was breathtakingly perfect. Eight hours later at the reception, I still looked freshly made up. Truly the best investment for my wedding.",
     stars: 5
   },
   {
     id: "t3",
     name: "Kavita Singh",
     role: "Bride",
-    quote: "Shivi has magical hands — that's the only way I can describe it. My skin has always been problematic but she worked her expertise to give me a flawless, dewy finish. Every single photo from my wedding looks like it came straight from a bridal magazine. I'm forever grateful!",
+    quote: "Unnati has magical hands — that's the only way I can describe it. My skin has always been problematic but she worked her expertise to give me a flawless, dewy finish. Every single photo from my wedding looks like it came straight from a bridal magazine. I'm forever grateful!",
     stars: 5
   },
   {
     id: "t4",
     name: "Neha Gupta",
     role: "Bride",
-    quote: "Flew Shivi all the way to Mumbai for my destination wedding and it was worth every single rupee. She understood my aesthetic immediately — understated luxury — and delivered exactly that. My bridal portraits have gone viral in my entire friend circle. Pure artistry at work.",
+    quote: "Booked Unnati for my destination wedding and it was worth every single rupee. She understood my aesthetic immediately — understated luxury — and delivered exactly that. My bridal portraits have gone viral in my entire friend circle. Pure artistry at work.",
     stars: 5
   },
   {
     id: "t5",
     name: "Pooja Mehta",
     role: "Bride",
-    quote: "I booked Shivi for my entire wedding week — mehendi, sangeet, and the main ceremony. Each look was completely different yet consistently gorgeous. She brought so much positive energy to my preparation room and made those moments even more special. An absolute gem!",
+    quote: "I booked Unnati for my entire wedding week — mehendi, sangeet, and the main ceremony. Each look was completely different yet consistently gorgeous. She brought so much positive energy to my preparation room and made those moments even more special. An absolute gem!",
     stars: 5
   },
   {
     id: "t6",
     name: "Ritika Choudhary",
     role: "Bride",
-    quote: "Being a bride in the summer heat was my biggest fear but Shivi assured me and delivered on every promise. The makeup stayed flawless through the heat and humidity for a full 14 hours. She even prepped a personalized touch-up kit so I could refresh between ceremonies. Phenomenal service!",
+    quote: "Being a bride in the summer heat was my biggest fear but Unnati assured me and delivered on every promise. The makeup stayed flawless through the heat and humidity for a full 14 hours. She even prepped a personalized touch-up kit so I could refresh between ceremonies. Phenomenal service!",
     stars: 5
   }
 ];
@@ -81422,13 +81451,13 @@ function ReviewsSection() {
     }
   );
 }
-const PHONE = "09289562926";
+const PHONE = "07041937373";
 const services = [
   {
     id: "bridal",
     title: "Bridal Makeup",
     description: "Your wedding day deserves nothing but perfection. Each bridal look is hand-crafted to enhance your natural beauty, honour your heritage, and last flawlessly from ceremony to celebrations.",
-    image: "/assets/photos/uploaded-02.png",
+    image: "/assets/photos/beautygram-02.png",
     price: "Starting ₹8,000",
     highlights: [
       "Pre-bridal trial session",
@@ -81441,7 +81470,7 @@ const services = [
     id: "engagement",
     title: "Engagement Makeup",
     description: "Celebrate your love story with a radiant, romantic look. Tailored for mehendi, sangeet, haldi, and engagement ceremonies — every pore glows with intention.",
-    image: "/assets/photos/uploaded-03.png",
+    image: "/assets/photos/beautygram-03.png",
     price: "Starting ₹4,500",
     highlights: [
       "Multi-event packages",
@@ -81454,7 +81483,7 @@ const services = [
     id: "celebrity",
     title: "Celebrity Styling",
     description: "Trusted by Bollywood stars and TV personalities across India. Camera-ready precision that translates magnificently on screen, in print, and on the red carpet.",
-    image: "/assets/photos/uploaded-04.png",
+    image: "/assets/photos/beautygram-04.png",
     price: "On Request",
     highlights: [
       "On-location service",
@@ -81467,7 +81496,7 @@ const services = [
     id: "party",
     title: "Party & Events",
     description: "Turn heads at every occasion — cocktail parties, receptions, corporate galas, and festive celebrations. Glamorous, polished looks that last the entire night.",
-    image: "/assets/photos/uploaded-05.png",
+    image: "/assets/photos/beautygram-05.png",
     price: "Starting ₹3,500",
     highlights: [
       "Express 45-min sessions",
@@ -81480,7 +81509,7 @@ const services = [
     id: "hd",
     title: "HD Makeup",
     description: "High-definition makeup engineered for photography and video. Ultra-fine pigments create a flawless, camera-perfect finish that appears completely natural up close.",
-    image: "/assets/photos/uploaded-06.png",
+    image: "/assets/photos/beautygram-06.png",
     price: "Starting ₹5,500",
     highlights: [
       "Zero flashback guarantee",
@@ -81493,7 +81522,7 @@ const services = [
     id: "airbrush",
     title: "Airbrush Makeup",
     description: "The gold standard of flawless coverage. Silicone-based pigments sprayed with precision give an ethereal, second-skin finish that photographs like a dream.",
-    image: "/assets/photos/uploaded-07.png",
+    image: "/assets/photos/beautygram-07.png",
     price: "Starting ₹6,000",
     highlights: [
       "Weightless, breathable feel",
@@ -81803,7 +81832,7 @@ const reasons = [
     id: "r5",
     icon: MapPin,
     title: "On-Site Services Available",
-    description: "Visit our Noida studio or let us come to you. We offer home service across Delhi NCR and travel nationwide for destination weddings.",
+    description: "Visit our Gandhinagar studio or let us come to you. We offer home service across Gujarat and travel nationwide for destination weddings.",
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
@@ -81869,7 +81898,7 @@ function WhyUsSection() {
                 className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Shivi Difference" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Unnati Difference" })
                 ]
               }
             ),
@@ -81890,7 +81919,7 @@ function WhyUsSection() {
                       style: {
                         textShadow: "0 0 40px oklch(0.6 0.25 320 / 0.6), 0 0 80px oklch(0.6 0.25 320 / 0.3)"
                       },
-                      children: "Shivi"
+                      children: "Unnati"
                     }
                   )
                 ]
@@ -82011,9 +82040,9 @@ function WhyUsSection() {
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "a",
                         {
-                          href: "tel:+919289562926",
+                          href: "tel:+917041937373",
                           className: "text-primary font-semibold hover:text-accent transition-smooth",
-                          children: "09289562926"
+                          children: "07041937373"
                         }
                       )
                     ] })

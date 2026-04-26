@@ -4,7 +4,7 @@ import { type MouseEvent, useRef } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import type { ServiceItem } from "../types";
 
-const PHONE = "09289562926";
+const PHONE = "07041937373";
 
 const services: ServiceItem[] = [
   {
@@ -12,7 +12,7 @@ const services: ServiceItem[] = [
     title: "Bridal Makeup",
     description:
       "Your wedding day deserves nothing but perfection. Each bridal look is hand-crafted to enhance your natural beauty, honour your heritage, and last flawlessly from ceremony to celebrations.",
-    image: "/assets/photos/uploaded-02.png",
+    image: "/assets/photos/beautygram-02.png",
     price: "Starting ₹8,000",
     highlights: [
       "Pre-bridal trial session",
@@ -26,7 +26,7 @@ const services: ServiceItem[] = [
     title: "Engagement Makeup",
     description:
       "Celebrate your love story with a radiant, romantic look. Tailored for mehendi, sangeet, haldi, and engagement ceremonies — every pore glows with intention.",
-    image: "/assets/photos/uploaded-03.png",
+    image: "/assets/photos/beautygram-03.png",
     price: "Starting ₹4,500",
     highlights: [
       "Multi-event packages",
@@ -40,7 +40,7 @@ const services: ServiceItem[] = [
     title: "Celebrity Styling",
     description:
       "Trusted by Bollywood stars and TV personalities across India. Camera-ready precision that translates magnificently on screen, in print, and on the red carpet.",
-    image: "/assets/photos/uploaded-04.png",
+    image: "/assets/photos/beautygram-04.png",
     price: "On Request",
     highlights: [
       "On-location service",
@@ -54,7 +54,7 @@ const services: ServiceItem[] = [
     title: "Party & Events",
     description:
       "Turn heads at every occasion — cocktail parties, receptions, corporate galas, and festive celebrations. Glamorous, polished looks that last the entire night.",
-    image: "/assets/photos/uploaded-05.png",
+    image: "/assets/photos/beautygram-05.png",
     price: "Starting ₹3,500",
     highlights: [
       "Express 45-min sessions",
@@ -68,7 +68,7 @@ const services: ServiceItem[] = [
     title: "HD Makeup",
     description:
       "High-definition makeup engineered for photography and video. Ultra-fine pigments create a flawless, camera-perfect finish that appears completely natural up close.",
-    image: "/assets/photos/uploaded-06.png",
+    image: "/assets/photos/beautygram-06.png",
     price: "Starting ₹5,500",
     highlights: [
       "Zero flashback guarantee",
@@ -82,7 +82,7 @@ const services: ServiceItem[] = [
     title: "Airbrush Makeup",
     description:
       "The gold standard of flawless coverage. Silicone-based pigments sprayed with precision give an ethereal, second-skin finish that photographs like a dream.",
-    image: "/assets/photos/uploaded-07.png",
+    image: "/assets/photos/beautygram-07.png",
     price: "Starting ₹6,000",
     highlights: [
       "Weightless, breathable feel",

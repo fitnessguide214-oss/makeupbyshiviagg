@@ -65,7 +65,7 @@ const reasons = [
     icon: MapPin,
     title: "On-Site Services Available",
     description:
-      "Visit our Noida studio or let us come to you. We offer home service across Delhi NCR and travel nationwide for destination weddings.",
+      "Visit our Gandhinagar studio or let us come to you. We offer home service across Gujarat and travel nationwide for destination weddings.",
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
@@ -131,7 +131,7 @@ export function WhyUsSection() {
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold tracking-wide">
-              The Shivi Difference
+              The Unnati Difference
             </span>
           </motion.div>
 
@@ -149,7 +149,7 @@ export function WhyUsSection() {
                   "0 0 40px oklch(0.6 0.25 320 / 0.6), 0 0 80px oklch(0.6 0.25 320 / 0.3)",
               }}
             >
-              Shivi
+              Unnati
             </span>
           </motion.h2>
 
@@ -261,10 +261,10 @@ export function WhyUsSection() {
             <span className="text-muted-foreground text-sm font-body">
               Bookings available 7 days a week · Call{" "}
               <a
-                href="tel:+919289562926"
+                href="tel:+917041937373"
                 className="text-primary font-semibold hover:text-accent transition-smooth"
               >
-                09289562926
+                07041937373
               </a>
             </span>
           </div>

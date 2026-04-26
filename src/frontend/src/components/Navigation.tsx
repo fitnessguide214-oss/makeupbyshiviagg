@@ -56,8 +56,8 @@ export function Navigation() {
                 <div className="absolute inset-0 rounded-full bg-primary/10 blur-sm pulse-glow" />
               </div>
               <span className="font-display text-lg sm:text-xl font-bold tracking-wide">
-                <span className="text-foreground">Makeup</span>
-                <span className="text-primary">byshiviagg</span>
+                <span className="text-foreground">BEAUTYGRAM</span>
+                <span className="text-primary"> BY UNNATI</span>
               </span>
             </button>
 
@@ -79,7 +79,7 @@ export function Navigation() {
             {/* CTA + Mobile Menu */}
             <div className="flex items-center gap-3">
               <a
-                href="tel:09289562926"
+                href="tel:07041937373"
                 data-ocid="nav-cta"
                 className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/20 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/30 transition-smooth shadow-glow-sm"
               >
@@ -127,7 +127,7 @@ export function Navigation() {
                 </motion.button>
               ))}
               <a
-                href="tel:09289562926"
+                href="tel:07041937373"
                 className="mt-2 px-4 py-3 rounded-xl bg-primary/20 border border-primary/40 text-primary text-center font-semibold"
               >
                 Book Your Transformation

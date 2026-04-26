@@ -8,7 +8,7 @@ export function FloatingButtons() {
       {/* WhatsApp — Bottom Left */}
       <motion.a
         data-ocid="float-whatsapp"
-        href="https://wa.me/919289562926?text=Hi%20Shivi!%20I%20would%20like%20to%20book%20a%20makeup%20session."
+        href="https://wa.me/917041937373?text=Hi%20Unnati!%20I%20would%20like%20to%20book%20a%20makeup%20session."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -30,7 +30,7 @@ export function FloatingButtons() {
       {/* Instagram — Bottom Right */}
       <motion.a
         data-ocid="float-instagram"
-        href="https://instagram.com/makeupbyshiviagg"
+        href="https://instagram.com/beautygrambyunnati"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Follow on Instagram"

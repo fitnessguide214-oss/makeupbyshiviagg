@@ -447,7 +447,7 @@ export function HeroSection() {
             >
               <a
                 data-ocid="hero-cta-book"
-                href="tel:09289562926"
+                href="tel:07041937373"
                 className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth shadow-glow-md relative overflow-hidden group"
                 style={{
                   boxShadow:
@@ -522,8 +522,8 @@ export function HeroSection() {
               }}
             >
               <img
-                src="/assets/photos/uploaded-01.png"
-                alt="Makeupbyshiviagg — Luxury Bridal Makeup Artist"
+                src="/assets/photos/beautygram-01.png"
+                alt="BEAUTYGRAM BY UNNATI GANDHINAGAR — Luxury Bridal Makeup Artist"
                 className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
@@ -543,7 +543,7 @@ export function HeroSection() {
                       Celebrity Makeup Artist
                     </p>
                     <p className="text-muted-foreground text-xs">
-                      Noida, India · Est. 2015
+                      Gandhinagar, Gujarat · Est. 2015
                     </p>
                   </div>
                 </div>

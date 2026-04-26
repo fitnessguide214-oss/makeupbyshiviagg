@@ -6,19 +6,19 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 const contactCards = [
   {
     id: "phone",
-    href: "tel:09289562926",
+    href: "tel:07041937373",
     icon: Phone,
     iconColor: "text-primary",
     iconBg: "bg-primary/10 border-primary/30",
     hoverBg: "group-hover:bg-primary/20",
     hoverText: "group-hover:text-primary",
-    label: "+91 92895 62926",
+    label: "+91 70419 37373",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false,
   },
   {
     id: "whatsapp",
-    href: "https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20a%20bridal%20session.",
+    href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-400",
     iconBg: "bg-green-500/10 border-green-500/30",
@@ -30,26 +30,26 @@ const contactCards = [
   },
   {
     id: "instagram",
-    href: "https://instagram.com/makeupbyshiviagg",
+    href: "https://instagram.com/beautygrambyunnati",
     icon: Instagram,
     iconColor: "text-primary",
     iconBg: "bg-primary/10 border-primary/30",
     hoverBg: "group-hover:bg-primary/20",
     hoverText: "group-hover:text-primary",
-    label: "@makeupbyshiviagg",
+    label: "@beautygrambyunnati",
     sublabel: "DM for portfolio & bookings",
     external: true,
   },
   {
     id: "address",
-    href: "https://maps.google.com/?q=Gaur+Sportswood+Sector+79+Noida",
+    href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
     iconColor: "text-accent",
     iconBg: "bg-accent/10 border-accent/30",
     hoverBg: "group-hover:bg-accent/20",
     hoverText: "group-hover:text-accent",
-    label: "Gaur Sportswood, Sector 79",
-    sublabel: "Noida, Uttar Pradesh 201301",
+    label: "Plot no. 634/1, Sector-4/C",
+    sublabel: "Gandhinagar, Gujarat 382006",
     external: true,
   },
 ];
@@ -104,7 +104,7 @@ export function ContactSection() {
             className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed"
           >
             Whether it's your wedding day, a special event, or a celebrity
-            photoshoot — Shivi is ready to bring your vision to life. Reach out
+            photoshoot — Unnati is ready to bring your vision to life. Reach out
             and let's talk beauty.
           </motion.p>
         </div>
@@ -195,7 +195,7 @@ export function ContactSection() {
                   <span className="text-muted-foreground">
                     Home visits:{" "}
                     <span className="text-foreground font-medium">
-                      Available across Delhi-NCR
+                      Available across Gujarat
                     </span>
                   </span>
                 </div>
@@ -205,7 +205,7 @@ export function ContactSection() {
             {/* CTA buttons */}
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="tel:09289562926"
+                href="tel:07041937373"
                 data-ocid="contact-cta-call"
                 className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-smooth shadow-glow-md text-sm"
               >
@@ -213,7 +213,7 @@ export function ContactSection() {
                 Call Now
               </a>
               <a
-                href="https://wa.me/919289562926?text=Hi%20Shivi!%20I%20want%20to%20book%20a%20bridal%20session."
+                href="https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="contact-cta-whatsapp"
@@ -244,8 +244,8 @@ export function ContactSection() {
               <div className="absolute bottom-0 right-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" />
 
               <iframe
-                title="Makeupbyshiviagg Studio — Gaur Sportswood, Sector 79, Noida"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.7!2d77.42!3d28.57!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5d0f0e8b0b5%3A0xb7b2c74c7dc12f4a!2sGaur%20Sportswood%2C%20Sector%2079%2C%20Noida%2C%20Uttar%20Pradesh%20201301!5e0!3m2!1sen!2sin!4v1234567890"
+                title="BEAUTYGRAM BY UNNATI GANDHINAGAR Studio — Plot no. 634/1, Sector-4/C, Gandhinagar"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.123456789!2d72.6369!3d23.2156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2a81e2bf67b7%3A0x0!2sSector%204%2C%20Gandhinagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1234567890"
                 style={{
                   border: 0,
                   width: "100%",
@@ -261,7 +261,7 @@ export function ContactSection() {
 
             <p className="text-center text-muted-foreground text-xs mt-3 flex items-center justify-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-primary" />
-              Gaur Sportswood, Sector 79, Noida, Uttar Pradesh 201301
+              Plot no. 634/1, Sector-4/C, Sector 4, Gandhinagar, Gujarat 382006
             </p>
           </motion.div>
         </div>

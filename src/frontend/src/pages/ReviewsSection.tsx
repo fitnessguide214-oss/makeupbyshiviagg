@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     name: "Priya Sharma",
     role: "Bride",
     quote:
-      "Shivi transformed my wedding look beyond anything I had imagined. I walked into the mandap feeling like an absolute queen. My guests couldn't stop complimenting me — even my mother-in-law said I looked like a Bollywood star. The makeup lasted through tears of joy and all the dancing!",
+      "Unnati transformed my wedding look beyond anything I had imagined. I walked into the mandap feeling like an absolute queen. My guests couldn't stop complimenting me — even my mother-in-law said I looked like a Bollywood star. The makeup lasted through tears of joy and all the dancing!",
     stars: 5,
   },
   {
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     name: "Anjali Verma",
     role: "Bride",
     quote:
-      "I was so nervous before my big day but Shivi made me feel completely at ease. She listened to every detail of my vision and created a bridal look that was breathtakingly perfect. Eight hours later at the reception, I still looked freshly made up. Truly the best investment for my wedding.",
+      "I was so nervous before my big day but Unnati made me feel completely at ease. She listened to every detail of my vision and created a bridal look that was breathtakingly perfect. Eight hours later at the reception, I still looked freshly made up. Truly the best investment for my wedding.",
     stars: 5,
   },
   {
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     name: "Kavita Singh",
     role: "Bride",
     quote:
-      "Shivi has magical hands — that's the only way I can describe it. My skin has always been problematic but she worked her expertise to give me a flawless, dewy finish. Every single photo from my wedding looks like it came straight from a bridal magazine. I'm forever grateful!",
+      "Unnati has magical hands — that's the only way I can describe it. My skin has always been problematic but she worked her expertise to give me a flawless, dewy finish. Every single photo from my wedding looks like it came straight from a bridal magazine. I'm forever grateful!",
     stars: 5,
   },
   {
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     name: "Neha Gupta",
     role: "Bride",
     quote:
-      "Flew Shivi all the way to Mumbai for my destination wedding and it was worth every single rupee. She understood my aesthetic immediately — understated luxury — and delivered exactly that. My bridal portraits have gone viral in my entire friend circle. Pure artistry at work.",
+      "Booked Unnati for my destination wedding and it was worth every single rupee. She understood my aesthetic immediately — understated luxury — and delivered exactly that. My bridal portraits have gone viral in my entire friend circle. Pure artistry at work.",
     stars: 5,
   },
   {
@@ -54,7 +54,7 @@ const testimonials: Testimonial[] = [
     name: "Pooja Mehta",
     role: "Bride",
     quote:
-      "I booked Shivi for my entire wedding week — mehendi, sangeet, and the main ceremony. Each look was completely different yet consistently gorgeous. She brought so much positive energy to my preparation room and made those moments even more special. An absolute gem!",
+      "I booked Unnati for my entire wedding week — mehendi, sangeet, and the main ceremony. Each look was completely different yet consistently gorgeous. She brought so much positive energy to my preparation room and made those moments even more special. An absolute gem!",
     stars: 5,
   },
   {
@@ -62,7 +62,7 @@ const testimonials: Testimonial[] = [
     name: "Ritika Choudhary",
     role: "Bride",
     quote:
-      "Being a bride in the summer heat was my biggest fear but Shivi assured me and delivered on every promise. The makeup stayed flawless through the heat and humidity for a full 14 hours. She even prepped a personalized touch-up kit so I could refresh between ceremonies. Phenomenal service!",
+      "Being a bride in the summer heat was my biggest fear but Unnati assured me and delivered on every promise. The makeup stayed flawless through the heat and humidity for a full 14 hours. She even prepped a personalized touch-up kit so I could refresh between ceremonies. Phenomenal service!",
     stars: 5,
   },
 ];

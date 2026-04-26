@@ -15,7 +15,7 @@ const celebrities = [
     name: "Naina Kapoor",
     role: "Bollywood Film Actress",
     quote:
-      "Shivi's artistry transformed our entire film shoot. Every frame was perfection — her attention to lighting and camera angles is truly unmatched. She is the only artist I trust for my on-screen looks.",
+      "Unnati's artistry transformed our entire film shoot. Every frame was perfection — her attention to lighting and camera angles is truly unmatched. She is the only artist I trust for my on-screen looks.",
     icon: Clapperboard,
     badge: "Bollywood",
     color: "text-accent",
@@ -29,7 +29,7 @@ const celebrities = [
     name: "Priya Malhotra",
     role: "Television Personality",
     quote:
-      "I've worked with many artists across India, but Shivi's skill level is in a different league entirely. My skin looked flawless on 4K cameras — that's rare and speaks to her mastery of the craft.",
+      "I've worked with many artists across India, but Unnati's skill level is in a different league entirely. My skin looked flawless on 4K cameras — that's rare and speaks to her mastery of the craft.",
     icon: Tv,
     badge: "Television",
     color: "text-primary",
@@ -43,7 +43,7 @@ const celebrities = [
     name: "Aisha Sharma",
     role: "Fashion Model & Influencer",
     quote:
-      "The editorial look Shivi created for our magazine cover was iconic. Bold, artistic, and perfectly in sync with the creative vision. She understands beauty at an entirely different level.",
+      "The editorial look Unnati created for our magazine cover was iconic. Bold, artistic, and perfectly in sync with the creative vision. She understands beauty at an entirely different level.",
     icon: Crown,
     badge: "Editorial",
     color: "text-secondary",
@@ -160,7 +160,7 @@ export function CelebritySection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed"
           >
-            From Bollywood film sets to red carpet premieres — Shivi's artistry
+            From Bollywood film sets to red carpet premieres — Unnati's artistry
             is the entertainment industry's most coveted secret.
           </motion.p>
         </div>
@@ -374,8 +374,8 @@ export function CelebritySection() {
             style={{ boxShadow: "0 0 40px oklch(0.6 0.25 320 / 0.25)" }}
           >
             <img
-              src="/assets/photos/uploaded-08.png"
-              alt="Celebrity editorial makeup work by Shivi"
+              src="/assets/photos/beautygram-08.png"
+              alt="Celebrity editorial makeup work by Unnati"
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
@@ -392,8 +392,8 @@ export function CelebritySection() {
             style={{ boxShadow: "0 0 40px oklch(0.75 0.15 65 / 0.25)" }}
           >
             <img
-              src="/assets/photos/uploaded-09.png"
-              alt="Luxury editorial makeup by Shivi"
+              src="/assets/photos/beautygram-09.png"
+              alt="Luxury editorial makeup by Unnati"
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />

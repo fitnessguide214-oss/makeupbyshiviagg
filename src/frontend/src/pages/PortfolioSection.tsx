@@ -3,27 +3,56 @@ import { motion } from "motion/react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const portfolioPhotos = [
-  { id: "p1", src: "/assets/photos/uploaded-01.png", label: "Bridal Elegance" },
-  { id: "p2", src: "/assets/photos/uploaded-02.png", label: "Bridal Radiance" },
-  { id: "p3", src: "/assets/photos/uploaded-03.png", label: "Editorial Glam" },
+  {
+    id: "p1",
+    src: "/assets/photos/beautygram-01.png",
+    label: "Bridal Elegance",
+  },
+  {
+    id: "p2",
+    src: "/assets/photos/beautygram-02.png",
+    label: "Bridal Radiance",
+  },
+  {
+    id: "p3",
+    src: "/assets/photos/beautygram-03.png",
+    label: "Editorial Glam",
+  },
   {
     id: "p4",
-    src: "/assets/photos/uploaded-04.png",
+    src: "/assets/photos/beautygram-04.png",
     label: "Party Perfection",
   },
-  { id: "p5", src: "/assets/photos/uploaded-05.png", label: "Celebrity Ready" },
-  { id: "p6", src: "/assets/photos/uploaded-06.png", label: "Engagement Glow" },
+  {
+    id: "p5",
+    src: "/assets/photos/beautygram-05.png",
+    label: "Celebrity Ready",
+  },
+  {
+    id: "p6",
+    src: "/assets/photos/beautygram-06.png",
+    label: "Engagement Glow",
+  },
   {
     id: "p7",
-    src: "/assets/photos/uploaded-07.png",
+    src: "/assets/photos/beautygram-07.png",
     label: "Masterclass Work",
   },
   {
     id: "p8",
-    src: "/assets/photos/uploaded-08.png",
+    src: "/assets/photos/beautygram-08.png",
     label: "Bridal Tradition",
   },
-  { id: "p9", src: "/assets/photos/uploaded-09.png", label: "Luxe Editorial" },
+  {
+    id: "p9",
+    src: "/assets/photos/beautygram-09.png",
+    label: "Luxe Editorial",
+  },
+  {
+    id: "p10",
+    src: "/assets/photos/beautygram-10.png",
+    label: "Signature Look",
+  },
 ];
 
 export function PortfolioSection() {

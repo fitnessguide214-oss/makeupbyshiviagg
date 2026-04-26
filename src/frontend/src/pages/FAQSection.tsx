@@ -6,9 +6,9 @@ import type { FAQItem } from "../types";
 const faqs: FAQItem[] = [
   {
     id: "f1",
-    question: "How do I book a makeup session with Makeupbyshiviagg?",
+    question: "How do I book a makeup session with BEAUTYGRAM BY UNNATI?",
     answer:
-      "Simply call or WhatsApp us at 09289562926 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment.",
+      "Simply call or WhatsApp us at 07041937373 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment.",
   },
   {
     id: "f2",
@@ -226,7 +226,7 @@ export function FAQSection() {
             within hours.
           </p>
           <a
-            href="https://wa.me/919289562926"
+            href="https://wa.me/917041937373"
             target="_blank"
             rel="noopener noreferrer"
             data-ocid="faq-whatsapp-cta"
