@@ -119,12 +119,12 @@ export function Footer() {
             Gandhinagar.
           </p>
           <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
+            href={`https://kavya${encodeURIComponent(hostname)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-smooth"
           >
-            Built with caffeine.ai
+            Designed by Kavya Chaudhary 
           </a>
         </div>
       </div>
