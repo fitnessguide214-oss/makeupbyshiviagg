@@ -61,17 +61,41 @@ export function PortfolioSection() {
   return (
     <section
       id="portfolio"
-      className="relative py-24 bg-background overflow-hidden"
+      className="relative py-24 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.016 325) 100%)",
+      }}
     >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background pink glow orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute top-20 right-10 w-72 h-72 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.73 0.20 325 / 0.3) 0%, transparent 70%)",
+            filter: "blur(55px)",
+          }}
+        />
+        <div
+          className="absolute bottom-20 left-10 w-64 h-64 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.70 0.22 338 / 0.25) 0%, transparent 70%)",
+            filter: "blur(48px)",
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium">
@@ -106,14 +130,18 @@ export function PortfolioSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.07 }}
-              className="relative group break-inside-avoid rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-smooth shadow-card-elevated"
+              className="relative group break-inside-avoid rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-smooth bg-white"
+              style={{
+                boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)",
+              }}
             >
               <img
                 src={photo.src}
                 alt={photo.label}
                 className="w-full object-cover group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
+              {/* Soft pink overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-pink-100/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-smooth">
                 <p className="text-foreground text-sm font-semibold font-body">
                   {photo.label}

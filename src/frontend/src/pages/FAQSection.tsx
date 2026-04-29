@@ -86,22 +86,22 @@ function FAQAccordionItem({
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className={`rounded-2xl overflow-hidden transition-all duration-300 ${
         isOpen
-          ? "border border-primary/50 shadow-[0_0_25px_oklch(0.6_0.25_320/0.2),inset_0_0_20px_oklch(0.6_0.25_320/0.04)]"
-          : "border border-border hover:border-primary/30"
+          ? "border border-primary/45 shadow-[0_0_22px_oklch(0.52_0.24_335/0.16),inset_0_0_18px_oklch(0.52_0.24_335/0.03)]"
+          : "border border-border hover:border-primary/35"
       }`}
     >
       <button
         type="button"
         data-ocid={`faq-toggle-${item.id}`}
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-6 py-5 text-left bg-card hover:bg-card/80 transition-smooth"
+        className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-pink-50/60 transition-smooth"
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-3 pr-4">
           <div
             className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-smooth ${
               isOpen
-                ? "bg-primary/20 text-primary"
+                ? "bg-primary/15 text-primary"
                 : "bg-muted text-muted-foreground"
             }`}
           >
@@ -132,7 +132,7 @@ function FAQAccordionItem({
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-6 pt-1 border-t border-border/40 bg-card">
+            <div className="px-6 pb-6 pt-1 border-t border-border/40 bg-pink-50/40">
               <p className="text-muted-foreground text-sm leading-relaxed font-body pl-10">
                 {item.answer}
               </p>
@@ -148,14 +148,35 @@ export function FAQSection() {
   const [openId, setOpenId] = useState<string | null>("f1");
 
   return (
-    <section id="faq" className="relative py-28 bg-muted/20 overflow-hidden">
+    <section
+      id="faq"
+      className="relative py-28 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.98 0.010 322) 0%, oklch(0.97 0.016 328) 100%)",
+      }}
+    >
       {/* Top divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
       {/* Ambient glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-0 w-64 h-64 bg-primary/8 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-48 h-48 bg-secondary/8 rounded-full blur-3xl" />
+        <div
+          className="absolute top-20 right-0 w-64 h-64 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.76 0.18 330 / 0.3) 0%, transparent 70%)",
+            filter: "blur(60px)",
+          }}
+        />
+        <div
+          className="absolute bottom-20 left-0 w-48 h-48 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.73 0.20 325 / 0.25) 0%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -166,7 +187,7 @@ export function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/35 mb-6 shadow-glow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium">
@@ -216,7 +237,8 @@ export function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-12 text-center bg-card rounded-3xl p-8 border border-primary/20 shadow-[0_0_30px_oklch(0.6_0.25_320/0.1)]"
+          className="mt-12 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-8 border border-primary/20"
+          style={{ boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.12)" }}
         >
           <p className="text-foreground font-semibold font-display text-lg mb-2">
             Still have questions?
@@ -230,7 +252,7 @@ export function FAQSection() {
             target="_blank"
             rel="noopener noreferrer"
             data-ocid="faq-whatsapp-cta"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-smooth shadow-[0_0_20px_oklch(0.6_0.25_320/0.4)]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-smooth shadow-glow-sm"
           >
             Chat on WhatsApp
           </a>

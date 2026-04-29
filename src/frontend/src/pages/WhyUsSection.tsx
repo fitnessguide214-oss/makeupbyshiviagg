@@ -18,10 +18,10 @@ const reasons = [
     title: "Premium Quality Products",
     description:
       "We exclusively use international luxury brands — MAC, Charlotte Tilbury, NARS, Huda Beauty, and Pat McGrath for flawless, skin-safe results that last all day.",
-    color: "text-accent",
-    bg: "bg-accent/10",
-    border: "border-accent/30",
-    glow: "oklch(0.75 0.15 65 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { rotate: [0, 15, -10, 0] },
   },
   {
@@ -33,7 +33,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.6 0.25 320 / 0.35)",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { scale: [1, 1.2, 1] },
   },
   {
@@ -42,10 +42,10 @@ const reasons = [
     title: "Celebrity Experience",
     description:
       "15+ years working with Bollywood actresses, TV personalities, and magazine cover models. That rare industry expertise is now available to you.",
-    color: "text-secondary",
-    bg: "bg-secondary/10",
-    border: "border-secondary/30",
-    glow: "oklch(0.65 0.24 330 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.60 0.20 340 / 0.32)",
     iconAnim: { rotate: [0, 360] },
   },
   {
@@ -54,10 +54,10 @@ const reasons = [
     title: "Custom Designs",
     description:
       "No cookie-cutter makeup here. Every look is tailored to your unique bone structure, skin tone, and personal style — we create art, not copies.",
-    color: "text-accent",
-    bg: "bg-accent/10",
-    border: "border-accent/30",
-    glow: "oklch(0.75 0.15 65 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { y: [0, -5, 0] },
   },
   {
@@ -69,7 +69,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.6 0.25 320 / 0.35)",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { y: [0, -6, 0] },
   },
   {
@@ -78,10 +78,10 @@ const reasons = [
     title: "15+ Years of Experience",
     description:
       "Over a decade and a half of mastering trends, techniques, and transformations. You're in the hands of a true professional with a proven track record.",
-    color: "text-secondary",
-    bg: "bg-secondary/10",
-    border: "border-secondary/30",
-    glow: "oklch(0.65 0.24 330 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.60 0.20 340 / 0.32)",
     iconAnim: { rotate: [0, 5, -5, 0] },
   },
 ];
@@ -92,7 +92,11 @@ export function WhyUsSection() {
   return (
     <section
       id="why-us"
-      className="relative py-28 bg-background overflow-hidden"
+      className="relative py-28 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.98 0.010 316) 0%, oklch(0.97 0.018 326) 50%, oklch(0.98 0.010 320) 100%)",
+      }}
     >
       {/* Top section divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
@@ -100,8 +104,13 @@ export function WhyUsSection() {
       {/* Background glow orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.9, 0.5] }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.72 0.18 325 / 0.22) 0%, transparent 70%)",
+            filter: "blur(65px)",
+          }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.85, 0.5] }}
           transition={{
             duration: 8,
             repeat: Number.POSITIVE_INFINITY,
@@ -109,8 +118,13 @@ export function WhyUsSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-56 h-56 bg-accent/7 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }}
+          className="absolute bottom-20 right-10 w-56 h-56 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.68 0.22 332 / 0.28) 0%, transparent 70%)",
+            filter: "blur(44px)",
+          }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] }}
           transition={{
             duration: 6,
             repeat: Number.POSITIVE_INFINITY,
@@ -127,7 +141,7 @@ export function WhyUsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold tracking-wide">
@@ -146,7 +160,7 @@ export function WhyUsSection() {
               className="text-primary"
               style={{
                 textShadow:
-                  "0 0 40px oklch(0.6 0.25 320 / 0.6), 0 0 80px oklch(0.6 0.25 320 / 0.3)",
+                  "0 0 36px oklch(0.52 0.24 335 / 0.5), 0 0 72px oklch(0.52 0.24 335 / 0.22)",
               }}
             >
               Unnati
@@ -164,7 +178,7 @@ export function WhyUsSection() {
           </motion.p>
         </div>
 
-        {/* Feature cards grid — staggered 3D perspective entrance */}
+        {/* Feature cards grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((reason, i) => {
             const Icon = reason.icon;
@@ -181,18 +195,18 @@ export function WhyUsSection() {
                 }}
                 whileHover={{
                   y: -8,
-                  boxShadow: `0 0 40px ${reason.glow}, 0 20px 60px oklch(0 0 0 / 0.5)`,
+                  boxShadow: `0 0 38px ${reason.glow}, 0 20px 38px oklch(0.52 0.24 335 / 0.1)`,
                 }}
                 data-ocid={`why-us-card-${reason.id}`}
-                className={`relative bg-card rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`}
+                className={`relative bg-white/88 backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`}
                 style={{ transformStyle: "preserve-3d", perspective: "800px" }}
               >
-                {/* Animated background glow on hover */}
+                {/* Animated background on hover */}
                 <div
                   className={`absolute inset-0 rounded-3xl ${reason.bg} opacity-0 group-hover:opacity-100 transition-smooth`}
                 />
 
-                {/* Subtle grid texture */}
+                {/* Subtle dot texture */}
                 <div
                   className="absolute inset-0 rounded-3xl opacity-5"
                   style={{
@@ -203,10 +217,9 @@ export function WhyUsSection() {
                 />
 
                 <div className="relative z-10">
-                  {/* Icon with subtle float/rotation animation */}
                   <motion.div
                     className={`w-14 h-14 rounded-2xl ${reason.bg} border ${reason.border} flex items-center justify-center mb-5`}
-                    style={{ boxShadow: `0 0 24px ${reason.glow}` }}
+                    style={{ boxShadow: `0 0 22px ${reason.glow}` }}
                     whileHover={{ scale: 1.12 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -231,7 +244,6 @@ export function WhyUsSection() {
                     {reason.description}
                   </p>
 
-                  {/* Bottom accent line */}
                   <motion.div
                     className={`absolute bottom-0 left-0 right-0 h-0.5 ${reason.bg} rounded-b-3xl`}
                     initial={{ scaleX: 0 }}
@@ -254,15 +266,15 @@ export function WhyUsSection() {
           className="text-center mt-14"
         >
           <div
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-card border border-primary/30"
-            style={{ boxShadow: "0 0 30px oklch(0.6 0.25 320 / 0.2)" }}
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-primary/30"
+            style={{ boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.18)" }}
           >
             <Clock className="w-4 h-4 text-primary" />
             <span className="text-muted-foreground text-sm font-body">
               Bookings available 7 days a week · Call{" "}
               <a
                 href="tel:+917041937373"
-                className="text-primary font-semibold hover:text-accent transition-smooth"
+                className="text-primary font-semibold hover:text-primary/80 transition-smooth"
               >
                 07041937373
               </a>

@@ -1,10 +1,4 @@
-import {
-  Float,
-  MeshDistortMaterial,
-  Sphere,
-  Stars,
-  Torus,
-} from "@react-three/drei";
+import { Float, MeshDistortMaterial, Sphere, Torus } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Award, ChevronDown, Heart, Sparkles, Star } from "lucide-react";
 import { motion } from "motion/react";
@@ -115,9 +109,9 @@ function ParticleField() {
       </bufferGeometry>
       <pointsMaterial
         size={0.06}
-        color="#d946ef"
+        color="#E8559A"
         transparent
-        opacity={0.65}
+        opacity={0.55}
         sizeAttenuation
       />
     </points>
@@ -143,7 +137,7 @@ function RingOrbiter({
       <meshStandardMaterial
         color={color}
         emissive={color}
-        emissiveIntensity={1.8}
+        emissiveIntensity={1.2}
       />
     </mesh>
   );
@@ -152,55 +146,54 @@ function RingOrbiter({
 function Scene() {
   return (
     <>
-      <ambientLight intensity={0.2} />
-      <pointLight position={[6, 6, 4]} intensity={2} color="#d946ef" />
-      <pointLight position={[-6, -4, -4]} intensity={1.5} color="#a855f7" />
-      <pointLight position={[0, 8, -6]} intensity={1} color="#f9a8d4" />
+      <ambientLight intensity={1.0} color="#FFE8F5" />
+      <pointLight position={[6, 6, 4]} intensity={2.0} color="#FF69B4" />
+      <pointLight position={[-6, -4, -4]} intensity={1.5} color="#FFB6D9" />
+      <pointLight position={[0, 8, -6]} intensity={1.0} color="#FF1493" />
 
-      <Stars radius={60} depth={30} count={400} factor={2.5} fade speed={0.5} />
       <ParticleField />
 
       <AnimatedSphere
         position={[-4.5, 2, -3]}
         scale={1.4}
-        color="#d946ef"
+        color="#FF69B4"
         speed={0.8}
       />
       <AnimatedSphere
         position={[4.8, -1.5, -4]}
         scale={1.0}
-        color="#a855f7"
+        color="#FFB6D9"
         speed={0.6}
       />
       <AnimatedSphere
         position={[0.5, 3.5, -5]}
         scale={0.7}
-        color="#f9a8d4"
+        color="#FF1493"
         speed={1.1}
       />
 
       <AnimatedTorus
         position={[3.5, 2.5, -2]}
         scale={0.9}
-        color="#d946ef"
+        color="#FF69B4"
         speed={0.7}
       />
       <AnimatedTorus
         position={[-3.5, -1.5, -3]}
         scale={0.65}
-        color="#c084fc"
+        color="#FFB6D9"
         speed={0.9}
       />
       <AnimatedTorus
         position={[0, -3, -5]}
         scale={1.2}
-        color="#e879f9"
+        color="#FF8DC7"
         speed={0.5}
       />
 
-      <RingOrbiter radius={3.5} speed={0.45} color="#f0abfc" />
-      <RingOrbiter radius={2.8} speed={0.7} color="#d946ef" />
-      <RingOrbiter radius={4.2} speed={0.3} color="#fbbf24" />
+      <RingOrbiter radius={3.5} speed={0.45} color="#FFB6D9" />
+      <RingOrbiter radius={2.8} speed={0.7} color="#FF69B4" />
+      <RingOrbiter radius={4.2} speed={0.3} color="#FFD6E8" />
     </>
   );
 }
@@ -230,13 +223,13 @@ function FloatingOrb({
         left,
         background: color,
         filter: `blur(${size * 0.45}px)`,
-        opacity: 0.28,
+        opacity: 0.5,
       }}
       animate={{
         y: [0, -30, 0],
         x: [0, 15, 0],
         scale: [1, 1.15, 1],
-        opacity: [0.18, 0.38, 0.18],
+        opacity: [0.35, 0.65, 0.35],
       }}
       transition={{
         duration: 7 + delay,
@@ -268,7 +261,10 @@ export function HeroSection() {
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "oklch(0.07 0.01 280)" }}
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.99 0.01 318) 0%, oklch(0.97 0.022 330) 50%, oklch(0.98 0.015 312) 100%)",
+      }}
     >
       {/* React Three Fiber 3D Canvas — full background */}
       <div className="absolute inset-0 z-0">
@@ -283,43 +279,43 @@ export function HeroSection() {
         </Canvas>
       </div>
 
-      {/* Dark radial gradient overlay to keep text readable */}
+      {/* Soft overlay so 3D objects read on bright bg */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.07 0.01 280 / 0.3) 0%, oklch(0.07 0.01 280 / 0.85) 70%, oklch(0.07 0.01 280 / 0.97) 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.98 0.015 325 / 0.18) 0%, oklch(0.98 0.01 320 / 0.45) 65%, oklch(0.99 0.006 318 / 0.78) 100%)",
         }}
       />
 
-      {/* CSS glowing orbs layer */}
+      {/* CSS glowing pink orbs */}
       <FloatingOrb
         delay={0}
-        size={360}
-        top="5%"
-        left="3%"
-        color="oklch(0.6 0.25 320)"
+        size={380}
+        top="3%"
+        left="2%"
+        color="radial-gradient(circle, oklch(0.72 0.22 330 / 0.55), oklch(0.85 0.12 330 / 0.22))"
       />
       <FloatingOrb
         delay={1.8}
-        size={220}
-        top="60%"
-        left="1%"
-        color="oklch(0.65 0.24 330)"
+        size={240}
+        top="58%"
+        left="0%"
+        color="radial-gradient(circle, oklch(0.68 0.24 338 / 0.5), oklch(0.82 0.14 330 / 0.18))"
       />
       <FloatingOrb
         delay={0.9}
-        size={280}
-        top="15%"
-        left="72%"
-        color="oklch(0.6 0.25 310)"
+        size={300}
+        top="12%"
+        left="70%"
+        color="radial-gradient(circle, oklch(0.70 0.22 322 / 0.48), oklch(0.84 0.10 325 / 0.2))"
       />
       <FloatingOrb
         delay={2.2}
-        size={180}
-        top="72%"
-        left="78%"
-        color="oklch(0.75 0.15 65)"
+        size={200}
+        top="70%"
+        left="76%"
+        color="radial-gradient(circle, oklch(0.76 0.18 342 / 0.45), oklch(0.88 0.08 340 / 0.2))"
       />
 
       {/* Floating decorative CSS shapes */}
@@ -333,7 +329,7 @@ export function HeroSection() {
         }}
       />
       <motion.div
-        className="absolute top-44 left-36 w-5 h-5 bg-accent/50 rounded-full z-[2]"
+        className="absolute top-44 left-36 w-5 h-5 bg-primary/30 rounded-full z-[2]"
         animate={{ y: [0, -15, 0], scale: [1, 1.4, 1] }}
         transition={{
           duration: 4,
@@ -343,7 +339,7 @@ export function HeroSection() {
         }}
       />
       <motion.div
-        className="absolute bottom-44 right-44 w-9 h-9 border-2 border-accent/35 rounded-full z-[2]"
+        className="absolute bottom-44 right-44 w-9 h-9 border-2 border-primary/35 rounded-full z-[2]"
         animate={{ rotate: [0, 360] }}
         transition={{
           duration: 14,
@@ -352,7 +348,7 @@ export function HeroSection() {
         }}
       />
       <motion.div
-        className="absolute top-1/3 left-16 w-3 h-3 bg-primary/60 rounded-full z-[2]"
+        className="absolute top-1/3 left-16 w-3 h-3 bg-primary/50 rounded-full z-[2]"
         animate={{ y: [0, 20, 0], opacity: [0.4, 1, 0.4] }}
         transition={{
           duration: 3.5,
@@ -375,7 +371,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/75 border border-primary/35 mb-6 backdrop-blur-sm shadow-glow-sm"
             >
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-primary text-sm font-medium font-body">
@@ -423,13 +419,14 @@ export function HeroSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.38 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 border border-accent/40 backdrop-blur-sm mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-primary/30 backdrop-blur-sm mb-8"
+              style={{ boxShadow: "0 2px 20px oklch(0.52 0.24 335 / 0.18)" }}
             >
               <div className="flex">
                 {STARS.map((id) => (
                   <Star
                     key={id}
-                    className="w-3.5 h-3.5 text-accent fill-accent"
+                    className="w-3.5 h-3.5 text-primary fill-primary"
                   />
                 ))}
               </div>
@@ -448,14 +445,14 @@ export function HeroSection() {
               <a
                 data-ocid="hero-cta-book"
                 href="tel:07041937373"
-                className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth shadow-glow-md relative overflow-hidden group"
+                className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth relative overflow-hidden group"
                 style={{
                   boxShadow:
-                    "0 0 30px oklch(0.6 0.25 320 / 0.5), 0 4px 20px oklch(0 0 0 / 0.4)",
+                    "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.28)",
                 }}
               >
                 <span className="relative z-10">Book Your Bridal Look</span>
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-smooth" />
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-smooth" />
               </a>
               <button
                 type="button"
@@ -465,7 +462,7 @@ export function HeroSection() {
                     .querySelector("#portfolio")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm"
+                className="px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm bg-white/60"
               >
                 View Portfolio
               </button>
@@ -503,12 +500,12 @@ export function HeroSection() {
             }}
             className="relative flex justify-center"
           >
-            {/* Background glow blob */}
+            {/* Background pink glow blob */}
             <div
               className="absolute inset-0 rounded-full blur-3xl scale-75"
               style={{
                 background:
-                  "radial-gradient(circle, oklch(0.6 0.25 320 / 0.35) 0%, transparent 70%)",
+                  "radial-gradient(circle, oklch(0.72 0.22 330 / 0.5) 0%, oklch(0.88 0.10 330 / 0.2) 70%, transparent 100%)",
               }}
             />
 
@@ -516,9 +513,9 @@ export function HeroSection() {
             <div
               className="relative w-80 h-[420px] sm:w-96 sm:h-[500px] rounded-3xl overflow-hidden float-animation"
               style={{
-                border: "1px solid oklch(0.6 0.25 320 / 0.45)",
+                border: "1.5px solid oklch(0.52 0.24 335 / 0.4)",
                 boxShadow:
-                  "0 0 50px oklch(0.6 0.25 320 / 0.35), 0 0 100px oklch(0.6 0.25 320 / 0.15), inset 0 0 30px oklch(0.6 0.25 320 / 0.08)",
+                  "0 0 45px oklch(0.52 0.24 335 / 0.3), 0 0 90px oklch(0.65 0.18 335 / 0.15), inset 0 0 25px oklch(0.52 0.24 335 / 0.05)",
               }}
             >
               <img
@@ -526,18 +523,21 @@ export function HeroSection() {
                 alt="BEAUTYGRAM BY UNNATI GANDHINAGAR — Luxury Bridal Makeup Artist"
                 className="w-full h-full object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-pink-50/50 via-transparent to-transparent" />
 
               {/* Card overlay at bottom */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1.0, type: "spring" }}
-                className="absolute bottom-4 left-4 right-4 bg-card/85 backdrop-blur-md rounded-2xl px-4 py-3"
-                style={{ border: "1px solid oklch(0.6 0.25 320 / 0.35)" }}
+                className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3"
+                style={{
+                  border: "1px solid oklch(0.52 0.24 335 / 0.3)",
+                  boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.18)",
+                }}
               >
                 <div className="flex items-center gap-2">
-                  <Award className="w-5 h-5 text-accent flex-shrink-0" />
+                  <Award className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="text-foreground text-sm font-semibold font-body">
                       Celebrity Makeup Artist
@@ -558,10 +558,10 @@ export function HeroSection() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="absolute -right-4 top-16 bg-card/90 backdrop-blur-md rounded-2xl px-4 py-3"
+              className="absolute -right-4 top-16 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3"
               style={{
-                border: "1px solid oklch(0.6 0.25 320 / 0.35)",
-                boxShadow: "0 0 20px oklch(0.6 0.25 320 / 0.25)",
+                border: "1px solid oklch(0.52 0.24 335 / 0.3)",
+                boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.22)",
               }}
             >
               <div className="flex items-center gap-2">
@@ -569,7 +569,7 @@ export function HeroSection() {
                   {STARS.map((id) => (
                     <Star
                       key={id}
-                      className="w-3 h-3 text-accent fill-accent"
+                      className="w-3 h-3 text-primary fill-primary"
                     />
                   ))}
                 </div>
@@ -588,10 +588,10 @@ export function HeroSection() {
                 ease: "easeInOut",
                 delay: 1.2,
               }}
-              className="absolute -left-4 bottom-28 bg-card/90 backdrop-blur-md rounded-2xl px-4 py-3"
+              className="absolute -left-4 bottom-28 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3"
               style={{
-                border: "1px solid oklch(0.75 0.15 65 / 0.35)",
-                boxShadow: "0 0 20px oklch(0.75 0.15 65 / 0.2)",
+                border: "1px solid oklch(0.75 0.12 340 / 0.4)",
+                boxShadow: "0 0 18px oklch(0.65 0.18 340 / 0.22)",
               }}
             >
               <div className="flex items-center gap-2">
@@ -605,7 +605,7 @@ export function HeroSection() {
             {/* Rotating ring decoration */}
             <motion.div
               className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full pointer-events-none"
-              style={{ border: "2px dashed oklch(0.6 0.25 320 / 0.3)" }}
+              style={{ border: "2px dashed oklch(0.52 0.24 335 / 0.4)" }}
               animate={{ rotate: [0, 360] }}
               transition={{
                 duration: 16,

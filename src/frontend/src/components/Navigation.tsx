@@ -38,7 +38,7 @@ export function Navigation() {
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-card/80 backdrop-blur-2xl border-b border-primary/20 shadow-glow-sm"
+            ? "bg-white/88 backdrop-blur-2xl border-b border-primary/20 shadow-glow-sm"
             : "bg-transparent"
         }`}
       >
@@ -51,7 +51,7 @@ export function Navigation() {
               className="flex items-center gap-2 group"
               aria-label="Go to home"
             >
-              <div className="relative w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center group-hover:bg-primary/30 transition-smooth">
+              <div className="relative w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center group-hover:bg-primary/25 transition-smooth">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <div className="absolute inset-0 rounded-full bg-primary/10 blur-sm pulse-glow" />
               </div>
@@ -81,7 +81,7 @@ export function Navigation() {
               <a
                 href="tel:07041937373"
                 data-ocid="nav-cta"
-                className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/20 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/30 transition-smooth shadow-glow-sm"
+                className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/15 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/25 transition-smooth shadow-glow-sm"
               >
                 Book Now
               </a>
@@ -110,7 +110,7 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-16 sm:top-20 left-0 right-0 z-40 bg-card/95 backdrop-blur-2xl border-b border-primary/20 shadow-glow-md lg:hidden"
+            className="fixed top-16 sm:top-20 left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl border-b border-primary/20 shadow-glow-md lg:hidden"
           >
             <nav className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-2">
               {navLinks.map((link, i) => (
@@ -128,7 +128,7 @@ export function Navigation() {
               ))}
               <a
                 href="tel:07041937373"
-                className="mt-2 px-4 py-3 rounded-xl bg-primary/20 border border-primary/40 text-primary text-center font-semibold"
+                className="mt-2 px-4 py-3 rounded-xl bg-primary/15 border border-primary/40 text-primary text-center font-semibold"
               >
                 Book Your Transformation
               </a>

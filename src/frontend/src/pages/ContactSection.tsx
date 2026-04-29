@@ -20,10 +20,10 @@ const contactCards = [
     id: "whatsapp",
     href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
-    iconColor: "text-green-400",
-    iconBg: "bg-green-500/10 border-green-500/30",
-    hoverBg: "group-hover:bg-green-500/20",
-    hoverText: "group-hover:text-green-400",
+    iconColor: "text-green-600",
+    iconBg: "bg-green-100 border-green-300",
+    hoverBg: "group-hover:bg-green-100",
+    hoverText: "group-hover:text-green-600",
     label: "WhatsApp Us",
     sublabel: "Quick reply, instant booking",
     external: true,
@@ -44,10 +44,10 @@ const contactCards = [
     id: "address",
     href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
-    iconColor: "text-accent",
-    iconBg: "bg-accent/10 border-accent/30",
-    hoverBg: "group-hover:bg-accent/20",
-    hoverText: "group-hover:text-accent",
+    iconColor: "text-accent-foreground",
+    iconBg: "bg-accent/30 border-accent/50",
+    hoverBg: "group-hover:bg-accent/40",
+    hoverText: "group-hover:text-accent-foreground",
     label: "Plot no. 634/1, Sector-4/C",
     sublabel: "Gandhinagar, Gujarat 382006",
     external: true,
@@ -60,16 +60,41 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative py-28 bg-muted/30 overflow-hidden"
+      className="relative py-28 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.96 0.020 325) 0%, oklch(0.97 0.014 320) 100%)",
+      }}
     >
       {/* Top rule */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
-      {/* Background glows */}
+      {/* Background pink glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute top-10 right-0 w-64 h-64 bg-accent/8 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl" />
+        <div
+          className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.74 0.20 330 / 0.3) 0%, transparent 70%)",
+            filter: "blur(60px)",
+          }}
+        />
+        <div
+          className="absolute top-10 right-0 w-64 h-64 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.78 0.16 340 / 0.25) 0%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, oklch(0.82 0.12 330 / 0.18) 0%, transparent 70%)",
+            filter: "blur(70px)",
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +104,7 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium tracking-wide">
@@ -124,7 +149,7 @@ export function ContactSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-card border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40"
+                className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40"
               >
                 <div
                   className={`w-14 h-14 rounded-2xl border flex items-center justify-center transition-smooth ${card.iconBg} ${card.hoverBg}`}
@@ -145,7 +170,7 @@ export function ContactSection() {
                   {["s1", "s2", "s3", "s4", "s5"].map((k) => (
                     <Star
                       key={k}
-                      className="w-3 h-3 text-accent fill-accent opacity-80"
+                      className="w-3 h-3 text-primary fill-primary opacity-80"
                     />
                   ))}
                 </div>
@@ -163,7 +188,7 @@ export function ContactSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-2 space-y-6"
           >
-            <div className="bg-card rounded-3xl p-8 border border-primary/20 card-elevated">
+            <div className="bg-white/85 backdrop-blur-sm rounded-3xl p-8 border border-primary/20 card-elevated">
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">
                 Studio Details
               </h3>
@@ -182,7 +207,7 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
                   <span className="text-muted-foreground">
                     Response time:{" "}
                     <span className="text-foreground font-medium">
@@ -191,7 +216,7 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
                   <span className="text-muted-foreground">
                     Home visits:{" "}
                     <span className="text-foreground font-medium">
@@ -217,7 +242,7 @@ export function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="contact-cta-whatsapp"
-                className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm"
+                className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm bg-white/70"
               >
                 <SiWhatsapp className="w-4 h-4" />
                 WhatsApp
@@ -236,7 +261,7 @@ export function ContactSection() {
               className="rounded-3xl overflow-hidden border-2 border-primary/30 relative"
               style={{
                 boxShadow:
-                  "0 0 40px oklch(0.6 0.25 320 / 0.25), 0 0 80px oklch(0.6 0.25 320 / 0.12), 0 20px 60px oklch(0 0 0 / 0.5)",
+                  "0 0 40px oklch(0.65 0.20 330 / 0.22), 0 0 80px oklch(0.70 0.16 330 / 0.10), 0 20px 60px oklch(0.52 0.24 335 / 0.1)",
               }}
             >
               {/* Glow corner accents */}

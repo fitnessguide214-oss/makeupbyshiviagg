@@ -22,10 +22,23 @@ export function Footer() {
     typeof window !== "undefined" ? window.location.hostname : "";
 
   return (
-    <footer className="relative bg-card border-t border-primary/20 overflow-hidden">
-      {/* Glow background */}
+    <footer
+      className="relative overflow-hidden border-t border-primary/15"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.024 330) 100%)",
+      }}
+    >
+      {/* Glow background orb */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/10 blur-3xl rounded-full" />
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-36 rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, oklch(0.72 0.20 330 / 0.22) 0%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -33,7 +46,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <span className="font-display text-xl font-bold">
@@ -112,19 +125,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs">
+        <div className="mt-12 pt-8 border-t border-primary/12 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs">
           <p className="flex items-center gap-1">
             &copy; {year} BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with{" "}
             <Heart className="w-3 h-3 text-primary fill-primary" /> in
             Gandhinagar.
           </p>
           <a
-            href={`https://kavya${encodeURIComponent(hostname)}`}
+            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-smooth"
           >
-            Designed by Kavya Chaudhary 
+            Built with caffeine.ai
           </a>
         </div>
       </div>

@@ -78,11 +78,12 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        "glow-sm": "0 0 20px rgba(219, 112, 147, 0.3)",
-        "glow-md": "0 0 30px rgba(219, 112, 147, 0.3), inset 0 0 30px rgba(219, 112, 147, 0.1)",
-        "glow-lg": "0 0 50px rgba(219, 112, 147, 0.4), 0 0 80px rgba(219, 112, 147, 0.2)",
-        "card-elevated": "0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(219, 112, 147, 0.15)",
+        xs: "0 1px 2px 0 rgba(0,0,0,0.04)",
+        /* Light-theme pink glow shadows */
+        "glow-sm": "0 0 14px 3px oklch(0.52 0.24 335 / 0.28), 0 2px 8px oklch(0.52 0.24 335 / 0.12)",
+        "glow-md": "0 0 28px 7px oklch(0.52 0.24 335 / 0.32), inset 0 0 18px oklch(0.52 0.24 335 / 0.06)",
+        "glow-lg": "0 0 55px 18px oklch(0.52 0.24 335 / 0.36), 0 0 90px oklch(0.60 0.20 335 / 0.16)",
+        "card-elevated": "0 4px 24px oklch(0.52 0.24 335 / 0.1), 0 1px 8px oklch(0.52 0.24 335 / 0.06)",
       },
       keyframes: {
         "accordion-down": {
@@ -98,7 +99,7 @@ export default {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { opacity: "0.6" },
+          "0%, 100%": { opacity: "0.5" },
           "50%": { opacity: "1" },
         },
         "fade-in": {

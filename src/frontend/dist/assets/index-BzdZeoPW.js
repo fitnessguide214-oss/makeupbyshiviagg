@@ -6234,8 +6234,8 @@ function wrap(value) {
   return newValue;
 }
 const unwrap = (value) => reverseTransformCache.get(value);
-function openDB(name, version2, { blocked, upgrade, blocking, terminated } = {}) {
-  const request = indexedDB.open(name, version2);
+function openDB(name, version, { blocked, upgrade, blocking, terminated } = {}) {
+  const request = indexedDB.open(name, version);
   const openPromise = wrap(request);
   if (upgrade) {
     request.addEventListener("upgradeneeded", (event) => {
@@ -6298,12 +6298,12 @@ replaceTraps((oldTraps) => ({
 }));
 const AUTH_DB_NAME = "auth-client-db";
 const OBJECT_STORE_NAME = "ic-keyval";
-const _openDbStore = async (dbName = AUTH_DB_NAME, storeName = OBJECT_STORE_NAME, version2) => {
+const _openDbStore = async (dbName = AUTH_DB_NAME, storeName = OBJECT_STORE_NAME, version) => {
   if (isBrowser$2 && (localStorage == null ? void 0 : localStorage.getItem(KEY_STORAGE_DELEGATION))) {
     localStorage.removeItem(KEY_STORAGE_DELEGATION);
     localStorage.removeItem(KEY_STORAGE_KEY);
   }
-  return await openDB(dbName, version2, {
+  return await openDB(dbName, version, {
     upgrade: (database) => {
       if (database.objectStoreNames.contains(storeName)) {
         database.clear(storeName);
@@ -6338,8 +6338,8 @@ class IdbKeyVal {
    * @param {DBCreateOptions['version']} options.version version of the database. Increment to safely upgrade
    */
   static async create(options) {
-    const { dbName = AUTH_DB_NAME, storeName = OBJECT_STORE_NAME, version: version2 = DB_VERSION } = options ?? {};
-    const db = await _openDbStore(dbName, storeName, version2);
+    const { dbName = AUTH_DB_NAME, storeName = OBJECT_STORE_NAME, version = DB_VERSION } = options ?? {};
+    const db = await _openDbStore(dbName, storeName, version);
     return new IdbKeyVal(db, storeName);
   }
   /**
@@ -27252,103 +27252,121 @@ const handleNavClick = (href) => {
 function Footer() {
   const year = (/* @__PURE__ */ new Date()).getFullYear();
   const hostname = typeof window !== "undefined" ? window.location.hostname : "";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("footer", { className: "relative bg-card border-t border-primary/20 overflow-hidden", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 overflow-hidden pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/10 blur-3xl rounded-full" }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-12", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xl font-bold", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-6", children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio." }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href: "https://instagram.com/beautygrambyunnati",
-                target: "_blank",
-                rel: "noopener noreferrer",
-                "aria-label": "Instagram",
-                className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Instagram, { className: "w-5 h-5" })
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href: "https://wa.me/917041937373",
-                target: "_blank",
-                rel: "noopener noreferrer",
-                "aria-label": "WhatsApp",
-                className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5" })
-              }
-            )
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Quick Links" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-3", children: footerLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: () => handleNavClick(link.href),
-              className: "text-muted-foreground hover:text-primary transition-smooth text-sm",
-              children: link.label
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "footer",
+    {
+      className: "relative overflow-hidden border-t border-primary/15",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.024 330) 100%)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 overflow-hidden pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-36 rounded-full",
+            style: {
+              background: "radial-gradient(ellipse, oklch(0.72 0.20 330 / 0.22) 0%, transparent 70%)",
+              filter: "blur(40px)"
             }
-          ) }, link.href)) })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Studio Address" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 text-muted-foreground text-sm", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 text-primary mt-0.5 flex-shrink-0" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                "Plot no. 634/1, Sector-4/C, Sector 4,",
-                /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                "Gandhinagar, Gujarat 382006"
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-12", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xl font-bold", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-6", children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: "https://instagram.com/beautygrambyunnati",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "aria-label": "Instagram",
+                    className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Instagram, { className: "w-5 h-5" })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: "https://wa.me/917041937373",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "aria-label": "WhatsApp",
+                    className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5" })
+                  }
+                )
               ] })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Quick Links" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-3", children: footerLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => handleNavClick(link.href),
+                  className: "text-muted-foreground hover:text-primary transition-smooth text-sm",
+                  children: link.label
+                }
+              ) }, link.href)) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Studio Address" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 text-muted-foreground text-sm", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 text-primary mt-0.5 flex-shrink-0" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+                    "Plot no. 634/1, Sector-4/C, Sector 4,",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                    "Gandhinagar, Gujarat 382006"
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "a",
+                  {
+                    href: "tel:07041937373",
+                    className: "flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4 text-primary flex-shrink-0" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 70419 37373" })
+                    ]
+                  }
+                )
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-12 pt-8 border-t border-primary/12 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
+              "© ",
+              year,
+              " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-3 h-3 text-primary fill-primary" }),
+              " in Gandhinagar."
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "tel:07041937373",
-                className: "flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4 text-primary flex-shrink-0" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 70419 37373" })
-                ]
+                href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                className: "hover:text-primary transition-smooth",
+                children: "Built with caffeine.ai"
               }
             )
           ] })
         ] })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-12 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
-          "© ",
-          year,
-          " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
-          " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-3 h-3 text-primary fill-primary" }),
-          " in Gandhinagar."
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "a",
-          {
-            href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "hover:text-primary transition-smooth",
-            children: "Built with caffeine.ai"
-          }
-        )
-      ] })
-    ] })
-  ] });
+      ]
+    }
+  );
 }
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -27380,7 +27398,7 @@ function Navigation() {
         initial: { y: -80, opacity: 0 },
         animate: { y: 0, opacity: 1 },
         transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
-        className: `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-card/80 backdrop-blur-2xl border-b border-primary/20 shadow-glow-sm" : "bg-transparent"}`,
+        className: `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-white/88 backdrop-blur-2xl border-b border-primary/20 shadow-glow-sm" : "bg-transparent"}`,
         children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between h-16 sm:h-20", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "button",
@@ -27390,7 +27408,7 @@ function Navigation() {
               className: "flex items-center gap-2 group",
               "aria-label": "Go to home",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative w-8 h-8 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center group-hover:bg-primary/30 transition-smooth", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center group-hover:bg-primary/25 transition-smooth", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-full bg-primary/10 blur-sm pulse-glow" })
                 ] }),
@@ -27420,7 +27438,7 @@ function Navigation() {
               {
                 href: "tel:07041937373",
                 "data-ocid": "nav-cta",
-                className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/20 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/30 transition-smooth shadow-glow-sm",
+                className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/15 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/25 transition-smooth shadow-glow-sm",
                 children: "Book Now"
               }
             ),
@@ -27445,7 +27463,7 @@ function Navigation() {
         animate: { opacity: 1, y: 0 },
         exit: { opacity: 0, y: -20 },
         transition: { duration: 0.3 },
-        className: "fixed top-16 sm:top-20 left-0 right-0 z-40 bg-card/95 backdrop-blur-2xl border-b border-primary/20 shadow-glow-md lg:hidden",
+        className: "fixed top-16 sm:top-20 left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl border-b border-primary/20 shadow-glow-md lg:hidden",
         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "max-w-7xl mx-auto px-4 py-6 flex flex-col gap-2", children: [
           navLinks.map((link, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.button,
@@ -27464,7 +27482,7 @@ function Navigation() {
             "a",
             {
               href: "tel:07041937373",
-              className: "mt-2 px-4 py-3 rounded-xl bg-primary/20 border border-primary/40 text-primary text-center font-semibold",
+              className: "mt-2 px-4 py-3 rounded-xl bg-primary/15 border border-primary/40 text-primary text-center font-semibold",
               children: "Book Your Transformation"
             }
           )
@@ -27518,7 +27536,7 @@ function FloatingSparkles() {
       children: SPARKLE_POSITIONS.map((pos, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
         motion.div,
         {
-          className: "absolute text-primary/40",
+          className: "absolute text-primary/35",
           style: {
             top: pos.top,
             left: "left" in pos ? pos.left : void 0,
@@ -27526,7 +27544,7 @@ function FloatingSparkles() {
           },
           animate: {
             y: [-8, 8, -8],
-            opacity: [0.3, 0.8, 0.3],
+            opacity: [0.25, 0.7, 0.25],
             scale: [0.8, 1.2, 0.8],
             rotate: [0, 180, 360]
           },
@@ -27552,12 +27570,12 @@ function CTAPrimary() {
         {
           className: "absolute inset-0",
           style: {
-            background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.6 0.25 320 / 0.12) 0%, oklch(0.65 0.24 330 / 0.06) 40%, transparent 70%)"
+            background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.82 0.14 330 / 0.18) 0%, oklch(0.88 0.10 330 / 0.08) 40%, transparent 70%)"
           }
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/45 to-transparent" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingSparkles, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27573,8 +27591,8 @@ function CTAPrimary() {
             transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
             className: "relative rounded-3xl p-12 sm:p-16 border border-primary/30 overflow-hidden",
             style: {
-              background: "linear-gradient(135deg, oklch(0.12 0.02 320 / 0.95) 0%, oklch(0.14 0.03 330 / 0.9) 50%, oklch(0.12 0.02 320 / 0.95) 100%)",
-              boxShadow: "0 0 80px oklch(0.6 0.25 320 / 0.2), 0 0 150px oklch(0.65 0.24 330 / 0.1), inset 0 0 60px oklch(0.6 0.25 320 / 0.05)"
+              background: "linear-gradient(135deg, oklch(0.98 0.02 325) 0%, oklch(0.97 0.025 335) 50%, oklch(0.98 0.018 320) 100%)",
+              boxShadow: "0 0 60px oklch(0.65 0.22 330 / 0.18), 0 0 120px oklch(0.70 0.18 330 / 0.08), inset 0 0 40px oklch(0.65 0.22 330 / 0.04)"
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27582,7 +27600,7 @@ function CTAPrimary() {
                 {
                   className: "absolute inset-0 rounded-3xl pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.6 0.25 320 / 0.12) 0%, transparent 60%)"
+                    background: "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.75 0.18 330 / 0.14) 0%, transparent 60%)"
                   }
                 }
               ),
@@ -27593,11 +27611,7 @@ function CTAPrimary() {
                     initial: { opacity: 0, y: 20 },
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.6, delay: 0.1 },
-                    className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6",
-                    style: {
-                      background: "oklch(0.6 0.25 320 / 0.12)",
-                      border: "1px solid oklch(0.6 0.25 320 / 0.4)"
-                    },
+                    className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 bg-primary/10 border border-primary/35",
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium tracking-wide", children: "✦ Celebrity Makeup Artist" })
                   }
                 ),
@@ -27638,11 +27652,9 @@ function CTAPrimary() {
                         {
                           href: "tel:07041937373",
                           "data-ocid": "cta-primary-book",
-                          className: "inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base transition-smooth group relative overflow-hidden",
+                          className: "inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base bg-primary text-primary-foreground transition-smooth group relative overflow-hidden hover:bg-primary/90",
                           style: {
-                            background: "linear-gradient(135deg, oklch(0.6 0.25 320) 0%, oklch(0.75 0.15 65) 100%)",
-                            color: "oklch(0.08 0 0)",
-                            boxShadow: "0 0 30px oklch(0.6 0.25 320 / 0.5), 0 4px 20px oklch(0 0 0 / 0.3)"
+                            boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.25)"
                           },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5" }),
@@ -27657,7 +27669,7 @@ function CTAPrimary() {
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-primary-whatsapp",
-                          className: "inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth border border-primary/40 text-primary hover:bg-primary/10",
+                          className: "inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm",
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5" }),
                             "WhatsApp Us"
@@ -27695,159 +27707,147 @@ function CTAPrimary() {
 }
 function CTASecondary() {
   const { ref, isInView } = useScrollAnimation(0.2);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "relative py-24 overflow-hidden bg-muted/20", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "absolute inset-0",
-        style: {
-          background: "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.6 0.25 320 / 0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.75 0.15 65 / 0.06) 0%, transparent 50%)"
-        }
-      }
-    ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingSparkles, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        ref,
-        className: "relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid lg:grid-cols-2 gap-12 items-center", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              initial: { opacity: 0, x: -40 },
-              animate: isInView ? { opacity: 1, x: 0 } : {},
-              transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium",
-                    style: {
-                      background: "oklch(0.6 0.25 320 / 0.1)",
-                      border: "1px solid oklch(0.6 0.25 320 / 0.3)"
-                    },
-                    children: "✦ Limited Slots Available"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display text-4xl sm:text-5xl font-bold text-foreground mb-5 leading-tight", children: [
-                  "Your Dream",
-                  " ",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Bridal Look" }),
-                  " Awaits"
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Unnati craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "div",
-                  {
-                    className: "inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8",
-                    style: {
-                      background: "oklch(0.12 0.02 320 / 0.8)",
-                      border: "1px solid oklch(0.6 0.25 320 / 0.3)",
-                      boxShadow: "0 0 20px oklch(0.6 0.25 320 / 0.15)"
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          className: "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0",
-                          style: { background: "oklch(0.6 0.25 320 / 0.15)" },
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5 text-primary" })
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mb-0.5", children: "Call or message now" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "07041937373" })
-                      ] })
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-4", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "a",
-                    {
-                      href: "tel:07041937373",
-                      "data-ocid": "cta-secondary-call",
-                      className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth",
-                      style: {
-                        background: "linear-gradient(135deg, oklch(0.6 0.25 320) 0%, oklch(0.75 0.15 65) 100%)",
-                        color: "oklch(0.08 0 0)",
-                        boxShadow: "0 0 25px oklch(0.6 0.25 320 / 0.45)"
-                      },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4" }),
-                        "Call Now"
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "a",
-                    {
-                      href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20my%20bridal%20makeup.",
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      "data-ocid": "cta-secondary-whatsapp",
-                      className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth border border-primary/40 text-primary hover:bg-primary/10",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-4 h-4" }),
-                        "WhatsApp"
-                      ]
-                    }
-                  )
-                ] })
-              ]
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "section",
+    {
+      className: "relative py-24 overflow-hidden",
+      style: {
+        background: "linear-gradient(135deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.022 335) 50%, oklch(0.97 0.015 318) 100%)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0",
+            style: {
+              background: "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.75 0.18 330 / 0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.80 0.14 340 / 0.12) 0%, transparent 50%)"
             }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              initial: { opacity: 0, x: 40 },
-              animate: isInView ? { opacity: 1, x: 0 } : {},
-              transition: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
-              className: "grid grid-cols-2 gap-4",
-              children: [
-                { value: "500+", label: "Happy Brides", color: "text-primary" },
-                {
-                  value: "10+",
-                  label: "Years of Excellence",
-                  color: "text-accent"
-                },
-                {
-                  value: "50+",
-                  label: "Celebrity Clients",
-                  color: "text-primary"
-                },
-                { value: "5★", label: "Average Rating", color: "text-accent" }
-              ].map((stat, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingSparkles, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            ref,
+            className: "relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid lg:grid-cols-2 gap-12 items-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 motion.div,
                 {
-                  initial: { opacity: 0, y: 20 },
-                  animate: isInView ? { opacity: 1, y: 0 } : {},
-                  transition: { duration: 0.6, delay: 0.3 + i2 * 0.1 },
-                  className: "rounded-2xl p-6 text-center border border-primary/15",
-                  style: {
-                    background: "oklch(0.12 0.02 320 / 0.6)",
-                    boxShadow: "0 0 20px oklch(0.6 0.25 320 / 0.08)"
-                  },
+                  initial: { opacity: 0, x: -40 },
+                  animate: isInView ? { opacity: 1, x: 0 } : {},
+                  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium bg-primary/10 border border-primary/30", children: "✦ Limited Slots Available" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display text-4xl sm:text-5xl font-bold text-foreground mb-5 leading-tight", children: [
+                      "Your Dream",
+                      " ",
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Bridal Look" }),
+                      " Awaits"
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Unnati craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "div",
                       {
-                        className: `font-display text-3xl font-bold mb-1 ${stat.color} glow-text`,
-                        children: stat.value
+                        className: "inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8 bg-white/80 backdrop-blur-sm",
+                        style: {
+                          border: "1px solid oklch(0.52 0.24 335 / 0.3)",
+                          boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.15)"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-primary/12", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5 text-primary" }) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mb-0.5", children: "Call or message now" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "07041937373" })
+                          ] })
+                        ]
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs font-body", children: stat.label })
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-4", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "a",
+                        {
+                          href: "tel:07041937373",
+                          "data-ocid": "cta-secondary-call",
+                          className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth bg-primary text-primary-foreground hover:bg-primary/90",
+                          style: {
+                            boxShadow: "0 0 24px oklch(0.52 0.24 335 / 0.4)"
+                          },
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4" }),
+                            "Call Now"
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        "a",
+                        {
+                          href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20my%20bridal%20makeup.",
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                          "data-ocid": "cta-secondary-whatsapp",
+                          className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm",
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-4 h-4" }),
+                            "WhatsApp"
+                          ]
+                        }
+                      )
+                    ] })
                   ]
-                },
-                stat.label
-              ))
-            }
-          )
-        ] })
-      }
-    )
-  ] });
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.div,
+                {
+                  initial: { opacity: 0, x: 40 },
+                  animate: isInView ? { opacity: 1, x: 0 } : {},
+                  transition: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
+                  className: "grid grid-cols-2 gap-4",
+                  children: [
+                    { value: "500+", label: "Happy Brides", color: "text-primary" },
+                    {
+                      value: "10+",
+                      label: "Years of Excellence",
+                      color: "text-primary"
+                    },
+                    {
+                      value: "50+",
+                      label: "Celebrity Clients",
+                      color: "text-primary"
+                    },
+                    { value: "5★", label: "Average Rating", color: "text-primary" }
+                  ].map((stat, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.div,
+                    {
+                      initial: { opacity: 0, y: 20 },
+                      animate: isInView ? { opacity: 1, y: 0 } : {},
+                      transition: { duration: 0.6, delay: 0.3 + i2 * 0.1 },
+                      className: "rounded-2xl p-6 text-center border border-primary/20 bg-white/80 backdrop-blur-sm",
+                      style: {
+                        boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: `font-display text-3xl font-bold mb-1 ${stat.color} glow-text`,
+                            children: stat.value
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs font-body", children: stat.label })
+                      ]
+                    },
+                    stat.label
+                  ))
+                }
+              )
+            ] })
+          }
+        )
+      ]
+    }
+  );
 }
 const accomplishmentBadges = [
   { id: "b1", text: "Bollywood Celebrity Makeup Artist", icon: "🎬" },
@@ -27863,10 +27863,10 @@ const celebrities = [
     quote: "Unnati's artistry transformed our entire film shoot. Every frame was perfection — her attention to lighting and camera angles is truly unmatched. She is the only artist I trust for my on-screen looks.",
     icon: Clapperboard,
     badge: "Bollywood",
-    color: "text-accent",
-    bgColor: "bg-accent/10",
-    borderColor: "border-accent/30",
-    glowColor: "oklch(0.75 0.15 65 / 0.4)",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-primary/30",
+    glowColor: "oklch(0.52 0.24 335 / 0.32)",
     rating: 5
   },
   {
@@ -27879,7 +27879,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
-    glowColor: "oklch(0.6 0.25 320 / 0.4)",
+    glowColor: "oklch(0.52 0.24 335 / 0.36)",
     rating: 5
   },
   {
@@ -27889,10 +27889,10 @@ const celebrities = [
     quote: "The editorial look Unnati created for our magazine cover was iconic. Bold, artistic, and perfectly in sync with the creative vision. She understands beauty at an entirely different level.",
     icon: Crown,
     badge: "Editorial",
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-    borderColor: "border-secondary/30",
-    glowColor: "oklch(0.65 0.24 330 / 0.4)",
+    color: "text-primary",
+    bgColor: "bg-primary/8",
+    borderColor: "border-primary/25",
+    glowColor: "oklch(0.60 0.20 335 / 0.32)",
     rating: 5
   }
 ];
@@ -27908,7 +27908,7 @@ const floatingOrbs = [
     top: "8%",
     left: "5%",
     size: "w-72 h-72",
-    color: "bg-accent/8",
+    color: "bg-primary/10",
     blur: "blur-3xl"
   },
   {
@@ -27916,7 +27916,7 @@ const floatingOrbs = [
     top: "60%",
     right: "5%",
     size: "w-56 h-56",
-    color: "bg-primary/10",
+    color: "bg-primary/12",
     blur: "blur-3xl"
   },
   {
@@ -27924,7 +27924,7 @@ const floatingOrbs = [
     bottom: "10%",
     left: "30%",
     size: "w-80 h-80",
-    color: "bg-secondary/6",
+    color: "bg-primary/8",
     blur: "blur-3xl"
   }
 ];
@@ -27934,9 +27934,12 @@ function CelebritySection() {
     "section",
     {
       id: "celebrity",
-      className: "relative py-28 bg-muted/30 overflow-hidden",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(160deg, oklch(0.97 0.020 330) 0%, oklch(0.98 0.014 320) 50%, oklch(0.96 0.022 340) 100%)"
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-accent/60 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: floatingOrbs.map((orb, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
@@ -27947,7 +27950,7 @@ function CelebritySection() {
               right: orb.right,
               bottom: orb.bottom
             },
-            animate: { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] },
+            animate: { scale: [1, 1.15, 1], opacity: [0.5, 0.9, 0.5] },
             transition: {
               duration: 6 + i2 * 2,
               repeat: Number.POSITIVE_INFINITY,
@@ -27964,10 +27967,10 @@ function CelebritySection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-4 h-4 text-accent" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-accent text-sm font-semibold tracking-wide", children: "Celebrity & Media Work" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-4 h-4 text-primary" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "Celebrity & Media Work" })
                 ]
               }
             ),
@@ -27979,18 +27982,8 @@ function CelebritySection() {
                 transition: { duration: 0.7, delay: 0.1 },
                 className: "font-display text-4xl sm:text-6xl font-bold text-foreground mb-4",
                 children: [
-                  "Celebrity",
-                  " ",
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "span",
-                    {
-                      className: "text-accent",
-                      style: {
-                        textShadow: "0 0 40px oklch(0.75 0.15 65 / 0.6), 0 0 80px oklch(0.75 0.15 65 / 0.3)"
-                      },
-                      children: "Artistry"
-                    }
-                  )
+                  "Celebrity ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Artistry" })
                 ]
               }
             ),
@@ -28024,13 +28017,13 @@ function CelebritySection() {
                     damping: 20
                   },
                   whileHover: { scale: 1.07, y: -3 },
-                  className: "flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-accent/40 cursor-default",
+                  className: "flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/85 border border-primary/30 cursor-default backdrop-blur-sm",
                   style: {
-                    boxShadow: "0 0 20px oklch(0.75 0.15 65 / 0.2), inset 0 0 15px oklch(0.75 0.15 65 / 0.05)"
+                    boxShadow: "0 2px 18px oklch(0.52 0.24 335 / 0.16), inset 0 0 12px oklch(0.52 0.24 335 / 0.04)"
                   },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-base", children: badge.icon }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-accent text-sm font-semibold tracking-wide", children: badge.text })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: badge.text })
                   ]
                 },
                 badge.id
@@ -28056,13 +28049,13 @@ function CelebritySection() {
                     type: "spring",
                     stiffness: 280
                   },
-                  className: "relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl bg-card border border-accent/20 text-center overflow-hidden",
-                  style: { boxShadow: "0 0 25px oklch(0.75 0.15 65 / 0.15)" },
+                  className: "relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl bg-white/85 border border-primary/20 text-center overflow-hidden backdrop-blur-sm",
+                  style: { boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.12)" },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       motion.div,
                       {
-                        className: "absolute inset-0 bg-accent/5 rounded-2xl",
+                        className: "absolute inset-0 bg-primary/5 rounded-2xl",
                         animate: { opacity: [0.3, 0.7, 0.3] },
                         transition: {
                           duration: 3 + i2,
@@ -28070,14 +28063,7 @@ function CelebritySection() {
                         }
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "span",
-                      {
-                        className: "relative font-display text-3xl font-bold text-accent",
-                        style: { textShadow: "0 0 20px oklch(0.75 0.15 65 / 0.5)" },
-                        children: stat.value
-                      }
-                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative font-display text-3xl font-bold text-primary glow-text", children: stat.value }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative text-muted-foreground text-sm font-body mt-1", children: stat.label })
                   ]
                 },
@@ -28095,7 +28081,7 @@ function CelebritySection() {
                 viewport: { once: true },
                 transition: { duration: 0.7, delay: i2 * 0.15 },
                 whileHover: { y: -6 },
-                className: `relative bg-card rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`,
+                className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`,
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.div,
@@ -28108,7 +28094,7 @@ function CelebritySection() {
                       "div",
                       {
                         className: `w-12 h-12 rounded-2xl ${celeb.bgColor} border ${celeb.borderColor} flex items-center justify-center mb-5`,
-                        style: { boxShadow: `0 0 20px ${celeb.glowColor}` },
+                        style: { boxShadow: `0 0 18px ${celeb.glowColor}` },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                           motion.div,
                           {
@@ -28134,7 +28120,7 @@ function CelebritySection() {
                           type: "spring",
                           stiffness: 400
                         },
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-4 h-4 text-accent fill-accent" })
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-4 h-4 text-primary fill-primary" })
                       },
                       `${celeb.id}-star-${idx}`
                     )) }),
@@ -28152,7 +28138,7 @@ function CelebritySection() {
                         "span",
                         {
                           className: `px-3 py-1 rounded-full text-xs font-semibold ${celeb.bgColor} ${celeb.color} border ${celeb.borderColor}`,
-                          style: { boxShadow: `0 0 12px ${celeb.glowColor}` },
+                          style: { boxShadow: `0 0 10px ${celeb.glowColor}` },
                           children: celeb.badge
                         }
                       )
@@ -28185,9 +28171,9 @@ function CelebritySection() {
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Crown,
                       {
-                        className: "w-8 h-8 text-accent",
+                        className: "w-8 h-8 text-primary",
                         style: {
-                          filter: "drop-shadow(0 0 12px oklch(0.75 0.15 65 / 0.8))"
+                          filter: "drop-shadow(0 0 10px oklch(0.52 0.24 335 / 0.65))"
                         }
                       }
                     )
@@ -28199,7 +28185,7 @@ function CelebritySection() {
                     className: "absolute -top-4 -left-4 z-10",
                     animate: { scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] },
                     transition: { duration: 3, repeat: Number.POSITIVE_INFINITY },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-5 h-5 text-accent" })
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-5 h-5 text-primary" })
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28219,7 +28205,7 @@ function CelebritySection() {
                   "div",
                   {
                     className: "relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30",
-                    style: { boxShadow: "0 0 40px oklch(0.6 0.25 320 / 0.25)" },
+                    style: { boxShadow: "0 0 38px oklch(0.52 0.24 335 / 0.22)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
@@ -28229,19 +28215,26 @@ function CelebritySection() {
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-4 left-4 right-4 bg-card/70 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3 h-3 text-accent" }),
-                        "Celebrity Glam"
-                      ] }) })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20",
+                          style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" },
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3 h-3 text-primary" }),
+                            "Celebrity Glam"
+                          ] })
+                        }
+                      )
                     ]
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "div",
                   {
-                    className: "relative rounded-3xl overflow-hidden aspect-[4/5] border border-accent/30",
-                    style: { boxShadow: "0 0 40px oklch(0.75 0.15 65 / 0.25)" },
+                    className: "relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30",
+                    style: { boxShadow: "0 0 38px oklch(0.60 0.20 335 / 0.2)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
@@ -28251,11 +28244,18 @@ function CelebritySection() {
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-4 left-4 right-4 bg-card/70 backdrop-blur-sm rounded-xl px-3 py-2 border border-accent/20", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-3 h-3 text-accent" }),
-                        "Luxury Editorial"
-                      ] }) })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20",
+                          style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" },
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-3 h-3 text-primary" }),
+                            "Luxury Editorial"
+                          ] })
+                        }
+                      )
                     ]
                   }
                 )
@@ -28284,10 +28284,10 @@ const contactCards = [
     id: "whatsapp",
     href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
-    iconColor: "text-green-400",
-    iconBg: "bg-green-500/10 border-green-500/30",
-    hoverBg: "group-hover:bg-green-500/20",
-    hoverText: "group-hover:text-green-400",
+    iconColor: "text-green-600",
+    iconBg: "bg-green-100 border-green-300",
+    hoverBg: "group-hover:bg-green-100",
+    hoverText: "group-hover:text-green-600",
     label: "WhatsApp Us",
     sublabel: "Quick reply, instant booking",
     external: true
@@ -28308,10 +28308,10 @@ const contactCards = [
     id: "address",
     href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
-    iconColor: "text-accent",
-    iconBg: "bg-accent/10 border-accent/30",
-    hoverBg: "group-hover:bg-accent/20",
-    hoverText: "group-hover:text-accent",
+    iconColor: "text-accent-foreground",
+    iconBg: "bg-accent/30 border-accent/50",
+    hoverBg: "group-hover:bg-accent/40",
+    hoverText: "group-hover:text-accent-foreground",
     label: "Plot no. 634/1, Sector-4/C",
     sublabel: "Gandhinagar, Gujarat 382006",
     external: true
@@ -28323,13 +28323,43 @@ function ContactSection() {
     "section",
     {
       id: "contact",
-      className: "relative py-28 bg-muted/30 overflow-hidden",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.96 0.020 325) 0%, oklch(0.97 0.014 320) 100%)"
+      },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -bottom-20 -left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-10 right-0 w-64 h-64 bg-accent/8 rounded-full blur-3xl" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute -bottom-20 -left-20 w-80 h-80 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.74 0.20 330 / 0.3) 0%, transparent 70%)",
+                filter: "blur(60px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-10 right-0 w-64 h-64 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.78 0.16 340 / 0.25) 0%, transparent 70%)",
+                filter: "blur(50px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full",
+              style: {
+                background: "radial-gradient(ellipse, oklch(0.82 0.12 330 / 0.18) 0%, transparent 70%)",
+                filter: "blur(70px)"
+              }
+            }
+          )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref, className: "text-center mb-16", children: [
@@ -28339,7 +28369,7 @@ function ContactSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium tracking-wide", children: "Get In Touch" })
@@ -28384,7 +28414,7 @@ function ContactSection() {
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6, delay: 0.1 + index2 * 0.1 },
                 whileHover: { y: -6, scale: 1.03 },
-                className: "group flex flex-col items-center gap-3 p-6 rounded-2xl bg-card border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40",
+                className: "group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
@@ -28406,7 +28436,7 @@ function ContactSection() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-0.5 mt-auto", children: ["s1", "s2", "s3", "s4", "s5"].map((k2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Star,
                     {
-                      className: "w-3 h-3 text-accent fill-accent opacity-80"
+                      className: "w-3 h-3 text-primary fill-primary opacity-80"
                     },
                     k2
                   )) })
@@ -28424,7 +28454,7 @@ function ContactSection() {
                 transition: { duration: 0.8, delay: 0.3 },
                 className: "lg:col-span-2 space-y-6",
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-card rounded-3xl p-8 border border-primary/20 card-elevated", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white/85 backdrop-blur-sm rounded-3xl p-8 border border-primary/20 card-elevated", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-2xl font-bold text-foreground mb-2", children: "Studio Details" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mb-6 font-body", children: "Walk-ins welcome — appointments preferred for bridal sessions." }),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 text-sm", children: [
@@ -28437,7 +28467,7 @@ function ContactSection() {
                         ] })
                       ] }),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-accent flex-shrink-0" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" }),
                         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
                           "Response time:",
                           " ",
@@ -28445,7 +28475,7 @@ function ContactSection() {
                         ] })
                       ] }),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-green-400 flex-shrink-0" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-green-500 flex-shrink-0" }),
                         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
                           "Home visits:",
                           " ",
@@ -28474,7 +28504,7 @@ function ContactSection() {
                         target: "_blank",
                         rel: "noopener noreferrer",
                         "data-ocid": "contact-cta-whatsapp",
-                        className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm",
+                        className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm bg-white/70",
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-4 h-4" }),
                           "WhatsApp"
@@ -28498,7 +28528,7 @@ function ContactSection() {
                     {
                       className: "rounded-3xl overflow-hidden border-2 border-primary/30 relative",
                       style: {
-                        boxShadow: "0 0 40px oklch(0.6 0.25 320 / 0.25), 0 0 80px oklch(0.6 0.25 320 / 0.12), 0 20px 60px oklch(0 0 0 / 0.5)"
+                        boxShadow: "0 0 40px oklch(0.65 0.20 330 / 0.22), 0 0 80px oklch(0.70 0.16 330 / 0.10), 0 20px 60px oklch(0.52 0.24 335 / 0.1)"
                       },
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" }),
@@ -28601,7 +28631,7 @@ function FAQAccordionItem({
       whileInView: { opacity: 1, y: 0 },
       viewport: { once: true },
       transition: { duration: 0.5, delay: index2 * 0.05 },
-      className: `rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? "border border-primary/50 shadow-[0_0_25px_oklch(0.6_0.25_320/0.2),inset_0_0_20px_oklch(0.6_0.25_320/0.04)]" : "border border-border hover:border-primary/30"}`,
+      className: `rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? "border border-primary/45 shadow-[0_0_22px_oklch(0.52_0.24_335/0.16),inset_0_0_18px_oklch(0.52_0.24_335/0.03)]" : "border border-border hover:border-primary/35"}`,
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "button",
@@ -28609,14 +28639,14 @@ function FAQAccordionItem({
             type: "button",
             "data-ocid": `faq-toggle-${item.id}`,
             onClick: onToggle,
-            className: "w-full flex items-center justify-between px-6 py-5 text-left bg-card hover:bg-card/80 transition-smooth",
+            className: "w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-pink-50/60 transition-smooth",
             "aria-expanded": isOpen,
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 pr-4", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
-                    className: `w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-smooth ${isOpen ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground"}`,
+                    className: `w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-smooth ${isOpen ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"}`,
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleHelp, { className: "w-3.5 h-3.5" })
                   }
                 ),
@@ -28647,7 +28677,7 @@ function FAQAccordionItem({
             exit: { height: 0, opacity: 0 },
             transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
             className: "overflow-hidden",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-6 pb-6 pt-1 border-t border-border/40 bg-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed font-body pl-10", children: item.answer }) })
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-6 pb-6 pt-1 border-t border-border/40 bg-pink-50/40", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed font-body pl-10", children: item.answer }) })
           },
           "content"
         ) })
@@ -28657,92 +28687,121 @@ function FAQAccordionItem({
 }
 function FAQSection() {
   const [openId, setOpenId] = reactExports.useState("f1");
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "faq", className: "relative py-28 bg-muted/20 overflow-hidden", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-20 right-0 w-64 h-64 bg-primary/8 rounded-full blur-3xl" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-20 left-0 w-48 h-48 bg-secondary/8 rounded-full blur-3xl" })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-16", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.div,
-          {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true },
-            transition: { duration: 0.6 },
-            className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Got Questions?" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.h2,
-          {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true },
-            transition: { duration: 0.7, delay: 0.1 },
-            className: "font-display text-4xl sm:text-5xl font-bold text-foreground mb-5",
-            children: [
-              "Frequently Asked",
-              " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Questions" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          motion.p,
-          {
-            initial: { opacity: 0, y: 20 },
-            whileInView: { opacity: 1, y: 0 },
-            viewport: { once: true },
-            transition: { duration: 0.7, delay: 0.2 },
-            className: "text-muted-foreground text-lg font-body max-w-xl mx-auto",
-            children: "Everything you need to know before booking your transformation. Can't find the answer? Just call us."
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "faq-list", children: faqs.map((faq, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        FAQAccordionItem,
-        {
-          item: faq,
-          index: i2,
-          isOpen: openId === faq.id,
-          onToggle: () => setOpenId(openId === faq.id ? null : faq.id)
-        },
-        faq.id
-      )) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 24 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.7, delay: 0.3 },
-          className: "mt-12 text-center bg-card rounded-3xl p-8 border border-primary/20 shadow-[0_0_30px_oklch(0.6_0.25_320/0.1)]",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold font-display text-lg mb-2", children: "Still have questions?" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body text-sm mb-5", children: "We'd love to chat. Reach out directly and we'll get back to you within hours." }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "section",
+    {
+      id: "faq",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.98 0.010 322) 0%, oklch(0.97 0.016 328) 100%)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-20 right-0 w-64 h-64 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.76 0.18 330 / 0.3) 0%, transparent 70%)",
+                filter: "blur(60px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-20 left-0 w-48 h-48 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.25) 0%, transparent 70%)",
+                filter: "blur(50px)"
+              }
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-16", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
               {
-                href: "https://wa.me/917041937373",
-                target: "_blank",
-                rel: "noopener noreferrer",
-                "data-ocid": "faq-whatsapp-cta",
-                className: "inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-smooth shadow-[0_0_20px_oklch(0.6_0.25_320/0.4)]",
-                children: "Chat on WhatsApp"
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.6 },
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/35 mb-6 shadow-glow-sm",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Got Questions?" })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.h2,
+              {
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.7, delay: 0.1 },
+                className: "font-display text-4xl sm:text-5xl font-bold text-foreground mb-5",
+                children: [
+                  "Frequently Asked",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Questions" })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              motion.p,
+              {
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.7, delay: 0.2 },
+                className: "text-muted-foreground text-lg font-body max-w-xl mx-auto",
+                children: "Everything you need to know before booking your transformation. Can't find the answer? Just call us."
               }
             )
-          ]
-        }
-      )
-    ] })
-  ] });
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", "data-ocid": "faq-list", children: faqs.map((faq, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            FAQAccordionItem,
+            {
+              item: faq,
+              index: i2,
+              isOpen: openId === faq.id,
+              onToggle: () => setOpenId(openId === faq.id ? null : faq.id)
+            },
+            faq.id
+          )) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 24 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { duration: 0.7, delay: 0.3 },
+              className: "mt-12 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-8 border border-primary/20",
+              style: { boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.12)" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold font-display text-lg mb-2", children: "Still have questions?" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body text-sm mb-5", children: "We'd love to chat. Reach out directly and we'll get back to you within hours." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: "https://wa.me/917041937373",
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    "data-ocid": "faq-whatsapp-cta",
+                    className: "inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-smooth shadow-glow-sm",
+                    children: "Chat on WhatsApp"
+                  }
+                )
+              ]
+            }
+          )
+        ] })
+      ]
+    }
+  );
 }
 function _extends() {
   return _extends = Object.assign ? Object.assign.bind() : function(n) {
@@ -62109,10 +62168,10 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     const indices = [];
     const geometryIndex = geometry.index;
     const geometryPosition = geometry.attributes.position;
-    let version2 = 0;
+    let version = 0;
     if (geometryIndex !== null) {
       const array = geometryIndex.array;
-      version2 = geometryIndex.version;
+      version = geometryIndex.version;
       for (let i2 = 0, l2 = array.length; i2 < l2; i2 += 3) {
         const a2 = array[i2 + 0];
         const b2 = array[i2 + 1];
@@ -62121,7 +62180,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
       }
     } else if (geometryPosition !== void 0) {
       const array = geometryPosition.array;
-      version2 = geometryPosition.version;
+      version = geometryPosition.version;
       for (let i2 = 0, l2 = array.length / 3 - 1; i2 < l2; i2 += 3) {
         const a2 = i2 + 0;
         const b2 = i2 + 1;
@@ -62132,7 +62191,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
       return;
     }
     const attribute = new (arrayNeedsUint32(indices) ? Uint32BufferAttribute : Uint16BufferAttribute)(indices, 1);
-    attribute.version = version2;
+    attribute.version = version;
     const previousAttribute = wireframeAttributes.get(geometry);
     if (previousAttribute) attributes.remove(previousAttribute);
     wireframeAttributes.set(geometry, attribute);
@@ -65209,14 +65268,14 @@ function WebGLState(gl, extensions) {
   let currentPolygonOffsetUnits = null;
   const maxTextures = gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS);
   let lineWidthAvailable = false;
-  let version2 = 0;
+  let version = 0;
   const glVersion = gl.getParameter(gl.VERSION);
   if (glVersion.indexOf("WebGL") !== -1) {
-    version2 = parseFloat(/^WebGL (\d)/.exec(glVersion)[1]);
-    lineWidthAvailable = version2 >= 1;
+    version = parseFloat(/^WebGL (\d)/.exec(glVersion)[1]);
+    lineWidthAvailable = version >= 1;
   } else if (glVersion.indexOf("OpenGL ES") !== -1) {
-    version2 = parseFloat(/^OpenGL ES (\d)/.exec(glVersion)[1]);
-    lineWidthAvailable = version2 >= 2;
+    version = parseFloat(/^OpenGL ES (\d)/.exec(glVersion)[1]);
+    lineWidthAvailable = version >= 2;
   }
   let currentTextureSlot = null;
   let currentBoundTextures = {};
@@ -80157,8 +80216,6 @@ function Canvas(props) {
     })
   });
 }
-const getVersion = () => parseInt(REVISION.replace(/\D+/g, ""));
-const version = /* @__PURE__ */ getVersion();
 var distort = "#define GLSLIFY 1\nvec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;i=mod289(i);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=0.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}";
 class DistortMaterialImpl extends MeshPhysicalMaterial {
   constructor(parameters = {}) {
@@ -80274,105 +80331,6 @@ const Float = /* @__PURE__ */ reactExports.forwardRef(({
     matrixAutoUpdate: false
   }, children));
 });
-class StarfieldMaterial extends ShaderMaterial {
-  constructor() {
-    super({
-      uniforms: {
-        time: {
-          value: 0
-        },
-        fade: {
-          value: 1
-        }
-      },
-      vertexShader: (
-        /* glsl */
-        `
-      uniform float time;
-      attribute float size;
-      varying vec3 vColor;
-      void main() {
-        vColor = color;
-        vec4 mvPosition = modelViewMatrix * vec4(position, 0.5);
-        gl_PointSize = size * (30.0 / -mvPosition.z) * (3.0 + sin(time + 100.0));
-        gl_Position = projectionMatrix * mvPosition;
-      }`
-      ),
-      fragmentShader: (
-        /* glsl */
-        `
-      uniform sampler2D pointTexture;
-      uniform float fade;
-      varying vec3 vColor;
-      void main() {
-        float opacity = 1.0;
-        if (fade == 1.0) {
-          float d = distance(gl_PointCoord, vec2(0.5, 0.5));
-          opacity = 1.0 / (1.0 + exp(16.0 * (d - 0.25)));
-        }
-        gl_FragColor = vec4(vColor, opacity);
-
-        #include <tonemapping_fragment>
-	      #include <${version >= 154 ? "colorspace_fragment" : "encodings_fragment"}>
-      }`
-      )
-    });
-  }
-}
-const genStar = (r) => {
-  return new Vector3().setFromSpherical(new Spherical(r, Math.acos(1 - Math.random() * 2), Math.random() * 2 * Math.PI));
-};
-const Stars = /* @__PURE__ */ reactExports.forwardRef(({
-  radius = 100,
-  depth = 50,
-  count = 5e3,
-  saturation = 0,
-  factor = 4,
-  fade = false,
-  speed = 1
-}, ref) => {
-  const material = reactExports.useRef(null);
-  const [position, color2, size] = reactExports.useMemo(() => {
-    const positions = [];
-    const colors = [];
-    const sizes = Array.from({
-      length: count
-    }, () => (0.5 + 0.5 * Math.random()) * factor);
-    const color3 = new Color();
-    let r = radius + depth;
-    const increment = depth / count;
-    for (let i2 = 0; i2 < count; i2++) {
-      r -= increment * Math.random();
-      positions.push(...genStar(r).toArray());
-      color3.setHSL(i2 / count, saturation, 0.9);
-      colors.push(color3.r, color3.g, color3.b);
-    }
-    return [new Float32Array(positions), new Float32Array(colors), new Float32Array(sizes)];
-  }, [count, depth, factor, radius, saturation]);
-  useFrame((state2) => material.current && (material.current.uniforms.time.value = state2.clock.elapsedTime * speed));
-  const [starfieldMaterial] = reactExports.useState(() => new StarfieldMaterial());
-  return /* @__PURE__ */ reactExports.createElement("points", {
-    ref
-  }, /* @__PURE__ */ reactExports.createElement("bufferGeometry", null, /* @__PURE__ */ reactExports.createElement("bufferAttribute", {
-    attach: "attributes-position",
-    args: [position, 3]
-  }), /* @__PURE__ */ reactExports.createElement("bufferAttribute", {
-    attach: "attributes-color",
-    args: [color2, 3]
-  }), /* @__PURE__ */ reactExports.createElement("bufferAttribute", {
-    attach: "attributes-size",
-    args: [size, 1]
-  })), /* @__PURE__ */ reactExports.createElement("primitive", {
-    ref: material,
-    object: starfieldMaterial,
-    attach: "material",
-    blending: AdditiveBlending,
-    "uniforms-fade-value": fade,
-    depthWrite: false,
-    transparent: true,
-    vertexColors: true
-  }));
-});
 function AnimatedSphere({
   position,
   scale: scale2,
@@ -80456,9 +80414,9 @@ function ParticleField() {
       "pointsMaterial",
       {
         size: 0.06,
-        color: "#d946ef",
+        color: "#E8559A",
         transparent: true,
-        opacity: 0.65,
+        opacity: 0.55,
         sizeAttenuation: true
       }
     )
@@ -80484,25 +80442,24 @@ function RingOrbiter({
       {
         color: color2,
         emissive: color2,
-        emissiveIntensity: 1.8
+        emissiveIntensity: 1.2
       }
     )
   ] });
 }
 function Scene2() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 0.2 }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2, color: "#d946ef" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -4, -4], intensity: 1.5, color: "#a855f7" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 8, -6], intensity: 1, color: "#f9a8d4" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Stars, { radius: 60, depth: 30, count: 400, factor: 2.5, fade: true, speed: 0.5 }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 1, color: "#FFE8F5" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2, color: "#FF69B4" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -4, -4], intensity: 1.5, color: "#FFB6D9" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 8, -6], intensity: 1, color: "#FF1493" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ParticleField, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       AnimatedSphere,
       {
         position: [-4.5, 2, -3],
         scale: 1.4,
-        color: "#d946ef",
+        color: "#FF69B4",
         speed: 0.8
       }
     ),
@@ -80511,7 +80468,7 @@ function Scene2() {
       {
         position: [4.8, -1.5, -4],
         scale: 1,
-        color: "#a855f7",
+        color: "#FFB6D9",
         speed: 0.6
       }
     ),
@@ -80520,7 +80477,7 @@ function Scene2() {
       {
         position: [0.5, 3.5, -5],
         scale: 0.7,
-        color: "#f9a8d4",
+        color: "#FF1493",
         speed: 1.1
       }
     ),
@@ -80529,7 +80486,7 @@ function Scene2() {
       {
         position: [3.5, 2.5, -2],
         scale: 0.9,
-        color: "#d946ef",
+        color: "#FF69B4",
         speed: 0.7
       }
     ),
@@ -80538,7 +80495,7 @@ function Scene2() {
       {
         position: [-3.5, -1.5, -3],
         scale: 0.65,
-        color: "#c084fc",
+        color: "#FFB6D9",
         speed: 0.9
       }
     ),
@@ -80547,13 +80504,13 @@ function Scene2() {
       {
         position: [0, -3, -5],
         scale: 1.2,
-        color: "#e879f9",
+        color: "#FF8DC7",
         speed: 0.5
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 3.5, speed: 0.45, color: "#f0abfc" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 2.8, speed: 0.7, color: "#d946ef" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 4.2, speed: 0.3, color: "#fbbf24" })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 3.5, speed: 0.45, color: "#FFB6D9" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 2.8, speed: 0.7, color: "#FF69B4" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 4.2, speed: 0.3, color: "#FFD6E8" })
   ] });
 }
 function FloatingOrb({
@@ -80574,13 +80531,13 @@ function FloatingOrb({
         left,
         background: color2,
         filter: `blur(${size * 0.45}px)`,
-        opacity: 0.28
+        opacity: 0.5
       },
       animate: {
         y: [0, -30, 0],
         x: [0, 15, 0],
         scale: [1, 1.15, 1],
-        opacity: [0.18, 0.38, 0.18]
+        opacity: [0.35, 0.65, 0.35]
       },
       transition: {
         duration: 7 + delay2,
@@ -80605,7 +80562,9 @@ function HeroSection() {
     {
       id: "home",
       className: "relative min-h-screen flex items-center overflow-hidden",
-      style: { background: "oklch(0.07 0.01 280)" },
+      style: {
+        background: "linear-gradient(135deg, oklch(0.99 0.01 318) 0%, oklch(0.97 0.022 330) 50%, oklch(0.98 0.015 312) 100%)"
+      },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 z-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Canvas,
@@ -80621,7 +80580,7 @@ function HeroSection() {
           {
             className: "absolute inset-0 z-[1] pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.07 0.01 280 / 0.3) 0%, oklch(0.07 0.01 280 / 0.85) 70%, oklch(0.07 0.01 280 / 0.97) 100%)"
+              background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.98 0.015 325 / 0.18) 0%, oklch(0.98 0.01 320 / 0.45) 65%, oklch(0.99 0.006 318 / 0.78) 100%)"
             }
           }
         ),
@@ -80629,40 +80588,40 @@ function HeroSection() {
           FloatingOrb,
           {
             delay: 0,
-            size: 360,
-            top: "5%",
-            left: "3%",
-            color: "oklch(0.6 0.25 320)"
+            size: 380,
+            top: "3%",
+            left: "2%",
+            color: "radial-gradient(circle, oklch(0.72 0.22 330 / 0.55), oklch(0.85 0.12 330 / 0.22))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 1.8,
-            size: 220,
-            top: "60%",
-            left: "1%",
-            color: "oklch(0.65 0.24 330)"
+            size: 240,
+            top: "58%",
+            left: "0%",
+            color: "radial-gradient(circle, oklch(0.68 0.24 338 / 0.5), oklch(0.82 0.14 330 / 0.18))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 0.9,
-            size: 280,
-            top: "15%",
-            left: "72%",
-            color: "oklch(0.6 0.25 310)"
+            size: 300,
+            top: "12%",
+            left: "70%",
+            color: "radial-gradient(circle, oklch(0.70 0.22 322 / 0.48), oklch(0.84 0.10 325 / 0.2))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 2.2,
-            size: 180,
-            top: "72%",
-            left: "78%",
-            color: "oklch(0.75 0.15 65)"
+            size: 200,
+            top: "70%",
+            left: "76%",
+            color: "radial-gradient(circle, oklch(0.76 0.18 342 / 0.45), oklch(0.88 0.08 340 / 0.2))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80680,7 +80639,7 @@ function HeroSection() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
-            className: "absolute top-44 left-36 w-5 h-5 bg-accent/50 rounded-full z-[2]",
+            className: "absolute top-44 left-36 w-5 h-5 bg-primary/30 rounded-full z-[2]",
             animate: { y: [0, -15, 0], scale: [1, 1.4, 1] },
             transition: {
               duration: 4,
@@ -80693,7 +80652,7 @@ function HeroSection() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
-            className: "absolute bottom-44 right-44 w-9 h-9 border-2 border-accent/35 rounded-full z-[2]",
+            className: "absolute bottom-44 right-44 w-9 h-9 border-2 border-primary/35 rounded-full z-[2]",
             animate: { rotate: [0, 360] },
             transition: {
               duration: 14,
@@ -80705,7 +80664,7 @@ function HeroSection() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
-            className: "absolute top-1/3 left-16 w-3 h-3 bg-primary/60 rounded-full z-[2]",
+            className: "absolute top-1/3 left-16 w-3 h-3 bg-primary/50 rounded-full z-[2]",
             animate: { y: [0, 20, 0], opacity: [0.4, 1, 0.4] },
             transition: {
               duration: 3.5,
@@ -80728,7 +80687,7 @@ function HeroSection() {
                     initial: { opacity: 0, y: 24 },
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.6 },
-                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6 backdrop-blur-sm",
+                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/75 border border-primary/35 mb-6 backdrop-blur-sm shadow-glow-sm",
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium font-body", children: "Luxury Bridal & Celebrity Makeup" })
@@ -80777,12 +80736,13 @@ function HeroSection() {
                     initial: { opacity: 0, scale: 0.9 },
                     animate: isInView ? { opacity: 1, scale: 1 } : {},
                     transition: { duration: 0.6, delay: 0.38 },
-                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 border border-accent/40 backdrop-blur-sm mb-8",
+                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-primary/30 backdrop-blur-sm mb-8",
+                    style: { boxShadow: "0 2px 20px oklch(0.52 0.24 335 / 0.18)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: STARS.map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                         Star,
                         {
-                          className: "w-3.5 h-3.5 text-accent fill-accent"
+                          className: "w-3.5 h-3.5 text-primary fill-primary"
                         },
                         id2
                       )) }),
@@ -80803,13 +80763,13 @@ function HeroSection() {
                         {
                           "data-ocid": "hero-cta-book",
                           href: "tel:07041937373",
-                          className: "px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth shadow-glow-md relative overflow-hidden group",
+                          className: "px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth relative overflow-hidden group",
                           style: {
-                            boxShadow: "0 0 30px oklch(0.6 0.25 320 / 0.5), 0 4px 20px oklch(0 0 0 / 0.4)"
+                            boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.28)"
                           },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: "Book Your Bridal Look" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-smooth" })
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-smooth" })
                           ]
                         }
                       ),
@@ -80822,7 +80782,7 @@ function HeroSection() {
                             var _a2;
                             return (_a2 = document.querySelector("#portfolio")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth" });
                           },
-                          className: "px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm",
+                          className: "px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm bg-white/60",
                           children: "View Portfolio"
                         }
                       )
@@ -80861,7 +80821,7 @@ function HeroSection() {
                       {
                         className: "absolute inset-0 rounded-full blur-3xl scale-75",
                         style: {
-                          background: "radial-gradient(circle, oklch(0.6 0.25 320 / 0.35) 0%, transparent 70%)"
+                          background: "radial-gradient(circle, oklch(0.72 0.22 330 / 0.5) 0%, oklch(0.88 0.10 330 / 0.2) 70%, transparent 100%)"
                         }
                       }
                     ),
@@ -80870,8 +80830,8 @@ function HeroSection() {
                       {
                         className: "relative w-80 h-[420px] sm:w-96 sm:h-[500px] rounded-3xl overflow-hidden float-animation",
                         style: {
-                          border: "1px solid oklch(0.6 0.25 320 / 0.45)",
-                          boxShadow: "0 0 50px oklch(0.6 0.25 320 / 0.35), 0 0 100px oklch(0.6 0.25 320 / 0.15), inset 0 0 30px oklch(0.6 0.25 320 / 0.08)"
+                          border: "1.5px solid oklch(0.52 0.24 335 / 0.4)",
+                          boxShadow: "0 0 45px oklch(0.52 0.24 335 / 0.3), 0 0 90px oklch(0.65 0.18 335 / 0.15), inset 0 0 25px oklch(0.52 0.24 335 / 0.05)"
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80882,17 +80842,20 @@ function HeroSection() {
                               className: "w-full h-full object-cover object-top"
                             }
                           ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/50 via-transparent to-transparent" }),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             motion.div,
                             {
                               initial: { opacity: 0, y: 20 },
                               animate: isInView ? { opacity: 1, y: 0 } : {},
                               transition: { delay: 1, type: "spring" },
-                              className: "absolute bottom-4 left-4 right-4 bg-card/85 backdrop-blur-md rounded-2xl px-4 py-3",
-                              style: { border: "1px solid oklch(0.6 0.25 320 / 0.35)" },
+                              className: "absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3",
+                              style: {
+                                border: "1px solid oklch(0.52 0.24 335 / 0.3)",
+                                boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.18)"
+                              },
                               children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-5 h-5 text-accent flex-shrink-0" }),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-5 h-5 text-primary flex-shrink-0" }),
                                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                                   /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground text-sm font-semibold font-body", children: "Celebrity Makeup Artist" }),
                                   /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "Gandhinagar, Gujarat · Est. 2015" })
@@ -80912,16 +80875,16 @@ function HeroSection() {
                           repeat: Number.POSITIVE_INFINITY,
                           ease: "easeInOut"
                         },
-                        className: "absolute -right-4 top-16 bg-card/90 backdrop-blur-md rounded-2xl px-4 py-3",
+                        className: "absolute -right-4 top-16 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3",
                         style: {
-                          border: "1px solid oklch(0.6 0.25 320 / 0.35)",
-                          boxShadow: "0 0 20px oklch(0.6 0.25 320 / 0.25)"
+                          border: "1px solid oklch(0.52 0.24 335 / 0.3)",
+                          boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.22)"
                         },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: STARS.map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                             Star,
                             {
-                              className: "w-3 h-3 text-accent fill-accent"
+                              className: "w-3 h-3 text-primary fill-primary"
                             },
                             id2
                           )) }),
@@ -80939,10 +80902,10 @@ function HeroSection() {
                           ease: "easeInOut",
                           delay: 1.2
                         },
-                        className: "absolute -left-4 bottom-28 bg-card/90 backdrop-blur-md rounded-2xl px-4 py-3",
+                        className: "absolute -left-4 bottom-28 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3",
                         style: {
-                          border: "1px solid oklch(0.75 0.15 65 / 0.35)",
-                          boxShadow: "0 0 20px oklch(0.75 0.15 65 / 0.2)"
+                          border: "1px solid oklch(0.75 0.12 340 / 0.4)",
+                          boxShadow: "0 0 18px oklch(0.65 0.18 340 / 0.22)"
                         },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-4 h-4 text-primary fill-primary" }),
@@ -80954,7 +80917,7 @@ function HeroSection() {
                       motion.div,
                       {
                         className: "absolute -bottom-4 -right-4 w-20 h-20 rounded-full pointer-events-none",
-                        style: { border: "2px dashed oklch(0.6 0.25 320 / 0.3)" },
+                        style: { border: "2px dashed oklch(0.52 0.24 335 / 0.4)" },
                         animate: { rotate: [0, 360] },
                         transition: {
                           duration: 16,
@@ -81054,10 +81017,35 @@ function PortfolioSection() {
     "section",
     {
       id: "portfolio",
-      className: "relative py-24 bg-background overflow-hidden",
+      className: "relative py-24 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.016 325) 100%)"
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-20 right-10 w-72 h-72 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.3) 0%, transparent 70%)",
+                filter: "blur(55px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-20 left-10 w-64 h-64 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.70 0.22 338 / 0.25) 0%, transparent 70%)",
+                filter: "blur(48px)"
+              }
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { ref, className: "text-center mb-16", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               motion.div,
@@ -81065,7 +81053,7 @@ function PortfolioSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Real Work, Real Beauty" })
@@ -81103,7 +81091,10 @@ function PortfolioSection() {
               whileInView: { opacity: 1, scale: 1 },
               viewport: { once: true, amount: 0.2 },
               transition: { duration: 0.6, delay: i2 * 0.07 },
-              className: "relative group break-inside-avoid rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-smooth shadow-card-elevated",
+              className: "relative group break-inside-avoid rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-smooth bg-white",
+              style: {
+                boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)"
+              },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "img",
@@ -81113,7 +81104,7 @@ function PortfolioSection() {
                     className: "w-full object-cover group-hover:scale-105 transition-all duration-700"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-100/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground text-sm font-semibold font-body", children: photo.label }) })
               ]
             },
@@ -81217,15 +81208,15 @@ function TiltCard({
       },
       onMouseMove: handleMouseMove,
       onMouseLeave: handleMouseLeave,
-      className: `relative bg-card rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${active ? "border-primary/50 shadow-[0_0_40px_oklch(0.6_0.25_320/0.3)]" : "border-border/60"}`,
+      className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${active ? "border-primary/45 shadow-[0_0_40px_oklch(0.52_0.24_335/0.22)]" : "border-border/70"}`,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/4 via-transparent to-primary/3 pointer-events-none" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between mb-5", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Quote, { className: "w-9 h-9 text-primary/30" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1", children: Array.from({ length: testimonial.stars }, (_, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             Star,
             {
-              className: "w-4 h-4 text-accent fill-accent"
+              className: "w-4 h-4 text-primary fill-primary"
             },
             `star-${testimonial.id}-${i2}`
           )) })
@@ -81236,7 +81227,14 @@ function TiltCard({
           '"'
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4 pt-5 border-t border-border/50", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-12 h-12 rounded-full bg-gradient-to-br from-primary/40 to-secondary/40 border-2 border-primary/50 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_oklch(0.6_0.25_320/0.4)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary font-bold text-sm font-display", children: initials }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/15 border-2 border-primary/40 flex items-center justify-center flex-shrink-0",
+              style: { boxShadow: "0 0 14px oklch(0.52 0.24 335 / 0.28)" },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary font-bold text-sm font-display", children: initials })
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold text-sm font-display truncate", children: testimonial.name }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mt-0.5", children: [
@@ -81313,13 +81311,43 @@ function ReviewsSection() {
     "section",
     {
       id: "reviews",
-      className: "relative py-28 bg-background overflow-hidden",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.018 328) 100%)"
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-10 right-10 w-80 h-80 bg-primary/10 rounded-full blur-3xl" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-20 left-10 w-56 h-56 bg-secondary/10 rounded-full blur-3xl" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[80px]" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-10 right-10 w-80 h-80 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.32) 0%, transparent 70%)",
+                filter: "blur(55px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-20 left-10 w-56 h-56 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.70 0.22 338 / 0.28) 0%, transparent 70%)",
+                filter: "blur(42px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.80 0.14 330 / 0.2) 0%, transparent 70%)",
+                filter: "blur(80px)"
+              }
+            }
+          )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-16", children: [
@@ -81330,7 +81358,7 @@ function ReviewsSection() {
                 whileInView: { opacity: 1, y: 0 },
                 viewport: { once: true },
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Client Love" })
@@ -81400,7 +81428,7 @@ function ReviewsSection() {
                 "data-ocid": "reviews-prev",
                 onClick: handlePrev,
                 "aria-label": "Previous review",
-                className: "w-11 h-11 rounded-full border border-border bg-card hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
+                className: "w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" })
               }
             ),
@@ -81414,7 +81442,7 @@ function ReviewsSection() {
                   resetTimer();
                 },
                 "aria-label": `Go to review ${i2 + 1}`,
-                className: `rounded-full transition-all duration-300 ${i2 === current ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.6_0.25_320/0.6)]" : "w-2.5 h-2.5 bg-border hover:bg-primary/40"}`
+                className: `rounded-full transition-all duration-300 ${i2 === current ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.52_0.24_335/0.5)]" : "w-2.5 h-2.5 bg-border hover:bg-primary/40"}`
               },
               t.id
             )) }),
@@ -81425,7 +81453,7 @@ function ReviewsSection() {
                 "data-ocid": "reviews-next",
                 onClick: handleNext,
                 "aria-label": "Next review",
-                className: "w-11 h-11 rounded-full border border-border bg-card hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
+                className: "w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" })
               }
             )
@@ -81437,10 +81465,11 @@ function ReviewsSection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.8, delay: 0.3 },
-              className: "mt-16 text-center bg-card rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto shadow-[0_0_40px_oklch(0.6_0.25_320/0.15)]",
+              className: "mt-16 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto",
+              style: { boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.14)" },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display text-6xl font-bold text-primary glow-text mb-2", children: "5.0" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center gap-1 mb-3", children: ["s1", "s2", "s3", "s4", "s5"].map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-6 h-6 text-accent fill-accent" }, id2)) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center gap-1 mb-3", children: ["s1", "s2", "s3", "s4", "s5"].map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-6 h-6 text-primary fill-primary" }, id2)) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body", children: "Based on 200+ verified reviews" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold mt-1", children: "100% Client Satisfaction Rate" })
               ]
@@ -81578,7 +81607,7 @@ function ServiceCard({
           onMouseMove: handleMouseMove,
           onMouseLeave: handleMouseLeave,
           style: { rotateX, rotateY, transformStyle: "preserve-3d" },
-          className: "group relative bg-card rounded-3xl overflow-hidden border border-border transition-colors duration-300 card-elevated cursor-pointer",
+          className: "group relative bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden border border-primary/20 transition-colors duration-300 card-elevated cursor-pointer hover:border-primary/45",
           "data-ocid": `service-card-${service.id}`,
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -81586,7 +81615,7 @@ function ServiceCard({
               {
                 className: "absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20",
                 style: {
-                  background: "linear-gradient(135deg, oklch(0.65 0.28 320 / 0.5), oklch(0.55 0.22 350 / 0.4), oklch(0.65 0.28 320 / 0.5))",
+                  background: "linear-gradient(135deg, oklch(0.52 0.24 335 / 0.45), oklch(0.65 0.18 340 / 0.35), oklch(0.52 0.24 335 / 0.45))",
                   padding: "1.5px",
                   WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   WebkitMaskComposite: "xor",
@@ -81599,7 +81628,7 @@ function ServiceCard({
               {
                 className: "absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10",
                 style: {
-                  boxShadow: "0 0 40px oklch(0.62 0.26 320 / 0.35), 0 0 70px oklch(0.58 0.24 320 / 0.18)"
+                  boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.25), 0 0 70px oklch(0.60 0.20 335 / 0.12)"
                 }
               }
             ),
@@ -81614,12 +81643,19 @@ function ServiceCard({
                     {
                       src: service.image,
                       alt: service.title,
-                      className: "w-full h-full object-cover object-top group-hover:scale-108 transition-all duration-700",
+                      className: "w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700",
                       style: { transition: "transform 0.7s cubic-bezier(0.4,0,0.2,1)" }
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1 border border-primary/40 bg-card/70", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-xs font-semibold tracking-wide", children: service.price }) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/70 via-pink-50/10 to-transparent" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      className: "absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1 border border-primary/40 bg-white/85",
+                      style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.2)" },
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-xs font-semibold tracking-wide", children: service.price })
+                    }
+                  )
                 ]
               }
             ),
@@ -81642,7 +81678,7 @@ function ServiceCard({
                 {
                   href: `tel:${PHONE}`,
                   "data-ocid": `service-book-${service.id}`,
-                  className: "inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/80 px-4 py-2 rounded-full transition-smooth group-hover:shadow-[0_0_20px_oklch(0.6_0.25_320/0.5)]",
+                  className: "inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground bg-primary hover:bg-primary/85 px-4 py-2 rounded-full transition-smooth group-hover:shadow-glow-sm",
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-3.5 h-3.5" }),
                     "Book Now"
@@ -81662,18 +81698,21 @@ function ServicesSection() {
     "section",
     {
       id: "services",
-      className: "relative py-28 overflow-hidden bg-muted/20",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.98 0.012 320) 100%)"
+      },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
             className: "absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, oklch(0.62 0.26 320 / 0.2) 0%, transparent 70%)",
-              filter: "blur(40px)"
+              background: "radial-gradient(circle, oklch(0.76 0.18 325 / 0.35) 0%, transparent 70%)",
+              filter: "blur(55px)"
             },
-            animate: { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] },
+            animate: { scale: [1, 1.15, 1], opacity: [0.5, 0.85, 0.5] },
             transition: {
               duration: 8,
               repeat: Number.POSITIVE_INFINITY,
@@ -81686,10 +81725,10 @@ function ServicesSection() {
           {
             className: "absolute -bottom-32 -right-24 w-[28rem] h-[28rem] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, oklch(0.58 0.24 350 / 0.18) 0%, transparent 70%)",
-              filter: "blur(50px)"
+              background: "radial-gradient(circle, oklch(0.70 0.20 335 / 0.3) 0%, transparent 70%)",
+              filter: "blur(65px)"
             },
-            animate: { scale: [1, 1.2, 1], opacity: [0.5, 0.9, 0.5] },
+            animate: { scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] },
             transition: {
               duration: 10,
               repeat: Number.POSITIVE_INFINITY,
@@ -81703,10 +81742,10 @@ function ServicesSection() {
           {
             className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-64 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, oklch(0.6 0.25 320 / 0.08) 0%, transparent 70%)",
-              filter: "blur(60px)"
+              background: "radial-gradient(ellipse, oklch(0.82 0.12 325 / 0.2) 0%, transparent 70%)",
+              filter: "blur(70px)"
             },
-            animate: { scaleX: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] },
+            animate: { scaleX: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] },
             transition: {
               duration: 12,
               repeat: Number.POSITIVE_INFINITY,
@@ -81778,7 +81817,7 @@ function ServicesSection() {
             }
           )
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" })
       ]
     }
   );
@@ -81789,10 +81828,10 @@ const reasons = [
     icon: Gem,
     title: "Premium Quality Products",
     description: "We exclusively use international luxury brands — MAC, Charlotte Tilbury, NARS, Huda Beauty, and Pat McGrath for flawless, skin-safe results that last all day.",
-    color: "text-accent",
-    bg: "bg-accent/10",
-    border: "border-accent/30",
-    glow: "oklch(0.75 0.15 65 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { rotate: [0, 15, -10, 0] }
   },
   {
@@ -81803,7 +81842,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.6 0.25 320 / 0.35)",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { scale: [1, 1.2, 1] }
   },
   {
@@ -81811,10 +81850,10 @@ const reasons = [
     icon: Star,
     title: "Celebrity Experience",
     description: "15+ years working with Bollywood actresses, TV personalities, and magazine cover models. That rare industry expertise is now available to you.",
-    color: "text-secondary",
-    bg: "bg-secondary/10",
-    border: "border-secondary/30",
-    glow: "oklch(0.65 0.24 330 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.60 0.20 340 / 0.32)",
     iconAnim: { rotate: [0, 360] }
   },
   {
@@ -81822,10 +81861,10 @@ const reasons = [
     icon: Palette,
     title: "Custom Designs",
     description: "No cookie-cutter makeup here. Every look is tailored to your unique bone structure, skin tone, and personal style — we create art, not copies.",
-    color: "text-accent",
-    bg: "bg-accent/10",
-    border: "border-accent/30",
-    glow: "oklch(0.75 0.15 65 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { y: [0, -5, 0] }
   },
   {
@@ -81836,7 +81875,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.6 0.25 320 / 0.35)",
+    glow: "oklch(0.52 0.24 335 / 0.32)",
     iconAnim: { y: [0, -6, 0] }
   },
   {
@@ -81844,10 +81883,10 @@ const reasons = [
     icon: Award,
     title: "15+ Years of Experience",
     description: "Over a decade and a half of mastering trends, techniques, and transformations. You're in the hands of a true professional with a proven track record.",
-    color: "text-secondary",
-    bg: "bg-secondary/10",
-    border: "border-secondary/30",
-    glow: "oklch(0.65 0.24 330 / 0.35)",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/30",
+    glow: "oklch(0.60 0.20 340 / 0.32)",
     iconAnim: { rotate: [0, 5, -5, 0] }
   }
 ];
@@ -81857,15 +81896,22 @@ function WhyUsSection() {
     "section",
     {
       id: "why-us",
-      className: "relative py-28 bg-background overflow-hidden",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(180deg, oklch(0.98 0.010 316) 0%, oklch(0.97 0.018 326) 50%, oklch(0.98 0.010 320) 100%)"
+      },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
-              className: "absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-3xl",
-              animate: { scale: [1, 1.1, 1], opacity: [0.5, 0.9, 0.5] },
+              className: "absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.72 0.18 325 / 0.22) 0%, transparent 70%)",
+                filter: "blur(65px)"
+              },
+              animate: { scale: [1, 1.1, 1], opacity: [0.5, 0.85, 0.5] },
               transition: {
                 duration: 8,
                 repeat: Number.POSITIVE_INFINITY,
@@ -81876,8 +81922,12 @@ function WhyUsSection() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
-              className: "absolute bottom-20 right-10 w-56 h-56 bg-accent/7 rounded-full blur-3xl",
-              animate: { scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] },
+              className: "absolute bottom-20 right-10 w-56 h-56 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.68 0.22 332 / 0.28) 0%, transparent 70%)",
+                filter: "blur(44px)"
+              },
+              animate: { scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] },
               transition: {
                 duration: 6,
                 repeat: Number.POSITIVE_INFINITY,
@@ -81895,7 +81945,7 @@ function WhyUsSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Unnati Difference" })
@@ -81917,7 +81967,7 @@ function WhyUsSection() {
                     {
                       className: "text-primary",
                       style: {
-                        textShadow: "0 0 40px oklch(0.6 0.25 320 / 0.6), 0 0 80px oklch(0.6 0.25 320 / 0.3)"
+                        textShadow: "0 0 36px oklch(0.52 0.24 335 / 0.5), 0 0 72px oklch(0.52 0.24 335 / 0.22)"
                       },
                       children: "Unnati"
                     }
@@ -81951,10 +82001,10 @@ function WhyUsSection() {
                 },
                 whileHover: {
                   y: -8,
-                  boxShadow: `0 0 40px ${reason.glow}, 0 20px 60px oklch(0 0 0 / 0.5)`
+                  boxShadow: `0 0 38px ${reason.glow}, 0 20px 38px oklch(0.52 0.24 335 / 0.1)`
                 },
                 "data-ocid": `why-us-card-${reason.id}`,
-                className: `relative bg-card rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`,
+                className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`,
                 style: { transformStyle: "preserve-3d", perspective: "800px" },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -81978,7 +82028,7 @@ function WhyUsSection() {
                       motion.div,
                       {
                         className: `w-14 h-14 rounded-2xl ${reason.bg} border ${reason.border} flex items-center justify-center mb-5`,
-                        style: { boxShadow: `0 0 24px ${reason.glow}` },
+                        style: { boxShadow: `0 0 22px ${reason.glow}` },
                         whileHover: { scale: 1.12 },
                         transition: { duration: 0.3 },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -82030,8 +82080,8 @@ function WhyUsSection() {
               children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  className: "inline-flex items-center gap-3 px-6 py-3 rounded-full bg-card border border-primary/30",
-                  style: { boxShadow: "0 0 30px oklch(0.6 0.25 320 / 0.2)" },
+                  className: "inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-primary/30",
+                  style: { boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.18)" },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Clock$1, { className: "w-4 h-4 text-primary" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground text-sm font-body", children: [
@@ -82041,7 +82091,7 @@ function WhyUsSection() {
                         "a",
                         {
                           href: "tel:+917041937373",
-                          className: "text-primary font-semibold hover:text-accent transition-smooth",
+                          className: "text-primary font-semibold hover:text-primary/80 transition-smooth",
                           children: "07041937373"
                         }
                       )

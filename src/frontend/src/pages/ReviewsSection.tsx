@@ -124,14 +124,14 @@ function TiltCard({
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative bg-card rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${
+      className={`relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${
         active
-          ? "border-primary/50 shadow-[0_0_40px_oklch(0.6_0.25_320/0.3)]"
-          : "border-border/60"
+          ? "border-primary/45 shadow-[0_0_40px_oklch(0.52_0.24_335/0.22)]"
+          : "border-border/70"
       }`}
     >
-      {/* Shimmer overlay */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+      {/* Soft shimmer overlay */}
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/4 via-transparent to-primary/3 pointer-events-none" />
 
       {/* Quote icon */}
       <div className="flex items-start justify-between mb-5">
@@ -140,7 +140,7 @@ function TiltCard({
           {Array.from({ length: testimonial.stars }, (_, i) => (
             <Star
               key={`star-${testimonial.id}-${i}`}
-              className="w-4 h-4 text-accent fill-accent"
+              className="w-4 h-4 text-primary fill-primary"
             />
           ))}
         </div>
@@ -153,7 +153,10 @@ function TiltCard({
 
       {/* Author */}
       <div className="flex items-center gap-4 pt-5 border-t border-border/50">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/40 to-secondary/40 border-2 border-primary/50 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_oklch(0.6_0.25_320/0.4)]">
+        <div
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/15 border-2 border-primary/40 flex items-center justify-center flex-shrink-0"
+          style={{ boxShadow: "0 0 14px oklch(0.52 0.24 335 / 0.28)" }}
+        >
           <span className="text-primary font-bold text-sm font-display">
             {initials}
           </span>
@@ -216,7 +219,6 @@ export function ReviewsSection() {
     resetTimer();
   };
 
-  // Show 3 cards on desktop: prev, current, next
   const getVisible = () => {
     const len = testimonials.length;
     return [
@@ -243,16 +245,41 @@ export function ReviewsSection() {
   return (
     <section
       id="reviews"
-      className="relative py-28 bg-background overflow-hidden"
+      className="relative py-28 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.018 328) 100%)",
+      }}
     >
       {/* Section divider */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      {/* Ambient glows */}
+      {/* Ambient pink glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute top-20 left-10 w-56 h-56 bg-secondary/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[80px]" />
+        <div
+          className="absolute bottom-10 right-10 w-80 h-80 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.73 0.20 325 / 0.32) 0%, transparent 70%)",
+            filter: "blur(55px)",
+          }}
+        />
+        <div
+          className="absolute top-20 left-10 w-56 h-56 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.70 0.22 338 / 0.28) 0%, transparent 70%)",
+            filter: "blur(42px)",
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.80 0.14 330 / 0.2) 0%, transparent 70%)",
+            filter: "blur(80px)",
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -263,7 +290,7 @@ export function ReviewsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium">
@@ -339,7 +366,7 @@ export function ReviewsSection() {
             data-ocid="reviews-prev"
             onClick={handlePrev}
             aria-label="Previous review"
-            className="w-11 h-11 rounded-full border border-border bg-card hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
+            className="w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
           >
             <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
           </button>
@@ -358,7 +385,7 @@ export function ReviewsSection() {
                 aria-label={`Go to review ${i + 1}`}
                 className={`rounded-full transition-all duration-300 ${
                   i === current
-                    ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.6_0.25_320/0.6)]"
+                    ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.52_0.24_335/0.5)]"
                     : "w-2.5 h-2.5 bg-border hover:bg-primary/40"
                 }`}
               />
@@ -370,7 +397,7 @@ export function ReviewsSection() {
             data-ocid="reviews-next"
             onClick={handleNext}
             aria-label="Next review"
-            className="w-11 h-11 rounded-full border border-border bg-card hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
+            className="w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
           >
             <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
           </button>
@@ -382,14 +409,15 @@ export function ReviewsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 text-center bg-card rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto shadow-[0_0_40px_oklch(0.6_0.25_320/0.15)]"
+          className="mt-16 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto"
+          style={{ boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.14)" }}
         >
           <p className="font-display text-6xl font-bold text-primary glow-text mb-2">
             5.0
           </p>
           <div className="flex justify-center gap-1 mb-3">
             {["s1", "s2", "s3", "s4", "s5"].map((id) => (
-              <Star key={id} className="w-6 h-6 text-accent fill-accent" />
+              <Star key={id} className="w-6 h-6 text-primary fill-primary" />
             ))}
           </div>
           <p className="text-muted-foreground font-body">
