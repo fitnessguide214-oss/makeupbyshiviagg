@@ -69,13 +69,13 @@ export function CTAPrimary() {
 
   return (
     <section className="relative py-28 overflow-hidden bg-background">
-      {/* Soft pink radial glow */}
+      {/* Warm brown/caramel radial glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.82 0.14 330 / 0.18) 0%, oklch(0.88 0.10 330 / 0.08) 40%, transparent 70%)",
+              "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.65 0.12 52 / 0.16) 0%, oklch(0.72 0.09 54 / 0.08) 40%, transparent 70%)",
           }}
         />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/45 to-transparent" />
@@ -92,12 +92,13 @@ export function CTAPrimary() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl p-12 sm:p-16 border border-primary/30 overflow-hidden"
+          className="relative rounded-3xl p-12 sm:p-16 overflow-hidden"
           style={{
             background:
-              "linear-gradient(135deg, oklch(0.98 0.02 325) 0%, oklch(0.97 0.025 335) 50%, oklch(0.98 0.018 320) 100%)",
+              "linear-gradient(135deg, oklch(0.95 0.022 52) 0%, oklch(0.94 0.025 48) 50%, oklch(0.95 0.018 55) 100%)",
+            border: "1px solid oklch(0.65 0.10 50 / 0.32)",
             boxShadow:
-              "0 0 60px oklch(0.65 0.22 330 / 0.18), 0 0 120px oklch(0.70 0.18 330 / 0.08), inset 0 0 40px oklch(0.65 0.22 330 / 0.04)",
+              "0 0 65px oklch(0.58 0.12 50 / 0.20), 0 0 130px oklch(0.65 0.10 52 / 0.10), inset 0 0 45px oklch(0.60 0.12 50 / 0.05)",
           }}
         >
           {/* Subtle radial inner glow top */}
@@ -105,7 +106,7 @@ export function CTAPrimary() {
             className="absolute inset-0 rounded-3xl pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.75 0.18 330 / 0.14) 0%, transparent 60%)",
+                "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.62 0.14 50 / 0.14) 0%, transparent 60%)",
             }}
           />
 
@@ -114,7 +115,11 @@ export function CTAPrimary() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 bg-primary/10 border border-primary/35"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6"
+              style={{
+                background: "oklch(0.55 0.12 48 / 0.12)",
+                border: "1px solid oklch(0.55 0.10 50 / 0.36)",
+              }}
             >
               <span className="text-primary text-sm font-medium tracking-wide">
                 ✦ Celebrity Makeup Artist
@@ -153,7 +158,7 @@ export function CTAPrimary() {
                 className="inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base bg-primary text-primary-foreground transition-smooth group relative overflow-hidden hover:bg-primary/90"
                 style={{
                   boxShadow:
-                    "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.25)",
+                    "0 0 30px oklch(0.45 0.12 48 / 0.48), 0 4px 20px oklch(0.45 0.12 48 / 0.28)",
                 }}
               >
                 <Phone className="w-5 h-5" />
@@ -164,7 +169,11 @@ export function CTAPrimary() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="cta-primary-whatsapp"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth text-primary backdrop-blur-sm"
+                style={{
+                  border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                  background: "oklch(0.96 0.014 55 / 0.65)",
+                }}
               >
                 <SiWhatsapp className="w-5 h-5" />
                 WhatsApp Us
@@ -206,16 +215,16 @@ export function CTASecondary() {
       className="relative py-24 overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.022 335) 50%, oklch(0.97 0.015 318) 100%)",
+          "linear-gradient(135deg, oklch(0.95 0.020 50) 0%, oklch(0.94 0.024 46) 50%, oklch(0.95 0.018 55) 100%)",
       }}
     >
-      {/* Pink glow radial blobs */}
+      {/* Warm brown radial blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.75 0.18 330 / 0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.80 0.14 340 / 0.12) 0%, transparent 50%)",
+              "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.62 0.12 50 / 0.14) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.68 0.10 52 / 0.12) 0%, transparent 50%)",
           }}
         />
       </div>
@@ -233,7 +242,13 @@ export function CTASecondary() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium bg-primary/10 border border-primary/30">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium"
+              style={{
+                background: "oklch(0.55 0.12 48 / 0.10)",
+                border: "1px solid oklch(0.55 0.10 50 / 0.32)",
+              }}
+            >
               ✦ Limited Slots Available
             </div>
 
@@ -250,13 +265,17 @@ export function CTASecondary() {
 
             {/* Phone displayed prominently */}
             <div
-              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8 bg-white/80 backdrop-blur-sm"
+              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8 backdrop-blur-sm"
               style={{
-                border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.15)",
+                background: "oklch(0.96 0.014 55 / 0.82)",
+                border: "1px solid oklch(0.60 0.10 50 / 0.32)",
+                boxShadow: "0 0 22px oklch(0.52 0.12 48 / 0.16)",
               }}
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-primary/12">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ background: "oklch(0.55 0.12 48 / 0.12)" }}
+              >
                 <Phone className="w-5 h-5 text-primary" />
               </div>
               <div>
@@ -275,7 +294,7 @@ export function CTASecondary() {
                 data-ocid="cta-secondary-call"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth bg-primary text-primary-foreground hover:bg-primary/90"
                 style={{
-                  boxShadow: "0 0 24px oklch(0.52 0.24 335 / 0.4)",
+                  boxShadow: "0 0 26px oklch(0.45 0.12 48 / 0.42)",
                 }}
               >
                 <Phone className="w-4 h-4" />
@@ -286,7 +305,11 @@ export function CTASecondary() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="cta-secondary-whatsapp"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth text-primary backdrop-blur-sm"
+                style={{
+                  border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                  background: "oklch(0.96 0.014 55 / 0.65)",
+                }}
               >
                 <SiWhatsapp className="w-4 h-4" />
                 WhatsApp
@@ -320,9 +343,11 @@ export function CTASecondary() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                className="rounded-2xl p-6 text-center border border-primary/20 bg-white/80 backdrop-blur-sm"
+                className="rounded-2xl p-6 text-center backdrop-blur-sm"
                 style={{
-                  boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)",
+                  border: "1px solid oklch(0.68 0.08 52 / 0.24)",
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  boxShadow: "0 4px 20px oklch(0.52 0.12 48 / 0.10)",
                 }}
               >
                 <p

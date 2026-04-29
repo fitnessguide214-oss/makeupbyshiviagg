@@ -21,7 +21,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
-    glowColor: "oklch(0.52 0.24 335 / 0.32)",
+    glowColor: "oklch(0.52 0.12 48 / 0.32)",
     rating: 5,
   },
   {
@@ -35,7 +35,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
-    glowColor: "oklch(0.52 0.24 335 / 0.36)",
+    glowColor: "oklch(0.52 0.12 48 / 0.36)",
     rating: 5,
   },
   {
@@ -49,7 +49,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/8",
     borderColor: "border-primary/25",
-    glowColor: "oklch(0.60 0.20 335 / 0.32)",
+    glowColor: "oklch(0.60 0.10 52 / 0.32)",
     rating: 5,
   },
 ];
@@ -97,11 +97,21 @@ export function CelebritySection() {
       className="relative py-28 overflow-hidden"
       style={{
         background:
-          "linear-gradient(160deg, oklch(0.97 0.020 330) 0%, oklch(0.98 0.014 320) 50%, oklch(0.96 0.022 340) 100%)",
+          "linear-gradient(160deg, oklch(0.94 0.022 50) 0%, oklch(0.96 0.016 55) 50%, oklch(0.93 0.024 46) 100%)",
       }}
     >
       {/* Top divider line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+
+      {/* Large warm brown glow — center */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, oklch(0.60 0.12 50 / 0.14) 0%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
+      />
 
       {/* Animated background orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -132,7 +142,11 @@ export function CelebritySection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm"
+            style={{
+              background: "oklch(0.96 0.014 55 / 0.82)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+            }}
           >
             <Crown className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold tracking-wide">
@@ -179,10 +193,12 @@ export function CelebritySection() {
                 damping: 20,
               }}
               whileHover={{ scale: 1.07, y: -3 }}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/85 border border-primary/30 cursor-default backdrop-blur-sm"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full cursor-default backdrop-blur-sm"
               style={{
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.65 0.10 50 / 0.32)",
                 boxShadow:
-                  "0 2px 18px oklch(0.52 0.24 335 / 0.16), inset 0 0 12px oklch(0.52 0.24 335 / 0.04)",
+                  "0 2px 18px oklch(0.52 0.12 48 / 0.16), inset 0 0 12px oklch(0.55 0.10 50 / 0.05)",
               }}
             >
               <span className="text-base">{badge.icon}</span>
@@ -212,11 +228,15 @@ export function CelebritySection() {
                 type: "spring",
                 stiffness: 280,
               }}
-              className="relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl bg-white/85 border border-primary/20 text-center overflow-hidden backdrop-blur-sm"
-              style={{ boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.12)" }}
+              className="relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl text-center overflow-hidden backdrop-blur-sm"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.68 0.10 50 / 0.22)",
+                boxShadow: "0 4px 20px oklch(0.52 0.12 48 / 0.14)",
+              }}
             >
               <motion.div
-                className="absolute inset-0 bg-primary/5 rounded-2xl"
+                className="absolute inset-0 rounded-2xl bg-primary/5"
                 animate={{ opacity: [0.3, 0.7, 0.3] }}
                 transition={{
                   duration: 3 + i,
@@ -245,7 +265,10 @@ export function CelebritySection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.15 }}
                 whileHover={{ y: -6 }}
-                className={`relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`}
+                className={`relative backdrop-blur-sm rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`}
+                style={{
+                  background: "oklch(0.96 0.014 55 / 0.88)",
+                }}
               >
                 {/* Hover glow overlay */}
                 <motion.div
@@ -270,7 +293,7 @@ export function CelebritySection() {
                     </motion.div>
                   </div>
 
-                  {/* Pink stars */}
+                  {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {Array.from({ length: celeb.rating }, (_, idx) => (
                       <motion.div
@@ -336,7 +359,7 @@ export function CelebritySection() {
             <Crown
               className="w-8 h-8 text-primary"
               style={{
-                filter: "drop-shadow(0 0 10px oklch(0.52 0.24 335 / 0.65))",
+                filter: "drop-shadow(0 0 10px oklch(0.52 0.12 48 / 0.65))",
               }}
             />
           </motion.div>
@@ -362,18 +385,31 @@ export function CelebritySection() {
           </motion.div>
 
           <div
-            className="relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30"
-            style={{ boxShadow: "0 0 38px oklch(0.52 0.24 335 / 0.22)" }}
+            className="relative rounded-3xl overflow-hidden aspect-[4/5]"
+            style={{
+              border: "1px solid oklch(0.60 0.10 50 / 0.35)",
+              boxShadow: "0 0 40px oklch(0.52 0.12 48 / 0.22)",
+            }}
           >
             <img
               src="/assets/photos/beautygram-08.png"
               alt="Celebrity editorial makeup work by Unnati"
               className="w-full h-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" />
             <div
-              className="absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20"
-              style={{ boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" }}
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, oklch(0.88 0.06 50 / 0.60), transparent)",
+              }}
+            />
+            <div
+              className="absolute bottom-4 left-4 right-4 backdrop-blur-sm rounded-xl px-3 py-2"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.90)",
+                border: "1px solid oklch(0.65 0.10 50 / 0.22)",
+                boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.16)",
+              }}
             >
               <p className="text-foreground text-xs font-semibold flex items-center gap-1">
                 <Crown className="w-3 h-3 text-primary" />
@@ -383,18 +419,31 @@ export function CelebritySection() {
           </div>
 
           <div
-            className="relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30"
-            style={{ boxShadow: "0 0 38px oklch(0.60 0.20 335 / 0.2)" }}
+            className="relative rounded-3xl overflow-hidden aspect-[4/5]"
+            style={{
+              border: "1px solid oklch(0.60 0.10 50 / 0.35)",
+              boxShadow: "0 0 40px oklch(0.60 0.10 52 / 0.20)",
+            }}
           >
             <img
               src="/assets/photos/beautygram-09.png"
               alt="Luxury editorial makeup by Unnati"
               className="w-full h-full object-cover object-top"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" />
             <div
-              className="absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20"
-              style={{ boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" }}
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, oklch(0.88 0.06 50 / 0.60), transparent)",
+              }}
+            />
+            <div
+              className="absolute bottom-4 left-4 right-4 backdrop-blur-sm rounded-xl px-3 py-2"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.90)",
+                border: "1px solid oklch(0.65 0.10 50 / 0.22)",
+                boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.16)",
+              }}
             >
               <p className="text-foreground text-xs font-semibold flex items-center gap-1">
                 <Sparkles className="w-3 h-3 text-primary" />

@@ -147,15 +147,24 @@ function ServiceCard({
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="group relative bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden border border-primary/20 transition-colors duration-300 card-elevated cursor-pointer hover:border-primary/45"
+        className="group relative backdrop-blur-sm rounded-3xl overflow-hidden transition-colors duration-300 card-elevated cursor-pointer"
         data-ocid={`service-card-${service.id}`}
       >
-        {/* Pink glow border on hover */}
+        {/* Actual card background */}
+        <div
+          className="absolute inset-0 rounded-3xl"
+          style={{
+            background: "oklch(0.96 0.016 55 / 0.88)",
+            border: "1px solid oklch(0.75 0.08 52 / 0.25)",
+          }}
+        />
+
+        {/* Caramel glow border on hover */}
         <div
           className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"
           style={{
             background:
-              "linear-gradient(135deg, oklch(0.52 0.24 335 / 0.45), oklch(0.65 0.18 340 / 0.35), oklch(0.52 0.24 335 / 0.45))",
+              "linear-gradient(135deg, oklch(0.55 0.12 50 / 0.48), oklch(0.65 0.10 52 / 0.38), oklch(0.55 0.12 50 / 0.48))",
             padding: "1.5px",
             WebkitMask:
               "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -164,12 +173,12 @@ function ServiceCard({
           }}
         />
 
-        {/* Pink glow halo */}
+        {/* Warm brown glow halo */}
         <div
           className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10"
           style={{
             boxShadow:
-              "0 0 40px oklch(0.52 0.24 335 / 0.25), 0 0 70px oklch(0.60 0.20 335 / 0.12)",
+              "0 0 42px oklch(0.52 0.12 48 / 0.28), 0 0 75px oklch(0.62 0.10 52 / 0.14)",
           }}
         />
 
@@ -184,11 +193,21 @@ function ServiceCard({
             className="w-full h-full object-cover object-top group-hover:scale-105 transition-all duration-700"
             style={{ transition: "transform 0.7s cubic-bezier(0.4,0,0.2,1)" }}
           />
-          {/* Light pink gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-pink-50/70 via-pink-50/10 to-transparent" />
+          {/* Warm beige gradient overlay */}
           <div
-            className="absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1 border border-primary/40 bg-white/85"
-            style={{ boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.2)" }}
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, oklch(0.90 0.04 52 / 0.72), oklch(0.90 0.04 52 / 0.12), transparent)",
+            }}
+          />
+          <div
+            className="absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1"
+            style={{
+              border: "1px solid oklch(0.60 0.10 50 / 0.45)",
+              background: "oklch(0.96 0.014 55 / 0.88)",
+              boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.22)",
+            }}
           >
             <span className="text-primary text-xs font-semibold tracking-wide">
               {service.price}
@@ -197,7 +216,7 @@ function ServiceCard({
         </div>
 
         {/* content */}
-        <div className="p-6" style={{ transform: "translateZ(12px)" }}>
+        <div className="relative p-6" style={{ transform: "translateZ(12px)" }}>
           <h3 className="font-display text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-smooth">
             {service.title}
           </h3>
@@ -243,19 +262,19 @@ export function ServicesSection() {
       className="relative py-28 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.98 0.012 320) 100%)",
+          "linear-gradient(180deg, oklch(0.95 0.022 50) 0%, oklch(0.96 0.016 55) 100%)",
       }}
     >
       {/* top accent line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/45 to-transparent" />
 
-      {/* animated pink orbs */}
+      {/* animated warm brown orbs */}
       <motion.div
         className="absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.76 0.18 325 / 0.35) 0%, transparent 70%)",
-          filter: "blur(55px)",
+            "radial-gradient(circle, oklch(0.65 0.12 50 / 0.32) 0%, transparent 70%)",
+          filter: "blur(60px)",
         }}
         animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.85, 0.5] }}
         transition={{
@@ -268,8 +287,8 @@ export function ServicesSection() {
         className="absolute -bottom-32 -right-24 w-[28rem] h-[28rem] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.70 0.20 335 / 0.3) 0%, transparent 70%)",
-          filter: "blur(65px)",
+            "radial-gradient(circle, oklch(0.58 0.13 48 / 0.28) 0%, transparent 70%)",
+          filter: "blur(70px)",
         }}
         animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] }}
         transition={{
@@ -283,8 +302,8 @@ export function ServicesSection() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-64 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, oklch(0.82 0.12 325 / 0.2) 0%, transparent 70%)",
-          filter: "blur(70px)",
+            "radial-gradient(ellipse, oklch(0.74 0.09 52 / 0.18) 0%, transparent 70%)",
+          filter: "blur(75px)",
         }}
         animate={{ scaleX: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
         transition={{
@@ -302,7 +321,11 @@ export function ServicesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+            style={{
+              background: "oklch(0.55 0.12 48 / 0.10)",
+              border: "1px solid oklch(0.55 0.10 50 / 0.32)",
+            }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium tracking-wide uppercase">

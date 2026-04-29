@@ -9,9 +9,7 @@ const contactCards = [
     href: "tel:07041937373",
     icon: Phone,
     iconColor: "text-primary",
-    iconBg: "bg-primary/10 border-primary/30",
-    hoverBg: "group-hover:bg-primary/20",
-    hoverText: "group-hover:text-primary",
+    iconBg: "border-primary/30",
     label: "+91 70419 37373",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false,
@@ -21,9 +19,7 @@ const contactCards = [
     href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-600",
-    iconBg: "bg-green-100 border-green-300",
-    hoverBg: "group-hover:bg-green-100",
-    hoverText: "group-hover:text-green-600",
+    iconBg: "border-green-300",
     label: "WhatsApp Us",
     sublabel: "Quick reply, instant booking",
     external: true,
@@ -33,9 +29,7 @@ const contactCards = [
     href: "https://instagram.com/beautygrambyunnati",
     icon: Instagram,
     iconColor: "text-primary",
-    iconBg: "bg-primary/10 border-primary/30",
-    hoverBg: "group-hover:bg-primary/20",
-    hoverText: "group-hover:text-primary",
+    iconBg: "border-primary/30",
     label: "@beautygrambyunnati",
     sublabel: "DM for portfolio & bookings",
     external: true,
@@ -45,9 +39,7 @@ const contactCards = [
     href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
     iconColor: "text-accent-foreground",
-    iconBg: "bg-accent/30 border-accent/50",
-    hoverBg: "group-hover:bg-accent/40",
-    hoverText: "group-hover:text-accent-foreground",
+    iconBg: "border-accent/50",
     label: "Plot no. 634/1, Sector-4/C",
     sublabel: "Gandhinagar, Gujarat 382006",
     external: true,
@@ -63,36 +55,36 @@ export function ContactSection() {
       className="relative py-28 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.96 0.020 325) 0%, oklch(0.97 0.014 320) 100%)",
+          "linear-gradient(180deg, oklch(0.94 0.022 50) 0%, oklch(0.95 0.016 54) 100%)",
       }}
     >
       {/* Top rule */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
-      {/* Background pink glows */}
+      {/* Background warm glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.74 0.20 330 / 0.3) 0%, transparent 70%)",
-            filter: "blur(60px)",
+              "radial-gradient(circle, oklch(0.62 0.12 50 / 0.28) 0%, transparent 70%)",
+            filter: "blur(64px)",
           }}
         />
         <div
           className="absolute top-10 right-0 w-64 h-64 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.78 0.16 340 / 0.25) 0%, transparent 70%)",
-            filter: "blur(50px)",
+              "radial-gradient(circle, oklch(0.68 0.10 52 / 0.24) 0%, transparent 70%)",
+            filter: "blur(52px)",
           }}
         />
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full"
           style={{
             background:
-              "radial-gradient(ellipse, oklch(0.82 0.12 330 / 0.18) 0%, transparent 70%)",
-            filter: "blur(70px)",
+              "radial-gradient(ellipse, oklch(0.72 0.09 52 / 0.16) 0%, transparent 70%)",
+            filter: "blur(75px)",
           }}
         />
       </div>
@@ -104,7 +96,11 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm"
+            style={{
+              background: "oklch(0.96 0.014 55 / 0.82)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+            }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium tracking-wide">
@@ -149,17 +145,23 @@ export function ContactSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                 whileHover={{ y: -6, scale: 1.03 }}
-                className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40"
+                className="group flex flex-col items-center gap-3 p-6 rounded-2xl card-elevated text-center cursor-pointer transition-smooth backdrop-blur-sm"
+                style={{
+                  background: "oklch(0.96 0.014 55 / 0.85)",
+                  border: "1px solid oklch(0.72 0.08 52 / 0.30)",
+                }}
               >
                 <div
-                  className={`w-14 h-14 rounded-2xl border flex items-center justify-center transition-smooth ${card.iconBg} ${card.hoverBg}`}
+                  className="w-14 h-14 rounded-2xl border flex items-center justify-center transition-smooth group-hover:scale-110"
+                  style={{
+                    background: "oklch(0.55 0.12 48 / 0.10)",
+                    border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                  }}
                 >
                   <Icon className={`w-6 h-6 ${card.iconColor}`} />
                 </div>
                 <div>
-                  <p
-                    className={`text-foreground font-semibold text-sm transition-smooth ${card.hoverText}`}
-                  >
+                  <p className="text-foreground font-semibold text-sm transition-smooth group-hover:text-primary">
                     {card.label}
                   </p>
                   <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">
@@ -188,7 +190,13 @@ export function ContactSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-2 space-y-6"
           >
-            <div className="bg-white/85 backdrop-blur-sm rounded-3xl p-8 border border-primary/20 card-elevated">
+            <div
+              className="backdrop-blur-sm rounded-3xl p-8 card-elevated"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.70 0.08 52 / 0.25)",
+              }}
+            >
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">
                 Studio Details
               </h3>
@@ -242,7 +250,11 @@ export function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="contact-cta-whatsapp"
-                className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm bg-white/70"
+                className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl font-semibold hover:bg-primary/10 transition-smooth text-sm backdrop-blur-sm text-primary"
+                style={{
+                  border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                  background: "oklch(0.96 0.014 55 / 0.70)",
+                }}
               >
                 <SiWhatsapp className="w-4 h-4" />
                 WhatsApp
@@ -258,15 +270,28 @@ export function ContactSection() {
             className="lg:col-span-3"
           >
             <div
-              className="rounded-3xl overflow-hidden border-2 border-primary/30 relative"
+              className="rounded-3xl overflow-hidden relative"
               style={{
+                border: "2px solid oklch(0.65 0.10 50 / 0.32)",
                 boxShadow:
-                  "0 0 40px oklch(0.65 0.20 330 / 0.22), 0 0 80px oklch(0.70 0.16 330 / 0.10), 0 20px 60px oklch(0.52 0.24 335 / 0.1)",
+                  "0 0 44px oklch(0.58 0.12 50 / 0.22), 0 0 85px oklch(0.65 0.10 52 / 0.10), 0 20px 60px oklch(0.52 0.12 48 / 0.10)",
               }}
             >
               {/* Glow corner accents */}
-              <div className="absolute top-0 left-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" />
-              <div className="absolute bottom-0 right-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" />
+              <div
+                className="absolute top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-10"
+                style={{
+                  background: "oklch(0.60 0.12 50 / 0.22)",
+                  filter: "blur(20px)",
+                }}
+              />
+              <div
+                className="absolute bottom-0 right-0 w-16 h-16 rounded-full pointer-events-none z-10"
+                style={{
+                  background: "oklch(0.60 0.12 50 / 0.22)",
+                  filter: "blur(20px)",
+                }}
+              />
 
               <iframe
                 title="BEAUTYGRAM BY UNNATI GANDHINAGAR Studio — Plot no. 634/1, Sector-4/C, Gandhinagar"

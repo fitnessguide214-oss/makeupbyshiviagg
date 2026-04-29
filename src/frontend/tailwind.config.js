@@ -79,11 +79,12 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.04)",
-        /* Light-theme pink glow shadows */
-        "glow-sm": "0 0 14px 3px oklch(0.52 0.24 335 / 0.28), 0 2px 8px oklch(0.52 0.24 335 / 0.12)",
-        "glow-md": "0 0 28px 7px oklch(0.52 0.24 335 / 0.32), inset 0 0 18px oklch(0.52 0.24 335 / 0.06)",
-        "glow-lg": "0 0 55px 18px oklch(0.52 0.24 335 / 0.36), 0 0 90px oklch(0.60 0.20 335 / 0.16)",
-        "card-elevated": "0 4px 24px oklch(0.52 0.24 335 / 0.1), 0 1px 8px oklch(0.52 0.24 335 / 0.06)",
+        /* Warm brown/caramel glow shadows */
+        "glow-sm": "0 0 14px 3px oklch(0.52 0.12 50 / 0.30), 0 2px 8px oklch(0.45 0.12 48 / 0.14)",
+        "glow-md": "0 0 28px 7px oklch(0.52 0.12 50 / 0.34), inset 0 0 18px oklch(0.55 0.10 52 / 0.07)",
+        "glow-lg": "0 0 55px 18px oklch(0.52 0.12 50 / 0.38), 0 0 90px oklch(0.62 0.10 54 / 0.18)",
+        "card-elevated": "0 4px 24px oklch(0.45 0.12 48 / 0.12), 0 1px 8px oklch(0.45 0.12 48 / 0.07)",
+        "subtle": "0 2px 12px oklch(0.45 0.10 48 / 0.08)",
       },
       keyframes: {
         "accordion-down": {
@@ -110,6 +111,10 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -118,6 +123,7 @@ export default {
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
         "fade-in": "fade-in 0.8s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
+        "shimmer": "shimmer 3s ease-in-out infinite",
       },
     },
   },

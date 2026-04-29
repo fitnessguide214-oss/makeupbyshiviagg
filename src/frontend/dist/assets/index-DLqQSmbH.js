@@ -1862,7 +1862,7 @@ const FIELD_FIELDS = [
   "mulN",
   "sqrN"
 ];
-function validateField(field) {
+function validateField$1(field) {
   const initial = {
     ORDER: "bigint",
     MASK: "bigint",
@@ -1996,7 +1996,7 @@ function Field(ORDER, bitLenOrOpts, isLE = false, opts = {}) {
       return sqrtP(f, n);
     }),
     toBytes: (num) => isLE ? numberToBytesLE(num, BYTES) : numberToBytesBE(num, BYTES),
-    fromBytes: (bytes, skipValidation = true) => {
+    fromBytes: (bytes, skipValidation2 = true) => {
       if (allowedLengths) {
         if (!allowedLengths.includes(bytes.length) || bytes.length > BYTES) {
           throw new Error("Field.fromBytes: expected " + allowedLengths + " bytes, got " + bytes.length);
@@ -2010,7 +2010,7 @@ function Field(ORDER, bitLenOrOpts, isLE = false, opts = {}) {
       let scalar = isLE ? bytesToNumberLE(bytes) : bytesToNumberBE(bytes);
       if (modFromBytes)
         scalar = mod(scalar, ORDER);
-      if (!skipValidation) {
+      if (!skipValidation2) {
         if (!f.isValid(scalar))
           throw new Error("invalid field element: outside of range 0..ORDER");
       }
@@ -2259,7 +2259,7 @@ function createField(order, field, isLE) {
   if (field) {
     if (field.ORDER !== order)
       throw new Error("Field.ORDER must match order: Fp == p, Fn == n");
-    validateField(field);
+    validateField$1(field);
     return field;
   } else {
     return Field(order, { isLE });
@@ -3239,7 +3239,7 @@ function hashQueryKeyByOptions(queryKey, options) {
 function hashKey(queryKey) {
   return JSON.stringify(
     queryKey,
-    (_, val) => isPlainObject(val) ? Object.keys(val).sort().reduce((result, key) => {
+    (_, val) => isPlainObject$1(val) ? Object.keys(val).sort().reduce((result, key) => {
       result[key] = val[key];
       return result;
     }, {}) : val
@@ -3264,7 +3264,7 @@ function replaceEqualDeep(a2, b2, depth = 0) {
   }
   if (depth > 500) return b2;
   const array = isPlainArray(a2) && isPlainArray(b2);
-  if (!array && !(isPlainObject(a2) && isPlainObject(b2))) return b2;
+  if (!array && !(isPlainObject$1(a2) && isPlainObject$1(b2))) return b2;
   const aItems = array ? a2 : Object.keys(a2);
   const aSize = aItems.length;
   const bItems = array ? b2 : Object.keys(b2);
@@ -3293,7 +3293,7 @@ function replaceEqualDeep(a2, b2, depth = 0) {
 function isPlainArray(value) {
   return Array.isArray(value) && value.length === Object.keys(value).length;
 }
-function isPlainObject(o) {
+function isPlainObject$1(o) {
   if (!hasObjectPrototype(o)) {
     return false;
   }
@@ -5451,7 +5451,7 @@ var QueryClientProvider = ({
   }, [client2]);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientContext.Provider, { value: client2, children });
 };
-function isObject$1(value) {
+function isObject$2(value) {
   return value !== null && typeof value === "object";
 }
 const _Ed25519PublicKey = class _Ed25519PublicKey {
@@ -5474,9 +5474,9 @@ const _Ed25519PublicKey = class _Ed25519PublicKey {
     if (typeof maybeKey === "string") {
       const key = hexToBytes(maybeKey);
       return this.fromRaw(key);
-    } else if (isObject$1(maybeKey)) {
+    } else if (isObject$2(maybeKey)) {
       const key = maybeKey;
-      if (isObject$1(key) && Object.hasOwnProperty.call(key, "__derEncodedPublicKey__")) {
+      if (isObject$2(key) && Object.hasOwnProperty.call(key, "__derEncodedPublicKey__")) {
         return this.fromDer(key);
       } else if (ArrayBuffer.isView(key)) {
         const view = key;
@@ -8078,15 +8078,15 @@ function trackValueOnNode(node) {
     valueField
   ), currentValue = "" + node[valueField];
   if (!node.hasOwnProperty(valueField) && "undefined" !== typeof descriptor && "function" === typeof descriptor.get && "function" === typeof descriptor.set) {
-    var get = descriptor.get, set = descriptor.set;
+    var get2 = descriptor.get, set2 = descriptor.set;
     Object.defineProperty(node, valueField, {
       configurable: true,
       get: function() {
-        return get.call(this);
+        return get2.call(this);
       },
       set: function(value) {
         currentValue = "" + value;
-        set.call(this, value);
+        set2.call(this, value);
       }
     });
     Object.defineProperty(node, valueField, {
@@ -18500,7 +18500,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$j = [
+const __iconNode$k = [
   [
     "path",
     {
@@ -18510,31 +18510,42 @@ const __iconNode$j = [
   ],
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }]
 ];
-const Award = createLucideIcon("award", __iconNode$j);
+const Award = createLucideIcon("award", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$i);
+const __iconNode$j = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$j);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$h);
+const __iconNode$i = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$g = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$g);
+const __iconNode$h = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$h);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$g = [
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+];
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18786,7 +18797,7 @@ function useConstant(init) {
   return ref.current;
 }
 const isBrowser$1 = typeof window !== "undefined";
-const useIsomorphicLayoutEffect$1 = isBrowser$1 ? reactExports.useLayoutEffect : reactExports.useEffect;
+const useIsomorphicLayoutEffect$2 = isBrowser$1 ? reactExports.useLayoutEffect : reactExports.useEffect;
 const PresenceContext = /* @__PURE__ */ reactExports.createContext(null);
 function addUniqueItem(arr, item) {
   if (arr.indexOf(item) === -1)
@@ -18808,7 +18819,7 @@ let invariant = () => {
 };
 const MotionGlobalConfig = {};
 const isNumericalString = (v) => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
-function isObject(value) {
+function isObject$1(value) {
   return typeof value === "object" && value !== null;
 }
 const isZeroValueString = (v) => /^0[^.\s]+$/u.test(v);
@@ -21899,8 +21910,8 @@ function resolveElements(elementOrSelector, scope, selectorCache) {
 const getValueAsType = (value, type) => {
   return type && typeof value === "number" ? type.transform(value) : value;
 };
-function isHTMLElement(element) {
-  return isObject(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
+function isHTMLElement$1(element) {
+  return isObject$1(element) && "offsetHeight" in element && !("ownerSVGElement" in element);
 }
 const { schedule: microtask } = /* @__PURE__ */ createRenderBatcher(queueMicrotask, false);
 const isDragging = {
@@ -22100,7 +22111,7 @@ function press(targetOrSelector, onPressStart, options = {}) {
   targets.forEach((target) => {
     const pointerDownTarget = options.useGlobalTarget ? window : target;
     pointerDownTarget.addEventListener("pointerdown", startPress, eventOptions);
-    if (isHTMLElement(target)) {
+    if (isHTMLElement$1(target)) {
       target.addEventListener("focus", (event) => enableKeyboardPress(event, eventOptions));
       if (!isElementKeyboardAccessible(target) && !target.hasAttribute("tabindex")) {
         target.tabIndex = 0;
@@ -22110,7 +22121,7 @@ function press(targetOrSelector, onPressStart, options = {}) {
   return cancelEvents;
 }
 function isSVGElement(element) {
-  return isObject(element) && "ownerSVGElement" in element;
+  return isObject$1(element) && "ownerSVGElement" in element;
 }
 const resizeHandlers = /* @__PURE__ */ new WeakMap();
 let observer;
@@ -22257,9 +22268,9 @@ function attachFollow(value, source, options = {}) {
       (_a3 = value["events"].animationComplete) == null ? void 0 : _a3.notify();
     });
   };
-  value.attach((v, set) => {
+  value.attach((v, set2) => {
     latestValue = v;
-    latestSetter = (latest) => set(parseValue(latest, unit));
+    latestSetter = (latest) => set2(parseValue(latest, unit));
     frame$1.postRender(scheduleAnimation);
   }, stopAnimation);
   if (isMotionValue(source)) {
@@ -25013,10 +25024,10 @@ function useComposedRefs(...refs) {
 class PopChildMeasure extends reactExports.Component {
   getSnapshotBeforeUpdate(prevProps) {
     const element = this.props.childRef.current;
-    if (isHTMLElement(element) && prevProps.isPresent && !this.props.isPresent && this.props.pop !== false) {
+    if (isHTMLElement$1(element) && prevProps.isPresent && !this.props.isPresent && this.props.pop !== false) {
       const parent = element.offsetParent;
-      const parentWidth = isHTMLElement(parent) ? parent.offsetWidth || 0 : 0;
-      const parentHeight = isHTMLElement(parent) ? parent.offsetHeight || 0 : 0;
+      const parentWidth = isHTMLElement$1(parent) ? parent.offsetWidth || 0 : 0;
+      const parentHeight = isHTMLElement$1(parent) ? parent.offsetHeight || 0 : 0;
       const computedStyle = getComputedStyle(element);
       const size = this.props.sizeRef.current;
       size.height = parseFloat(computedStyle.height);
@@ -25158,7 +25169,7 @@ const AnimatePresence = ({ children, custom, initial = true, onExitComplete, pre
   const exitingComponents = reactExports.useRef(/* @__PURE__ */ new Set());
   const [diffedChildren, setDiffedChildren] = reactExports.useState(presentChildren);
   const [renderedChildren, setRenderedChildren] = reactExports.useState(presentChildren);
-  useIsomorphicLayoutEffect$1(() => {
+  useIsomorphicLayoutEffect$2(() => {
     isInitialRender.current = false;
     pendingPresentChildren.current = presentChildren;
     for (let i2 = 0; i2 < renderedChildren.length; i2++) {
@@ -25611,7 +25622,7 @@ function useVisualElement(Component2, visualState, props, createVisualElement, P
   });
   const optimisedAppearId = props[optimizedAppearDataAttribute];
   const wantsHandoff = reactExports.useRef(Boolean(optimisedAppearId) && typeof window !== "undefined" && !((_a2 = window.MotionHandoffIsComplete) == null ? void 0 : _a2.call(window, optimisedAppearId)) && ((_b2 = window.MotionHasOptimisedAnimation) == null ? void 0 : _b2.call(window, optimisedAppearId)));
-  useIsomorphicLayoutEffect$1(() => {
+  useIsomorphicLayoutEffect$2(() => {
     hasMountedOnce.current = true;
     if (!visualElement)
       return;
@@ -26948,7 +26959,7 @@ function useCombineMotionValues(values, combineValues) {
   const value = useMotionValue(combineValues());
   const updateValue = () => value.set(combineValues());
   updateValue();
-  useIsomorphicLayoutEffect$1(() => {
+  useIsomorphicLayoutEffect$2(() => {
     const scheduleUpdate = () => frame$1.preRender(updateValue, false, true);
     const subscriptions = values.map((v) => v.on("change", scheduleUpdate));
     return () => {
@@ -27255,32 +27266,72 @@ function Footer() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "footer",
     {
-      className: "relative overflow-hidden border-t border-primary/15",
+      className: "relative overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.024 330) 100%)"
+        background: "linear-gradient(180deg, oklch(0.28 0.08 42) 0%, oklch(0.22 0.06 40) 100%)",
+        borderTop: "1px solid oklch(0.45 0.10 48 / 0.35)"
       },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 overflow-hidden pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-36 rounded-full",
-            style: {
-              background: "radial-gradient(ellipse, oklch(0.72 0.20 330 / 0.22) 0%, transparent 70%)",
-              filter: "blur(40px)"
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 overflow-hidden pointer-events-none", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-40 rounded-full",
+              style: {
+                background: "radial-gradient(ellipse, oklch(0.52 0.12 48 / 0.22) 0%, transparent 70%)",
+                filter: "blur(45px)"
+              }
             }
-          }
-        ) }),
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-10 right-10 w-48 h-48 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.58 0.12 52 / 0.14) 0%, transparent 70%)",
+                filter: "blur(50px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-10 left-10 w-48 h-48 rounded-full",
+              style: {
+                background: "radial-gradient(circle, oklch(0.55 0.10 50 / 0.12) 0%, transparent 70%)",
+                filter: "blur(50px)"
+              }
+            }
+          )
+        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-12", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "w-8 h-8 rounded-full flex items-center justify-center",
+                    style: {
+                      background: "oklch(0.55 0.12 48 / 0.22)",
+                      border: "1px solid oklch(0.65 0.10 50 / 0.45)"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" })
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xl font-bold", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.90 0.04 55)" }, children: "BEAUTYGRAM" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
                 ] })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-6", children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-sm leading-relaxed mb-6",
+                  style: { color: "oklch(0.68 0.04 52)" },
+                  children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio."
+                }
+              ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "a",
@@ -27289,7 +27340,12 @@ function Footer() {
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "aria-label": "Instagram",
-                    className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
+                    className: "w-10 h-10 rounded-full flex items-center justify-center transition-smooth hover:scale-110",
+                    style: {
+                      background: "oklch(0.55 0.12 48 / 0.18)",
+                      border: "1px solid oklch(0.60 0.10 50 / 0.38)",
+                      color: "oklch(0.72 0.10 52)"
+                    },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(Instagram, { className: "w-5 h-5" })
                   }
                 ),
@@ -27300,40 +27356,68 @@ function Footer() {
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "aria-label": "WhatsApp",
-                    className: "w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth",
+                    className: "w-10 h-10 rounded-full flex items-center justify-center transition-smooth hover:scale-110",
+                    style: {
+                      background: "oklch(0.55 0.12 48 / 0.18)",
+                      border: "1px solid oklch(0.60 0.10 50 / 0.38)",
+                      color: "oklch(0.72 0.10 52)"
+                    },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5" })
                   }
                 )
               ] })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Quick Links" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "h3",
+                {
+                  className: "font-display font-semibold mb-5 text-lg",
+                  style: { color: "oklch(0.90 0.04 55)" },
+                  children: "Quick Links"
+                }
+              ),
               /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-3", children: footerLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
                   type: "button",
                   onClick: () => handleNavClick(link.href),
-                  className: "text-muted-foreground hover:text-primary transition-smooth text-sm",
+                  className: "transition-smooth text-sm",
+                  style: { color: "oklch(0.65 0.05 52)" },
                   children: link.label
                 }
               ) }, link.href)) })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-foreground font-semibold mb-5 text-lg", children: "Studio Address" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "h3",
+                {
+                  className: "font-display font-semibold mb-5 text-lg",
+                  style: { color: "oklch(0.90 0.04 55)" },
+                  children: "Studio Address"
+                }
+              ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 text-muted-foreground text-sm", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 text-primary mt-0.5 flex-shrink-0" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                    "Plot no. 634/1, Sector-4/C, Sector 4,",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                    "Gandhinagar, Gujarat 382006"
-                  ] })
-                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "flex gap-3 text-sm",
+                    style: { color: "oklch(0.65 0.05 52)" },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 mt-0.5 flex-shrink-0 text-primary" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+                        "Plot no. 634/1, Sector-4/C, Sector 4,",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                        "Gandhinagar, Gujarat 382006"
+                      ] })
+                    ]
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "a",
                   {
                     href: "tel:07041937373",
-                    className: "flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center",
+                    className: "flex gap-3 transition-smooth text-sm items-center hover:text-primary",
+                    style: { color: "oklch(0.65 0.05 52)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4 text-primary flex-shrink-0" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 70419 37373" })
@@ -27343,27 +27427,58 @@ function Footer() {
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-12 pt-8 border-t border-primary/12 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
-              "© ",
-              year,
-              " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
-              " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-3 h-3 text-primary fill-primary" }),
-              " in Gandhinagar."
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "a",
-              {
-                href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "hover:text-primary transition-smooth",
-                children: "Built with caffeine.ai"
-              }
-            )
-          ] })
-        ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs",
+              style: {
+                borderTop: "1px solid oklch(0.45 0.08 48 / 0.25)",
+                color: "oklch(0.58 0.04 50)"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
+                  "© ",
+                  year,
+                  " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
+                  " ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Heart,
+                    {
+                      className: "w-3 h-3 flex-shrink-0",
+                      style: {
+                        color: "oklch(0.65 0.12 50)",
+                        fill: "oklch(0.65 0.12 50)"
+                      }
+                    }
+                  ),
+                  " ",
+                  "in Gandhinagar."
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "a",
+                  {
+                    href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    className: "hover:text-primary transition-smooth",
+                    children: "Built with caffeine.ai"
+                  }
+                )
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            className: "absolute bottom-0 left-0 right-0 h-px",
+            style: {
+              background: "linear-gradient(90deg, transparent, oklch(0.62 0.12 50 / 0.55), transparent)"
+            },
+            animate: { opacity: [0.4, 0.9, 0.4] },
+            transition: { duration: 3, repeat: Number.POSITIVE_INFINITY }
+          }
+        )
       ]
     }
   );
@@ -27375,6 +27490,7 @@ const navLinks = [
   { label: "Celebrity", href: "#celebrity" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
+  { label: "Appointment", href: "#appointment" },
   { label: "Contact", href: "#contact" }
 ];
 function Navigation() {
@@ -27398,7 +27514,14 @@ function Navigation() {
         initial: { y: -80, opacity: 0 },
         animate: { y: 0, opacity: 1 },
         transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
-        className: `fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-white/88 backdrop-blur-2xl border-b border-primary/20 shadow-glow-sm" : "bg-transparent"}`,
+        className: "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        style: isScrolled ? {
+          background: "oklch(0.96 0.014 55 / 0.90)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          borderBottom: "1px solid oklch(0.72 0.08 52 / 0.28)",
+          boxShadow: "0 0 14px oklch(0.52 0.12 48 / 0.12)"
+        } : {},
         children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between h-16 sm:h-20", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "button",
@@ -27408,10 +27531,26 @@ function Navigation() {
               className: "flex items-center gap-2 group",
               "aria-label": "Go to home",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center group-hover:bg-primary/25 transition-smooth", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-full bg-primary/10 blur-sm pulse-glow" })
-                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "relative w-8 h-8 rounded-full flex items-center justify-center group-hover:scale-110 transition-smooth",
+                    style: {
+                      background: "oklch(0.55 0.12 48 / 0.16)",
+                      border: "1px solid oklch(0.60 0.10 50 / 0.52)"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute inset-0 rounded-full pulse-glow",
+                          style: { background: "oklch(0.55 0.12 48 / 0.10)" }
+                        }
+                      )
+                    ]
+                  }
+                ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-lg sm:text-xl font-bold tracking-wide", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
@@ -27438,7 +27577,11 @@ function Navigation() {
               {
                 href: "tel:07041937373",
                 "data-ocid": "nav-cta",
-                className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full bg-primary/15 border border-primary/40 text-primary text-sm font-semibold hover:bg-primary/25 transition-smooth shadow-glow-sm",
+                className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full text-primary text-sm font-semibold hover:bg-primary/20 transition-smooth shadow-glow-sm",
+                style: {
+                  background: "oklch(0.55 0.12 48 / 0.14)",
+                  border: "1px solid oklch(0.60 0.10 50 / 0.40)"
+                },
                 children: "Book Now"
               }
             ),
@@ -27447,8 +27590,12 @@ function Navigation() {
               {
                 type: "button",
                 onClick: () => setIsMenuOpen(!isMenuOpen),
-                className: "lg:hidden p-2 rounded-full bg-primary/10 border border-primary/30 text-primary",
+                className: "lg:hidden p-2 rounded-full text-primary",
                 "aria-label": "Toggle menu",
+                style: {
+                  background: "oklch(0.55 0.12 48 / 0.12)",
+                  border: "1px solid oklch(0.60 0.10 50 / 0.32)"
+                },
                 children: isMenuOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "w-5 h-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "w-5 h-5" })
               }
             )
@@ -27463,7 +27610,14 @@ function Navigation() {
         animate: { opacity: 1, y: 0 },
         exit: { opacity: 0, y: -20 },
         transition: { duration: 0.3 },
-        className: "fixed top-16 sm:top-20 left-0 right-0 z-40 bg-white/95 backdrop-blur-2xl border-b border-primary/20 shadow-glow-md lg:hidden",
+        className: "fixed top-16 sm:top-20 left-0 right-0 z-40 lg:hidden",
+        style: {
+          background: "oklch(0.96 0.014 55 / 0.97)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          borderBottom: "1px solid oklch(0.72 0.08 52 / 0.28)",
+          boxShadow: "0 0 28px oklch(0.52 0.12 48 / 0.14)"
+        },
         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "max-w-7xl mx-auto px-4 py-6 flex flex-col gap-2", children: [
           navLinks.map((link, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.button,
@@ -27482,7 +27636,11 @@ function Navigation() {
             "a",
             {
               href: "tel:07041937373",
-              className: "mt-2 px-4 py-3 rounded-xl bg-primary/15 border border-primary/40 text-primary text-center font-semibold",
+              className: "mt-2 px-4 py-3 rounded-xl text-primary text-center font-semibold",
+              style: {
+                background: "oklch(0.55 0.12 48 / 0.14)",
+                border: "1px solid oklch(0.60 0.10 50 / 0.40)"
+              },
               children: "Book Your Transformation"
             }
           )
@@ -27499,10 +27657,2406 @@ function Layout({ children }) {
     /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingButtons, {})
   ] });
 }
+var isCheckBoxInput = (element) => element.type === "checkbox";
+var isDateObject = (value) => value instanceof Date;
+var isNullOrUndefined = (value) => value == null;
+const isObjectType = (value) => typeof value === "object";
+var isObject = (value) => !isNullOrUndefined(value) && !Array.isArray(value) && isObjectType(value) && !isDateObject(value);
+var getEventValue = (event) => isObject(event) && event.target ? isCheckBoxInput(event.target) ? event.target.checked : event.target.value : event;
+var getNodeParentName = (name) => name.substring(0, name.search(/\.\d+(\.|$)/)) || name;
+var isNameInFieldArray = (names, name) => names.has(getNodeParentName(name));
+var isPlainObject = (tempObject) => {
+  const prototypeCopy = tempObject.constructor && tempObject.constructor.prototype;
+  return isObject(prototypeCopy) && prototypeCopy.hasOwnProperty("isPrototypeOf");
+};
+var isWeb = typeof window !== "undefined" && typeof window.HTMLElement !== "undefined" && typeof document !== "undefined";
+function cloneObject(data) {
+  if (data instanceof Date) {
+    return new Date(data);
+  }
+  const isFileListInstance = typeof FileList !== "undefined" && data instanceof FileList;
+  if (isWeb && (data instanceof Blob || isFileListInstance)) {
+    return data;
+  }
+  const isArray = Array.isArray(data);
+  if (!isArray && !(isObject(data) && isPlainObject(data))) {
+    return data;
+  }
+  const copy = isArray ? [] : Object.create(Object.getPrototypeOf(data));
+  for (const key in data) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      copy[key] = cloneObject(data[key]);
+    }
+  }
+  return copy;
+}
+var isKey = (value) => /^\w*$/.test(value);
+var isUndefined = (val) => val === void 0;
+var compact = (value) => Array.isArray(value) ? value.filter(Boolean) : [];
+var stringToPath = (input) => compact(input.replace(/["|']|\]/g, "").split(/\.|\[/));
+var get = (object, path, defaultValue) => {
+  if (!path || !isObject(object)) {
+    return defaultValue;
+  }
+  const result = (isKey(path) ? [path] : stringToPath(path)).reduce((result2, key) => isNullOrUndefined(result2) ? result2 : result2[key], object);
+  return isUndefined(result) || result === object ? isUndefined(object[path]) ? defaultValue : object[path] : result;
+};
+var isBoolean = (value) => typeof value === "boolean";
+var isFunction = (value) => typeof value === "function";
+var set = (object, path, value) => {
+  let index2 = -1;
+  const tempPath = isKey(path) ? [path] : stringToPath(path);
+  const length = tempPath.length;
+  const lastIndex = length - 1;
+  while (++index2 < length) {
+    const key = tempPath[index2];
+    let newValue = value;
+    if (index2 !== lastIndex) {
+      const objValue = object[key];
+      newValue = isObject(objValue) || Array.isArray(objValue) ? objValue : !isNaN(+tempPath[index2 + 1]) ? [] : {};
+    }
+    if (key === "__proto__" || key === "constructor" || key === "prototype") {
+      return;
+    }
+    object[key] = newValue;
+    object = object[key];
+  }
+};
+const EVENTS = {
+  BLUR: "blur",
+  FOCUS_OUT: "focusout",
+  SUBMIT: "submit",
+  TRIGGER: "trigger",
+  VALID: "valid"
+};
+const VALIDATION_MODE = {
+  onBlur: "onBlur",
+  onChange: "onChange",
+  onSubmit: "onSubmit",
+  onTouched: "onTouched",
+  all: "all"
+};
+const INPUT_VALIDATION_RULES = {
+  max: "max",
+  min: "min",
+  maxLength: "maxLength",
+  minLength: "minLength",
+  pattern: "pattern",
+  required: "required",
+  validate: "validate"
+};
+const FORM_ERROR_TYPE = "form";
+const ROOT_ERROR_TYPE = "root";
+const HookFormControlContext = React$4.createContext(null);
+HookFormControlContext.displayName = "HookFormControlContext";
+var getProxyFormState = (formState, control, localProxyFormState, isRoot = true) => {
+  const result = {
+    defaultValues: control._defaultValues
+  };
+  for (const key in formState) {
+    Object.defineProperty(result, key, {
+      get: () => {
+        const _key = key;
+        if (control._proxyFormState[_key] !== VALIDATION_MODE.all) {
+          control._proxyFormState[_key] = !isRoot || VALIDATION_MODE.all;
+        }
+        return formState[_key];
+      }
+    });
+  }
+  return result;
+};
+const useIsomorphicLayoutEffect$1 = typeof window !== "undefined" ? React$4.useLayoutEffect : React$4.useEffect;
+var isString = (value) => typeof value === "string";
+var generateWatchOutput = (names, _names, formValues, isGlobal, defaultValue) => {
+  if (isString(names)) {
+    isGlobal && _names.watch.add(names);
+    return get(formValues, names, defaultValue);
+  }
+  if (Array.isArray(names)) {
+    return names.map((fieldName) => (isGlobal && _names.watch.add(fieldName), get(formValues, fieldName)));
+  }
+  isGlobal && (_names.watchAll = true);
+  return formValues;
+};
+var isPrimitive = (value) => isNullOrUndefined(value) || !isObjectType(value);
+function deepEqual(object1, object2, _internal_visited = /* @__PURE__ */ new WeakSet()) {
+  if (isPrimitive(object1) || isPrimitive(object2)) {
+    return Object.is(object1, object2);
+  }
+  if (isDateObject(object1) && isDateObject(object2)) {
+    return Object.is(object1.getTime(), object2.getTime());
+  }
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+  if (_internal_visited.has(object1) || _internal_visited.has(object2)) {
+    return true;
+  }
+  _internal_visited.add(object1);
+  _internal_visited.add(object2);
+  for (const key of keys1) {
+    const val1 = object1[key];
+    if (!keys2.includes(key)) {
+      return false;
+    }
+    if (key !== "ref") {
+      const val2 = object2[key];
+      if (isDateObject(val1) && isDateObject(val2) || isObject(val1) && isObject(val2) || Array.isArray(val1) && Array.isArray(val2) ? !deepEqual(val1, val2, _internal_visited) : !Object.is(val1, val2)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+const HookFormContext = React$4.createContext(null);
+HookFormContext.displayName = "HookFormContext";
+var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => validateAllFieldCriteria ? {
+  ...errors[name],
+  types: {
+    ...errors[name] && errors[name].types ? errors[name].types : {},
+    [type]: message || true
+  }
+} : {};
+var convertToArrayPayload = (value) => Array.isArray(value) ? value : [value];
+var createSubject = () => {
+  let _observers2 = [];
+  const next = (value) => {
+    for (const observer2 of _observers2) {
+      observer2.next && observer2.next(value);
+    }
+  };
+  const subscribe = (observer2) => {
+    _observers2.push(observer2);
+    return {
+      unsubscribe: () => {
+        _observers2 = _observers2.filter((o) => o !== observer2);
+      }
+    };
+  };
+  const unsubscribe = () => {
+    _observers2 = [];
+  };
+  return {
+    get observers() {
+      return _observers2;
+    },
+    next,
+    subscribe,
+    unsubscribe
+  };
+};
+function extractFormValues(fieldsState, formValues) {
+  const values = {};
+  for (const key in fieldsState) {
+    if (fieldsState.hasOwnProperty(key)) {
+      const fieldState = fieldsState[key];
+      const fieldValue = formValues[key];
+      if (fieldState && isObject(fieldState) && fieldValue) {
+        const nestedFieldsState = extractFormValues(fieldState, fieldValue);
+        if (isObject(nestedFieldsState)) {
+          values[key] = nestedFieldsState;
+        }
+      } else if (fieldsState[key]) {
+        values[key] = fieldValue;
+      }
+    }
+  }
+  return values;
+}
+var isEmptyObject = (value) => isObject(value) && !Object.keys(value).length;
+var isFileInput = (element) => element.type === "file";
+var isHTMLElement = (value) => {
+  if (!isWeb) {
+    return false;
+  }
+  const owner = value ? value.ownerDocument : 0;
+  return value instanceof (owner && owner.defaultView ? owner.defaultView.HTMLElement : HTMLElement);
+};
+var isMultipleSelect = (element) => element.type === `select-multiple`;
+var isRadioInput = (element) => element.type === "radio";
+var isRadioOrCheckbox = (ref) => isRadioInput(ref) || isCheckBoxInput(ref);
+var live = (ref) => isHTMLElement(ref) && ref.isConnected;
+function baseGet(object, updatePath) {
+  const length = updatePath.slice(0, -1).length;
+  let index2 = 0;
+  while (index2 < length) {
+    object = isUndefined(object) ? index2++ : object[updatePath[index2++]];
+  }
+  return object;
+}
+function isEmptyArray(obj) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && !isUndefined(obj[key])) {
+      return false;
+    }
+  }
+  return true;
+}
+function unset(object, path) {
+  const paths = Array.isArray(path) ? path : isKey(path) ? [path] : stringToPath(path);
+  const childObject = paths.length === 1 ? object : baseGet(object, paths);
+  const index2 = paths.length - 1;
+  const key = paths[index2];
+  if (childObject) {
+    delete childObject[key];
+  }
+  if (index2 !== 0 && (isObject(childObject) && isEmptyObject(childObject) || Array.isArray(childObject) && isEmptyArray(childObject))) {
+    unset(object, paths.slice(0, -1));
+  }
+  return object;
+}
+var objectHasFunction = (data) => {
+  for (const key in data) {
+    if (isFunction(data[key])) {
+      return true;
+    }
+  }
+  return false;
+};
+function isTraversable(value) {
+  return Array.isArray(value) || isObject(value) && !objectHasFunction(value);
+}
+function markFieldsDirty(data, fields = {}) {
+  for (const key in data) {
+    const value = data[key];
+    if (isTraversable(value)) {
+      fields[key] = Array.isArray(value) ? [] : {};
+      markFieldsDirty(value, fields[key]);
+    } else if (!isUndefined(value)) {
+      fields[key] = true;
+    }
+  }
+  return fields;
+}
+function getDirtyFields(data, formValues, dirtyFieldsFromValues) {
+  if (!dirtyFieldsFromValues) {
+    dirtyFieldsFromValues = markFieldsDirty(formValues);
+  }
+  for (const key in data) {
+    const value = data[key];
+    if (isTraversable(value)) {
+      if (isUndefined(formValues) || isPrimitive(dirtyFieldsFromValues[key])) {
+        dirtyFieldsFromValues[key] = markFieldsDirty(value, Array.isArray(value) ? [] : {});
+      } else {
+        getDirtyFields(value, isNullOrUndefined(formValues) ? {} : formValues[key], dirtyFieldsFromValues[key]);
+      }
+    } else {
+      const formValue = formValues[key];
+      dirtyFieldsFromValues[key] = !deepEqual(value, formValue);
+    }
+  }
+  return dirtyFieldsFromValues;
+}
+const defaultResult = {
+  value: false,
+  isValid: false
+};
+const validResult = { value: true, isValid: true };
+var getCheckboxValue = (options) => {
+  if (Array.isArray(options)) {
+    if (options.length > 1) {
+      const values = options.filter((option) => option && option.checked && !option.disabled).map((option) => option.value);
+      return { value: values, isValid: !!values.length };
+    }
+    return options[0].checked && !options[0].disabled ? (
+      // @ts-expect-error expected to work in the browser
+      options[0].attributes && !isUndefined(options[0].attributes.value) ? isUndefined(options[0].value) || options[0].value === "" ? validResult : { value: options[0].value, isValid: true } : validResult
+    ) : defaultResult;
+  }
+  return defaultResult;
+};
+var getFieldValueAs = (value, { valueAsNumber, valueAsDate, setValueAs }) => isUndefined(value) ? value : valueAsNumber ? value === "" ? NaN : value ? +value : value : valueAsDate && isString(value) ? new Date(value) : setValueAs ? setValueAs(value) : value;
+const defaultReturn = {
+  isValid: false,
+  value: null
+};
+var getRadioValue = (options) => Array.isArray(options) ? options.reduce((previous, option) => option && option.checked && !option.disabled ? {
+  isValid: true,
+  value: option.value
+} : previous, defaultReturn) : defaultReturn;
+function getFieldValue(_f3) {
+  const ref = _f3.ref;
+  if (isFileInput(ref)) {
+    return ref.files;
+  }
+  if (isRadioInput(ref)) {
+    return getRadioValue(_f3.refs).value;
+  }
+  if (isMultipleSelect(ref)) {
+    return [...ref.selectedOptions].map(({ value }) => value);
+  }
+  if (isCheckBoxInput(ref)) {
+    return getCheckboxValue(_f3.refs).value;
+  }
+  return getFieldValueAs(isUndefined(ref.value) ? _f3.ref.value : ref.value, _f3);
+}
+var getResolverOptions = (fieldsNames, _fields, criteriaMode, shouldUseNativeValidation) => {
+  const fields = {};
+  for (const name of fieldsNames) {
+    const field = get(_fields, name);
+    field && set(fields, name, field._f);
+  }
+  return {
+    criteriaMode,
+    names: [...fieldsNames],
+    fields,
+    shouldUseNativeValidation
+  };
+};
+var isRegex = (value) => value instanceof RegExp;
+var getRuleValue = (rule) => isUndefined(rule) ? rule : isRegex(rule) ? rule.source : isObject(rule) ? isRegex(rule.value) ? rule.value.source : rule.value : rule;
+var getValidationModes = (mode) => ({
+  isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
+  isOnBlur: mode === VALIDATION_MODE.onBlur,
+  isOnChange: mode === VALIDATION_MODE.onChange,
+  isOnAll: mode === VALIDATION_MODE.all,
+  isOnTouch: mode === VALIDATION_MODE.onTouched
+});
+const ASYNC_FUNCTION = "AsyncFunction";
+var hasPromiseValidation = (fieldReference) => !!fieldReference && !!fieldReference.validate && !!(isFunction(fieldReference.validate) && fieldReference.validate.constructor.name === ASYNC_FUNCTION || isObject(fieldReference.validate) && Object.values(fieldReference.validate).find((validateFunction) => validateFunction.constructor.name === ASYNC_FUNCTION));
+var hasValidation = (options) => options.mount && (options.required || options.min || options.max || options.maxLength || options.minLength || options.pattern || options.validate);
+var isWatched = (name, _names, isBlurEvent) => !isBlurEvent && (_names.watchAll || _names.watch.has(name) || [..._names.watch].some((watchName) => name.startsWith(watchName) && /^\.\w+/.test(name.slice(watchName.length))));
+const iterateFieldsByAction = (fields, action, fieldsNames, abortEarly) => {
+  for (const key of fieldsNames || Object.keys(fields)) {
+    const field = get(fields, key);
+    if (field) {
+      const { _f: _f3, ...currentField } = field;
+      if (_f3) {
+        if (_f3.refs && _f3.refs[0] && action(_f3.refs[0], key) && !abortEarly) {
+          return true;
+        } else if (_f3.ref && action(_f3.ref, _f3.name) && !abortEarly) {
+          return true;
+        } else {
+          if (iterateFieldsByAction(currentField, action)) {
+            break;
+          }
+        }
+      } else if (isObject(currentField)) {
+        if (iterateFieldsByAction(currentField, action)) {
+          break;
+        }
+      }
+    }
+  }
+  return;
+};
+function schemaErrorLookup(errors, _fields, name) {
+  const error = get(errors, name);
+  if (error || isKey(name)) {
+    return {
+      error,
+      name
+    };
+  }
+  const names = name.split(".");
+  while (names.length) {
+    const fieldName = names.join(".");
+    const field = get(_fields, fieldName);
+    const foundError = get(errors, fieldName);
+    if (field && !Array.isArray(field) && name !== fieldName) {
+      return { name };
+    }
+    if (foundError && foundError.type) {
+      return {
+        name: fieldName,
+        error: foundError
+      };
+    }
+    if (foundError && foundError.root && foundError.root.type) {
+      return {
+        name: `${fieldName}.root`,
+        error: foundError.root
+      };
+    }
+    names.pop();
+  }
+  return {
+    name
+  };
+}
+var shouldRenderFormState = (formStateData, _proxyFormState, updateFormState, isRoot) => {
+  updateFormState(formStateData);
+  const { name, ...formState } = formStateData;
+  return isEmptyObject(formState) || Object.keys(formState).length >= Object.keys(_proxyFormState).length || Object.keys(formState).find((key) => _proxyFormState[key] === (!isRoot || VALIDATION_MODE.all));
+};
+var shouldSubscribeByName = (name, signalName, exact) => !name || !signalName || name === signalName || convertToArrayPayload(name).some((currentName) => currentName && (exact ? currentName === signalName : currentName.startsWith(signalName) || signalName.startsWith(currentName)));
+var skipValidation = (isBlurEvent, isTouched, isSubmitted, reValidateMode, mode) => {
+  if (mode.isOnAll) {
+    return false;
+  } else if (!isSubmitted && mode.isOnTouch) {
+    return !(isTouched || isBlurEvent);
+  } else if (isSubmitted ? reValidateMode.isOnBlur : mode.isOnBlur) {
+    return !isBlurEvent;
+  } else if (isSubmitted ? reValidateMode.isOnChange : mode.isOnChange) {
+    return isBlurEvent;
+  }
+  return true;
+};
+var unsetEmptyArray = (ref, name) => !compact(get(ref, name)).length && unset(ref, name);
+var updateFieldArrayRootError = (errors, error, name) => {
+  const fieldArrayErrors = convertToArrayPayload(get(errors, name));
+  set(fieldArrayErrors, ROOT_ERROR_TYPE, error[name]);
+  set(errors, name, fieldArrayErrors);
+  return errors;
+};
+function getValidateError(result, ref, type = "validate") {
+  if (isString(result) || Array.isArray(result) && result.every(isString) || isBoolean(result) && !result) {
+    return {
+      type,
+      message: isString(result) ? result : "",
+      ref
+    };
+  }
+}
+var getValueAndMessage = (validationData) => isObject(validationData) && !isRegex(validationData) ? validationData : {
+  value: validationData,
+  message: ""
+};
+var validateField = async (field, disabledFieldNames, formValues, validateAllFieldCriteria, shouldUseNativeValidation, isFieldArray) => {
+  const { ref, refs, required, maxLength, minLength, min, max, pattern, validate, name, valueAsNumber, mount } = field._f;
+  const inputValue = get(formValues, name);
+  if (!mount || disabledFieldNames.has(name)) {
+    return {};
+  }
+  const inputRef = refs ? refs[0] : ref;
+  const setCustomValidity = (message) => {
+    if (shouldUseNativeValidation && inputRef.reportValidity) {
+      inputRef.setCustomValidity(isBoolean(message) ? "" : message || "");
+      inputRef.reportValidity();
+    }
+  };
+  const error = {};
+  const isRadio = isRadioInput(ref);
+  const isCheckBox = isCheckBoxInput(ref);
+  const isRadioOrCheckbox2 = isRadio || isCheckBox;
+  const isEmpty = (valueAsNumber || isFileInput(ref)) && isUndefined(ref.value) && isUndefined(inputValue) || isHTMLElement(ref) && ref.value === "" || inputValue === "" || Array.isArray(inputValue) && !inputValue.length;
+  const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error);
+  const getMinMaxMessage = (exceedMax, maxLengthMessage, minLengthMessage, maxType = INPUT_VALIDATION_RULES.maxLength, minType = INPUT_VALIDATION_RULES.minLength) => {
+    const message = exceedMax ? maxLengthMessage : minLengthMessage;
+    error[name] = {
+      type: exceedMax ? maxType : minType,
+      message,
+      ref,
+      ...appendErrorsCurry(exceedMax ? maxType : minType, message)
+    };
+  };
+  if (isFieldArray ? !Array.isArray(inputValue) || !inputValue.length : required && (!isRadioOrCheckbox2 && (isEmpty || isNullOrUndefined(inputValue)) || isBoolean(inputValue) && !inputValue || isCheckBox && !getCheckboxValue(refs).isValid || isRadio && !getRadioValue(refs).isValid)) {
+    const { value, message } = isString(required) ? { value: !!required, message: required } : getValueAndMessage(required);
+    if (value) {
+      error[name] = {
+        type: INPUT_VALIDATION_RULES.required,
+        message,
+        ref: inputRef,
+        ...appendErrorsCurry(INPUT_VALIDATION_RULES.required, message)
+      };
+      if (!validateAllFieldCriteria) {
+        setCustomValidity(message);
+        return error;
+      }
+    }
+  }
+  if (!isEmpty && (!isNullOrUndefined(min) || !isNullOrUndefined(max))) {
+    let exceedMax;
+    let exceedMin;
+    const maxOutput = getValueAndMessage(max);
+    const minOutput = getValueAndMessage(min);
+    if (!isNullOrUndefined(inputValue) && !isNaN(inputValue)) {
+      const valueNumber = ref.valueAsNumber || (inputValue ? +inputValue : inputValue);
+      if (!isNullOrUndefined(maxOutput.value)) {
+        exceedMax = valueNumber > maxOutput.value;
+      }
+      if (!isNullOrUndefined(minOutput.value)) {
+        exceedMin = valueNumber < minOutput.value;
+      }
+    } else {
+      const valueDate = ref.valueAsDate || new Date(inputValue);
+      const convertTimeToDate = (time2) => /* @__PURE__ */ new Date((/* @__PURE__ */ new Date()).toDateString() + " " + time2);
+      const isTime = ref.type == "time";
+      const isWeek = ref.type == "week";
+      if (isString(maxOutput.value) && inputValue) {
+        exceedMax = isTime ? convertTimeToDate(inputValue) > convertTimeToDate(maxOutput.value) : isWeek ? inputValue > maxOutput.value : valueDate > new Date(maxOutput.value);
+      }
+      if (isString(minOutput.value) && inputValue) {
+        exceedMin = isTime ? convertTimeToDate(inputValue) < convertTimeToDate(minOutput.value) : isWeek ? inputValue < minOutput.value : valueDate < new Date(minOutput.value);
+      }
+    }
+    if (exceedMax || exceedMin) {
+      getMinMaxMessage(!!exceedMax, maxOutput.message, minOutput.message, INPUT_VALIDATION_RULES.max, INPUT_VALIDATION_RULES.min);
+      if (!validateAllFieldCriteria) {
+        setCustomValidity(error[name].message);
+        return error;
+      }
+    }
+  }
+  if ((maxLength || minLength) && !isEmpty && (isString(inputValue) || isFieldArray && Array.isArray(inputValue))) {
+    const maxLengthOutput = getValueAndMessage(maxLength);
+    const minLengthOutput = getValueAndMessage(minLength);
+    const exceedMax = !isNullOrUndefined(maxLengthOutput.value) && inputValue.length > +maxLengthOutput.value;
+    const exceedMin = !isNullOrUndefined(minLengthOutput.value) && inputValue.length < +minLengthOutput.value;
+    if (exceedMax || exceedMin) {
+      getMinMaxMessage(exceedMax, maxLengthOutput.message, minLengthOutput.message);
+      if (!validateAllFieldCriteria) {
+        setCustomValidity(error[name].message);
+        return error;
+      }
+    }
+  }
+  if (pattern && !isEmpty && isString(inputValue)) {
+    const { value: patternValue, message } = getValueAndMessage(pattern);
+    if (isRegex(patternValue) && !inputValue.match(patternValue)) {
+      error[name] = {
+        type: INPUT_VALIDATION_RULES.pattern,
+        message,
+        ref,
+        ...appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, message)
+      };
+      if (!validateAllFieldCriteria) {
+        setCustomValidity(message);
+        return error;
+      }
+    }
+  }
+  if (validate) {
+    if (isFunction(validate)) {
+      const result = await validate(inputValue, formValues);
+      const validateError = getValidateError(result, inputRef);
+      if (validateError) {
+        error[name] = {
+          ...validateError,
+          ...appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message)
+        };
+        if (!validateAllFieldCriteria) {
+          setCustomValidity(validateError.message);
+          return error;
+        }
+      }
+    } else if (isObject(validate)) {
+      let validationResult = {};
+      for (const key in validate) {
+        if (!isEmptyObject(validationResult) && !validateAllFieldCriteria) {
+          break;
+        }
+        const validateError = getValidateError(await validate[key](inputValue, formValues), inputRef, key);
+        if (validateError) {
+          validationResult = {
+            ...validateError,
+            ...appendErrorsCurry(key, validateError.message)
+          };
+          setCustomValidity(validateError.message);
+          if (validateAllFieldCriteria) {
+            error[name] = validationResult;
+          }
+        }
+      }
+      if (!isEmptyObject(validationResult)) {
+        error[name] = {
+          ref: inputRef,
+          ...validationResult
+        };
+        if (!validateAllFieldCriteria) {
+          return error;
+        }
+      }
+    }
+  }
+  setCustomValidity(true);
+  return error;
+};
+const defaultOptions = {
+  mode: VALIDATION_MODE.onSubmit,
+  reValidateMode: VALIDATION_MODE.onChange,
+  shouldFocusError: true
+};
+function createFormControl(props = {}) {
+  let _options2 = {
+    ...defaultOptions,
+    ...props
+  };
+  let _formState = {
+    submitCount: 0,
+    isDirty: false,
+    isReady: false,
+    isLoading: isFunction(_options2.defaultValues),
+    isValidating: false,
+    isSubmitted: false,
+    isSubmitting: false,
+    isSubmitSuccessful: false,
+    isValid: false,
+    touchedFields: {},
+    dirtyFields: {},
+    validatingFields: {},
+    errors: _options2.errors || {},
+    disabled: _options2.disabled || false
+  };
+  let _fields = {};
+  let _defaultValues = isObject(_options2.defaultValues) || isObject(_options2.values) ? cloneObject(_options2.defaultValues || _options2.values) || {} : {};
+  let _formValues = _options2.shouldUnregister ? {} : cloneObject(_defaultValues);
+  let _state = {
+    action: false,
+    mount: false,
+    watch: false,
+    keepIsValid: false
+  };
+  let _names = {
+    mount: /* @__PURE__ */ new Set(),
+    disabled: /* @__PURE__ */ new Set(),
+    unMount: /* @__PURE__ */ new Set(),
+    array: /* @__PURE__ */ new Set(),
+    watch: /* @__PURE__ */ new Set()
+  };
+  let delayErrorCallback;
+  let timer = 0;
+  const defaultProxyFormState = {
+    isDirty: false,
+    dirtyFields: false,
+    validatingFields: false,
+    touchedFields: false,
+    isValidating: false,
+    isValid: false,
+    errors: false
+  };
+  const _proxyFormState = {
+    ...defaultProxyFormState
+  };
+  let _proxySubscribeFormState = {
+    ..._proxyFormState
+  };
+  const _subjects = {
+    array: createSubject(),
+    state: createSubject()
+  };
+  const shouldDisplayAllAssociatedErrors = _options2.criteriaMode === VALIDATION_MODE.all;
+  const debounce = (callback) => (wait) => {
+    clearTimeout(timer);
+    timer = setTimeout(callback, wait);
+  };
+  const _setValid = async (shouldUpdateValid) => {
+    if (_state.keepIsValid) {
+      return;
+    }
+    if (!_options2.disabled && (_proxyFormState.isValid || _proxySubscribeFormState.isValid || shouldUpdateValid)) {
+      let isValid;
+      if (_options2.resolver) {
+        isValid = isEmptyObject((await _runSchema()).errors);
+        _updateIsValidating();
+      } else {
+        isValid = await executeBuiltInValidation({
+          fields: _fields,
+          onlyCheckValid: true,
+          eventType: EVENTS.VALID
+        });
+      }
+      if (isValid !== _formState.isValid) {
+        _subjects.state.next({
+          isValid
+        });
+      }
+    }
+  };
+  const _updateIsValidating = (names, isValidating) => {
+    if (!_options2.disabled && (_proxyFormState.isValidating || _proxyFormState.validatingFields || _proxySubscribeFormState.isValidating || _proxySubscribeFormState.validatingFields)) {
+      (names || Array.from(_names.mount)).forEach((name) => {
+        if (name) {
+          isValidating ? set(_formState.validatingFields, name, isValidating) : unset(_formState.validatingFields, name);
+        }
+      });
+      _subjects.state.next({
+        validatingFields: _formState.validatingFields,
+        isValidating: !isEmptyObject(_formState.validatingFields)
+      });
+    }
+  };
+  const _setFieldArray = (name, values = [], method, args, shouldSetValues = true, shouldUpdateFieldsAndState = true) => {
+    if (args && method && !_options2.disabled) {
+      _state.action = true;
+      if (shouldUpdateFieldsAndState && Array.isArray(get(_fields, name))) {
+        const fieldValues = method(get(_fields, name), args.argA, args.argB);
+        shouldSetValues && set(_fields, name, fieldValues);
+      }
+      if (shouldUpdateFieldsAndState && Array.isArray(get(_formState.errors, name))) {
+        const errors = method(get(_formState.errors, name), args.argA, args.argB);
+        shouldSetValues && set(_formState.errors, name, errors);
+        unsetEmptyArray(_formState.errors, name);
+      }
+      if ((_proxyFormState.touchedFields || _proxySubscribeFormState.touchedFields) && shouldUpdateFieldsAndState && Array.isArray(get(_formState.touchedFields, name))) {
+        const touchedFields = method(get(_formState.touchedFields, name), args.argA, args.argB);
+        shouldSetValues && set(_formState.touchedFields, name, touchedFields);
+      }
+      if (_proxyFormState.dirtyFields || _proxySubscribeFormState.dirtyFields) {
+        const fullDirtyFields = getDirtyFields(_defaultValues, _formValues);
+        const rootName = getNodeParentName(name);
+        set(_formState.dirtyFields, rootName, get(fullDirtyFields, rootName));
+      }
+      _subjects.state.next({
+        name,
+        isDirty: _getDirty(name, values),
+        dirtyFields: _formState.dirtyFields,
+        errors: _formState.errors,
+        isValid: _formState.isValid
+      });
+    } else {
+      set(_formValues, name, values);
+    }
+  };
+  const updateErrors = (name, error) => {
+    set(_formState.errors, name, error);
+    _subjects.state.next({
+      errors: _formState.errors
+    });
+  };
+  const _setErrors = (errors) => {
+    _formState.errors = errors;
+    _subjects.state.next({
+      errors: _formState.errors,
+      isValid: false
+    });
+  };
+  const updateValidAndValue = (name, shouldSkipSetValueAs, value, ref) => {
+    const field = get(_fields, name);
+    if (field) {
+      const defaultValue = get(_formValues, name, isUndefined(value) ? get(_defaultValues, name) : value);
+      isUndefined(defaultValue) || ref && ref.defaultChecked || shouldSkipSetValueAs ? set(_formValues, name, shouldSkipSetValueAs ? defaultValue : getFieldValue(field._f)) : setFieldValue(name, defaultValue);
+      _state.mount && !_state.action && _setValid();
+    }
+  };
+  const updateTouchAndDirty = (name, fieldValue, isBlurEvent, shouldDirty, shouldRender) => {
+    let shouldUpdateField = false;
+    let isPreviousDirty = false;
+    const output = {
+      name
+    };
+    if (!_options2.disabled) {
+      if (!isBlurEvent || shouldDirty) {
+        if (_proxyFormState.isDirty || _proxySubscribeFormState.isDirty) {
+          isPreviousDirty = _formState.isDirty;
+          _formState.isDirty = output.isDirty = _getDirty();
+          shouldUpdateField = isPreviousDirty !== output.isDirty;
+        }
+        const isCurrentFieldPristine = deepEqual(get(_defaultValues, name), fieldValue);
+        isPreviousDirty = !!get(_formState.dirtyFields, name);
+        isCurrentFieldPristine ? unset(_formState.dirtyFields, name) : set(_formState.dirtyFields, name, true);
+        output.dirtyFields = _formState.dirtyFields;
+        shouldUpdateField = shouldUpdateField || (_proxyFormState.dirtyFields || _proxySubscribeFormState.dirtyFields) && isPreviousDirty !== !isCurrentFieldPristine;
+      }
+      if (isBlurEvent) {
+        const isPreviousFieldTouched = get(_formState.touchedFields, name);
+        if (!isPreviousFieldTouched) {
+          set(_formState.touchedFields, name, isBlurEvent);
+          output.touchedFields = _formState.touchedFields;
+          shouldUpdateField = shouldUpdateField || (_proxyFormState.touchedFields || _proxySubscribeFormState.touchedFields) && isPreviousFieldTouched !== isBlurEvent;
+        }
+      }
+      shouldUpdateField && shouldRender && _subjects.state.next(output);
+    }
+    return shouldUpdateField ? output : {};
+  };
+  const shouldRenderByError = (name, isValid, error, fieldState) => {
+    const previousFieldError = get(_formState.errors, name);
+    const shouldUpdateValid = (_proxyFormState.isValid || _proxySubscribeFormState.isValid) && isBoolean(isValid) && _formState.isValid !== isValid;
+    if (_options2.delayError && error) {
+      delayErrorCallback = debounce(() => updateErrors(name, error));
+      delayErrorCallback(_options2.delayError);
+    } else {
+      clearTimeout(timer);
+      delayErrorCallback = null;
+      error ? set(_formState.errors, name, error) : unset(_formState.errors, name);
+    }
+    if ((error ? !deepEqual(previousFieldError, error) : previousFieldError) || !isEmptyObject(fieldState) || shouldUpdateValid) {
+      const updatedFormState = {
+        ...fieldState,
+        ...shouldUpdateValid && isBoolean(isValid) ? { isValid } : {},
+        errors: _formState.errors,
+        name
+      };
+      _formState = {
+        ..._formState,
+        ...updatedFormState
+      };
+      _subjects.state.next(updatedFormState);
+    }
+  };
+  const _runSchema = async (name) => {
+    _updateIsValidating(name, true);
+    return await _options2.resolver(_formValues, _options2.context, getResolverOptions(name || _names.mount, _fields, _options2.criteriaMode, _options2.shouldUseNativeValidation));
+  };
+  const executeSchemaAndUpdateState = async (names) => {
+    const { errors } = await _runSchema(names);
+    _updateIsValidating(names);
+    if (names) {
+      for (const name of names) {
+        const error = get(errors, name);
+        error ? set(_formState.errors, name, error) : unset(_formState.errors, name);
+      }
+    } else {
+      _formState.errors = errors;
+    }
+    return errors;
+  };
+  const validateForm = async ({ name, eventType }) => {
+    if (props.validate) {
+      const result = await props.validate({
+        formValues: _formValues,
+        formState: _formState,
+        name,
+        eventType
+      });
+      if (isObject(result)) {
+        for (const key in result) {
+          const error = result[key];
+          if (error) {
+            setError(`${FORM_ERROR_TYPE}.${key}`, {
+              message: isString(result.message) ? result.message : "",
+              type: INPUT_VALIDATION_RULES.validate
+            });
+          }
+        }
+      } else if (isString(result) || !result) {
+        setError(FORM_ERROR_TYPE, {
+          message: result || "",
+          type: INPUT_VALIDATION_RULES.validate
+        });
+      } else {
+        clearErrors(FORM_ERROR_TYPE);
+      }
+      return result;
+    }
+    return true;
+  };
+  const executeBuiltInValidation = async ({ fields, onlyCheckValid, name, eventType, context: context2 = {
+    valid: true,
+    runRootValidation: false
+  } }) => {
+    if (props.validate) {
+      context2.runRootValidation = true;
+      const result = await validateForm({
+        name,
+        eventType
+      });
+      if (!result) {
+        context2.valid = false;
+        if (onlyCheckValid) {
+          return context2.valid;
+        }
+      }
+    }
+    for (const name2 in fields) {
+      const field = fields[name2];
+      if (field) {
+        const { _f: _f3, ...fieldValue } = field;
+        if (_f3) {
+          const isFieldArrayRoot = _names.array.has(_f3.name);
+          const isPromiseFunction = field._f && hasPromiseValidation(field._f);
+          if (isPromiseFunction && _proxyFormState.validatingFields) {
+            _updateIsValidating([_f3.name], true);
+          }
+          const fieldError = await validateField(field, _names.disabled, _formValues, shouldDisplayAllAssociatedErrors, _options2.shouldUseNativeValidation && !onlyCheckValid, isFieldArrayRoot);
+          if (isPromiseFunction && _proxyFormState.validatingFields) {
+            _updateIsValidating([_f3.name]);
+          }
+          if (fieldError[_f3.name]) {
+            context2.valid = false;
+            if (onlyCheckValid) {
+              break;
+            }
+          }
+          !onlyCheckValid && (get(fieldError, _f3.name) ? isFieldArrayRoot ? updateFieldArrayRootError(_formState.errors, fieldError, _f3.name) : set(_formState.errors, _f3.name, fieldError[_f3.name]) : unset(_formState.errors, _f3.name));
+          if (props.shouldUseNativeValidation && fieldError[_f3.name]) {
+            break;
+          }
+        }
+        !isEmptyObject(fieldValue) && await executeBuiltInValidation({
+          context: context2,
+          onlyCheckValid,
+          fields: fieldValue,
+          name: name2,
+          eventType
+        });
+      }
+    }
+    return context2.valid;
+  };
+  const _removeUnmounted = () => {
+    for (const name of _names.unMount) {
+      const field = get(_fields, name);
+      field && (field._f.refs ? field._f.refs.every((ref) => !live(ref)) : !live(field._f.ref)) && unregister(name);
+    }
+    _names.unMount = /* @__PURE__ */ new Set();
+  };
+  const _getDirty = (name, data) => !_options2.disabled && (name && data && set(_formValues, name, data), !deepEqual(getValues(), _defaultValues));
+  const _getWatch = (names, defaultValue, isGlobal) => generateWatchOutput(names, _names, {
+    ..._state.mount ? _formValues : isUndefined(defaultValue) ? _defaultValues : isString(names) ? { [names]: defaultValue } : defaultValue
+  }, isGlobal, defaultValue);
+  const _getFieldArray = (name) => compact(get(_state.mount ? _formValues : _defaultValues, name, _options2.shouldUnregister ? get(_defaultValues, name, []) : []));
+  const setFieldValue = (name, value, options = {}) => {
+    const field = get(_fields, name);
+    let fieldValue = value;
+    if (field) {
+      const fieldReference = field._f;
+      if (fieldReference) {
+        !fieldReference.disabled && set(_formValues, name, getFieldValueAs(value, fieldReference));
+        fieldValue = isHTMLElement(fieldReference.ref) && isNullOrUndefined(value) ? "" : value;
+        if (isMultipleSelect(fieldReference.ref)) {
+          [...fieldReference.ref.options].forEach((optionRef) => optionRef.selected = fieldValue.includes(optionRef.value));
+        } else if (fieldReference.refs) {
+          if (isCheckBoxInput(fieldReference.ref)) {
+            fieldReference.refs.forEach((checkboxRef) => {
+              if (!checkboxRef.defaultChecked || !checkboxRef.disabled) {
+                if (Array.isArray(fieldValue)) {
+                  checkboxRef.checked = !!fieldValue.find((data) => data === checkboxRef.value);
+                } else {
+                  checkboxRef.checked = fieldValue === checkboxRef.value || !!fieldValue;
+                }
+              }
+            });
+          } else {
+            fieldReference.refs.forEach((radioRef) => radioRef.checked = radioRef.value === fieldValue);
+          }
+        } else if (isFileInput(fieldReference.ref)) {
+          fieldReference.ref.value = "";
+        } else {
+          fieldReference.ref.value = fieldValue;
+          if (!fieldReference.ref.type) {
+            _subjects.state.next({
+              name,
+              values: cloneObject(_formValues)
+            });
+          }
+        }
+      }
+    }
+    (options.shouldDirty || options.shouldTouch) && updateTouchAndDirty(name, fieldValue, options.shouldTouch, options.shouldDirty, true);
+    options.shouldValidate && trigger(name);
+  };
+  const setValues = (name, value, options) => {
+    for (const fieldKey in value) {
+      if (!value.hasOwnProperty(fieldKey)) {
+        return;
+      }
+      const fieldValue = value[fieldKey];
+      const fieldName = name + "." + fieldKey;
+      const field = get(_fields, fieldName);
+      (_names.array.has(name) || isObject(fieldValue) || field && !field._f) && !isDateObject(fieldValue) ? setValues(fieldName, fieldValue, options) : setFieldValue(fieldName, fieldValue, options);
+    }
+  };
+  const setValue = (name, value, options = {}) => {
+    const field = get(_fields, name);
+    const isFieldArray = _names.array.has(name);
+    const cloneValue = cloneObject(value);
+    set(_formValues, name, cloneValue);
+    if (isFieldArray) {
+      _subjects.array.next({
+        name,
+        values: cloneObject(_formValues)
+      });
+      if ((_proxyFormState.isDirty || _proxyFormState.dirtyFields || _proxySubscribeFormState.isDirty || _proxySubscribeFormState.dirtyFields) && options.shouldDirty) {
+        _subjects.state.next({
+          name,
+          dirtyFields: getDirtyFields(_defaultValues, _formValues),
+          isDirty: _getDirty(name, cloneValue)
+        });
+      }
+    } else {
+      field && !field._f && !isNullOrUndefined(cloneValue) ? setValues(name, cloneValue, options) : setFieldValue(name, cloneValue, options);
+    }
+    if (isWatched(name, _names)) {
+      _subjects.state.next({
+        ..._formState,
+        name,
+        values: cloneObject(_formValues)
+      });
+    } else {
+      _subjects.state.next({
+        name: _state.mount ? name : void 0,
+        values: cloneObject(_formValues)
+      });
+    }
+  };
+  const onChange = async (event) => {
+    _state.mount = true;
+    const target = event.target;
+    let name = target.name;
+    let isFieldValueUpdated = true;
+    const field = get(_fields, name);
+    const _updateIsFieldValueUpdated = (fieldValue) => {
+      isFieldValueUpdated = Number.isNaN(fieldValue) || isDateObject(fieldValue) && isNaN(fieldValue.getTime()) || deepEqual(fieldValue, get(_formValues, name, fieldValue));
+    };
+    const validationModeBeforeSubmit = getValidationModes(_options2.mode);
+    const validationModeAfterSubmit = getValidationModes(_options2.reValidateMode);
+    if (field) {
+      let error;
+      let isValid;
+      const fieldValue = target.type ? getFieldValue(field._f) : getEventValue(event);
+      const isBlurEvent = event.type === EVENTS.BLUR || event.type === EVENTS.FOCUS_OUT;
+      const shouldSkipValidation = !hasValidation(field._f) && !props.validate && !_options2.resolver && !get(_formState.errors, name) && !field._f.deps || skipValidation(isBlurEvent, get(_formState.touchedFields, name), _formState.isSubmitted, validationModeAfterSubmit, validationModeBeforeSubmit);
+      const watched = isWatched(name, _names, isBlurEvent);
+      set(_formValues, name, fieldValue);
+      if (isBlurEvent) {
+        if (!target || !target.readOnly) {
+          field._f.onBlur && field._f.onBlur(event);
+          delayErrorCallback && delayErrorCallback(0);
+        }
+      } else if (field._f.onChange) {
+        field._f.onChange(event);
+      }
+      const fieldState = updateTouchAndDirty(name, fieldValue, isBlurEvent);
+      const shouldRender = !isEmptyObject(fieldState) || watched;
+      !isBlurEvent && _subjects.state.next({
+        name,
+        type: event.type,
+        values: cloneObject(_formValues)
+      });
+      if (shouldSkipValidation) {
+        if (_proxyFormState.isValid || _proxySubscribeFormState.isValid) {
+          if (_options2.mode === "onBlur") {
+            if (isBlurEvent) {
+              _setValid();
+            }
+          } else if (!isBlurEvent) {
+            _setValid();
+          }
+        }
+        return shouldRender && _subjects.state.next({ name, ...watched ? {} : fieldState });
+      }
+      if (!_options2.resolver && props.validate) {
+        await validateForm({
+          name,
+          eventType: event.type
+        });
+      }
+      !isBlurEvent && watched && _subjects.state.next({ ..._formState });
+      if (_options2.resolver) {
+        const { errors } = await _runSchema([name]);
+        _updateIsValidating([name]);
+        _updateIsFieldValueUpdated(fieldValue);
+        if (isFieldValueUpdated) {
+          const previousErrorLookupResult = schemaErrorLookup(_formState.errors, _fields, name);
+          const errorLookupResult = schemaErrorLookup(errors, _fields, previousErrorLookupResult.name || name);
+          error = errorLookupResult.error;
+          name = errorLookupResult.name;
+          isValid = isEmptyObject(errors);
+        }
+      } else {
+        _updateIsValidating([name], true);
+        error = (await validateField(field, _names.disabled, _formValues, shouldDisplayAllAssociatedErrors, _options2.shouldUseNativeValidation))[name];
+        _updateIsValidating([name]);
+        _updateIsFieldValueUpdated(fieldValue);
+        if (isFieldValueUpdated) {
+          if (error) {
+            isValid = false;
+          } else if (_proxyFormState.isValid || _proxySubscribeFormState.isValid) {
+            isValid = await executeBuiltInValidation({
+              fields: _fields,
+              onlyCheckValid: true,
+              name,
+              eventType: event.type
+            });
+          }
+        }
+      }
+      if (isFieldValueUpdated) {
+        field._f.deps && (!Array.isArray(field._f.deps) || field._f.deps.length > 0) && trigger(field._f.deps);
+        shouldRenderByError(name, isValid, error, fieldState);
+      }
+    }
+  };
+  const _focusInput = (ref, key) => {
+    if (get(_formState.errors, key) && ref.focus) {
+      ref.focus();
+      return 1;
+    }
+    return;
+  };
+  const trigger = async (name, options = {}) => {
+    let isValid;
+    let validationResult;
+    const fieldNames = convertToArrayPayload(name);
+    if (_options2.resolver) {
+      const errors = await executeSchemaAndUpdateState(isUndefined(name) ? name : fieldNames);
+      isValid = isEmptyObject(errors);
+      validationResult = name ? !fieldNames.some((name2) => get(errors, name2)) : isValid;
+    } else if (name) {
+      validationResult = (await Promise.all(fieldNames.map(async (fieldName) => {
+        const field = get(_fields, fieldName);
+        return await executeBuiltInValidation({
+          fields: field && field._f ? { [fieldName]: field } : field,
+          eventType: EVENTS.TRIGGER
+        });
+      }))).every(Boolean);
+      !(!validationResult && !_formState.isValid) && _setValid();
+    } else {
+      validationResult = isValid = await executeBuiltInValidation({
+        fields: _fields,
+        name,
+        eventType: EVENTS.TRIGGER
+      });
+    }
+    _subjects.state.next({
+      ...!isString(name) || (_proxyFormState.isValid || _proxySubscribeFormState.isValid) && isValid !== _formState.isValid ? {} : { name },
+      ..._options2.resolver || !name ? { isValid } : {},
+      errors: _formState.errors
+    });
+    options.shouldFocus && !validationResult && iterateFieldsByAction(_fields, _focusInput, name ? fieldNames : _names.mount);
+    return validationResult;
+  };
+  const getValues = (fieldNames, config) => {
+    let values = {
+      ..._state.mount ? _formValues : _defaultValues
+    };
+    if (config) {
+      values = extractFormValues(config.dirtyFields ? _formState.dirtyFields : _formState.touchedFields, values);
+    }
+    return isUndefined(fieldNames) ? values : isString(fieldNames) ? get(values, fieldNames) : fieldNames.map((name) => get(values, name));
+  };
+  const getFieldState = (name, formState) => ({
+    invalid: !!get((formState || _formState).errors, name),
+    isDirty: !!get((formState || _formState).dirtyFields, name),
+    error: get((formState || _formState).errors, name),
+    isValidating: !!get(_formState.validatingFields, name),
+    isTouched: !!get((formState || _formState).touchedFields, name)
+  });
+  const clearErrors = (name) => {
+    const names = name ? convertToArrayPayload(name) : void 0;
+    names === null || names === void 0 ? void 0 : names.forEach((inputName) => unset(_formState.errors, inputName));
+    if (names) {
+      names.forEach((inputName) => {
+        _subjects.state.next({
+          name: inputName,
+          errors: _formState.errors
+        });
+      });
+    } else {
+      _subjects.state.next({
+        errors: {}
+      });
+    }
+  };
+  const setError = (name, error, options) => {
+    const ref = (get(_fields, name, { _f: {} })._f || {}).ref;
+    const currentError = get(_formState.errors, name) || {};
+    const { ref: currentRef, message, type, ...restOfErrorTree } = currentError;
+    set(_formState.errors, name, {
+      ...restOfErrorTree,
+      ...error,
+      ref
+    });
+    _subjects.state.next({
+      name,
+      errors: _formState.errors,
+      isValid: false
+    });
+    options && options.shouldFocus && ref && ref.focus && ref.focus();
+  };
+  const watch = (name, defaultValue) => isFunction(name) ? _subjects.state.subscribe({
+    next: (payload) => "values" in payload && name(_getWatch(void 0, defaultValue), payload)
+  }) : _getWatch(name, defaultValue, true);
+  const _subscribe = (props2) => _subjects.state.subscribe({
+    next: (formState) => {
+      if (shouldSubscribeByName(props2.name, formState.name, props2.exact) && shouldRenderFormState(formState, props2.formState || _proxyFormState, _setFormState, props2.reRenderRoot)) {
+        props2.callback({
+          values: { ..._formValues },
+          ..._formState,
+          ...formState,
+          defaultValues: _defaultValues
+        });
+      }
+    }
+  }).unsubscribe;
+  const subscribe = (props2) => {
+    _state.mount = true;
+    _proxySubscribeFormState = {
+      ..._proxySubscribeFormState,
+      ...props2.formState
+    };
+    return _subscribe({
+      ...props2,
+      formState: {
+        ...defaultProxyFormState,
+        ...props2.formState
+      }
+    });
+  };
+  const unregister = (name, options = {}) => {
+    for (const fieldName of name ? convertToArrayPayload(name) : _names.mount) {
+      _names.mount.delete(fieldName);
+      _names.array.delete(fieldName);
+      if (!options.keepValue) {
+        unset(_fields, fieldName);
+        unset(_formValues, fieldName);
+      }
+      !options.keepError && unset(_formState.errors, fieldName);
+      !options.keepDirty && unset(_formState.dirtyFields, fieldName);
+      !options.keepTouched && unset(_formState.touchedFields, fieldName);
+      !options.keepIsValidating && unset(_formState.validatingFields, fieldName);
+      !_options2.shouldUnregister && !options.keepDefaultValue && unset(_defaultValues, fieldName);
+    }
+    _subjects.state.next({
+      values: cloneObject(_formValues)
+    });
+    _subjects.state.next({
+      ..._formState,
+      ...!options.keepDirty ? {} : { isDirty: _getDirty() }
+    });
+    !options.keepIsValid && _setValid();
+  };
+  const _setDisabledField = ({ disabled, name }) => {
+    if (isBoolean(disabled) && _state.mount || !!disabled || _names.disabled.has(name)) {
+      const wasDisabled = _names.disabled.has(name);
+      const isDisabled = !!disabled;
+      const disabledStateChanged = wasDisabled !== isDisabled;
+      disabled ? _names.disabled.add(name) : _names.disabled.delete(name);
+      disabledStateChanged && _state.mount && !_state.action && _setValid();
+    }
+  };
+  const register = (name, options = {}) => {
+    let field = get(_fields, name);
+    const disabledIsDefined = isBoolean(options.disabled) || isBoolean(_options2.disabled);
+    set(_fields, name, {
+      ...field || {},
+      _f: {
+        ...field && field._f ? field._f : { ref: { name } },
+        name,
+        mount: true,
+        ...options
+      }
+    });
+    _names.mount.add(name);
+    if (field) {
+      _setDisabledField({
+        disabled: isBoolean(options.disabled) ? options.disabled : _options2.disabled,
+        name
+      });
+    } else {
+      updateValidAndValue(name, true, options.value);
+    }
+    return {
+      ...disabledIsDefined ? { disabled: options.disabled || _options2.disabled } : {},
+      ..._options2.progressive ? {
+        required: !!options.required,
+        min: getRuleValue(options.min),
+        max: getRuleValue(options.max),
+        minLength: getRuleValue(options.minLength),
+        maxLength: getRuleValue(options.maxLength),
+        pattern: getRuleValue(options.pattern)
+      } : {},
+      name,
+      onChange,
+      onBlur: onChange,
+      ref: (ref) => {
+        if (ref) {
+          register(name, options);
+          field = get(_fields, name);
+          const fieldRef = isUndefined(ref.value) ? ref.querySelectorAll ? ref.querySelectorAll("input,select,textarea")[0] || ref : ref : ref;
+          const radioOrCheckbox = isRadioOrCheckbox(fieldRef);
+          const refs = field._f.refs || [];
+          if (radioOrCheckbox ? refs.find((option) => option === fieldRef) : fieldRef === field._f.ref) {
+            return;
+          }
+          set(_fields, name, {
+            _f: {
+              ...field._f,
+              ...radioOrCheckbox ? {
+                refs: [
+                  ...refs.filter(live),
+                  fieldRef,
+                  ...Array.isArray(get(_defaultValues, name)) ? [{}] : []
+                ],
+                ref: { type: fieldRef.type, name }
+              } : { ref: fieldRef }
+            }
+          });
+          updateValidAndValue(name, false, void 0, fieldRef);
+        } else {
+          field = get(_fields, name, {});
+          if (field._f) {
+            field._f.mount = false;
+          }
+          (_options2.shouldUnregister || options.shouldUnregister) && !(isNameInFieldArray(_names.array, name) && _state.action) && _names.unMount.add(name);
+        }
+      }
+    };
+  };
+  const _focusError = () => _options2.shouldFocusError && iterateFieldsByAction(_fields, _focusInput, _names.mount);
+  const _disableForm = (disabled) => {
+    if (isBoolean(disabled)) {
+      _subjects.state.next({ disabled });
+      iterateFieldsByAction(_fields, (ref, name) => {
+        const currentField = get(_fields, name);
+        if (currentField) {
+          ref.disabled = currentField._f.disabled || disabled;
+          if (Array.isArray(currentField._f.refs)) {
+            currentField._f.refs.forEach((inputRef) => {
+              inputRef.disabled = currentField._f.disabled || disabled;
+            });
+          }
+        }
+      }, 0, false);
+    }
+  };
+  const handleSubmit = (onValid, onInvalid) => async (e) => {
+    let onValidError = void 0;
+    if (e) {
+      e.preventDefault && e.preventDefault();
+      e.persist && e.persist();
+    }
+    let fieldValues = cloneObject(_formValues);
+    _subjects.state.next({
+      isSubmitting: true
+    });
+    if (_options2.resolver) {
+      const { errors, values } = await _runSchema();
+      _updateIsValidating();
+      _formState.errors = errors;
+      fieldValues = cloneObject(values);
+    } else {
+      await executeBuiltInValidation({
+        fields: _fields,
+        eventType: EVENTS.SUBMIT
+      });
+    }
+    if (_names.disabled.size) {
+      for (const name of _names.disabled) {
+        unset(fieldValues, name);
+      }
+    }
+    unset(_formState.errors, ROOT_ERROR_TYPE);
+    if (isEmptyObject(_formState.errors)) {
+      _subjects.state.next({
+        errors: {}
+      });
+      try {
+        await onValid(fieldValues, e);
+      } catch (error) {
+        onValidError = error;
+      }
+    } else {
+      if (onInvalid) {
+        await onInvalid({ ..._formState.errors }, e);
+      }
+      _focusError();
+      setTimeout(_focusError);
+    }
+    _subjects.state.next({
+      isSubmitted: true,
+      isSubmitting: false,
+      isSubmitSuccessful: isEmptyObject(_formState.errors) && !onValidError,
+      submitCount: _formState.submitCount + 1,
+      errors: _formState.errors
+    });
+    if (onValidError) {
+      throw onValidError;
+    }
+  };
+  const resetField = (name, options = {}) => {
+    if (get(_fields, name)) {
+      if (isUndefined(options.defaultValue)) {
+        setValue(name, cloneObject(get(_defaultValues, name)));
+      } else {
+        setValue(name, options.defaultValue);
+        set(_defaultValues, name, cloneObject(options.defaultValue));
+      }
+      if (!options.keepTouched) {
+        unset(_formState.touchedFields, name);
+      }
+      if (!options.keepDirty) {
+        unset(_formState.dirtyFields, name);
+        _formState.isDirty = options.defaultValue ? _getDirty(name, cloneObject(get(_defaultValues, name))) : _getDirty();
+      }
+      if (!options.keepError) {
+        unset(_formState.errors, name);
+        _proxyFormState.isValid && _setValid();
+      }
+      _subjects.state.next({ ..._formState });
+    }
+  };
+  const _reset = (formValues, keepStateOptions = {}) => {
+    const updatedValues = formValues ? cloneObject(formValues) : _defaultValues;
+    const cloneUpdatedValues = cloneObject(updatedValues);
+    const isEmptyResetValues = isEmptyObject(formValues);
+    const values = isEmptyResetValues ? _defaultValues : cloneUpdatedValues;
+    if (!keepStateOptions.keepDefaultValues) {
+      _defaultValues = updatedValues;
+    }
+    if (!keepStateOptions.keepValues) {
+      if (keepStateOptions.keepDirtyValues) {
+        const fieldsToCheck = /* @__PURE__ */ new Set([
+          ..._names.mount,
+          ...Object.keys(getDirtyFields(_defaultValues, _formValues))
+        ]);
+        for (const fieldName of Array.from(fieldsToCheck)) {
+          const isDirty = get(_formState.dirtyFields, fieldName);
+          const existingValue = get(_formValues, fieldName);
+          const newValue = get(values, fieldName);
+          if (isDirty && !isUndefined(existingValue)) {
+            set(values, fieldName, existingValue);
+          } else if (!isDirty && !isUndefined(newValue)) {
+            setValue(fieldName, newValue);
+          }
+        }
+      } else {
+        if (isWeb && isUndefined(formValues)) {
+          for (const name of _names.mount) {
+            const field = get(_fields, name);
+            if (field && field._f) {
+              const fieldReference = Array.isArray(field._f.refs) ? field._f.refs[0] : field._f.ref;
+              if (isHTMLElement(fieldReference)) {
+                const form = fieldReference.closest("form");
+                if (form) {
+                  form.reset();
+                  break;
+                }
+              }
+            }
+          }
+        }
+        if (keepStateOptions.keepFieldsRef) {
+          for (const fieldName of _names.mount) {
+            setValue(fieldName, get(values, fieldName));
+          }
+        } else {
+          _fields = {};
+        }
+      }
+      _formValues = _options2.shouldUnregister ? keepStateOptions.keepDefaultValues ? cloneObject(_defaultValues) : {} : cloneObject(values);
+      _subjects.array.next({
+        values: { ...values }
+      });
+      _subjects.state.next({
+        values: { ...values }
+      });
+    }
+    _names = {
+      mount: keepStateOptions.keepDirtyValues ? _names.mount : /* @__PURE__ */ new Set(),
+      unMount: /* @__PURE__ */ new Set(),
+      array: /* @__PURE__ */ new Set(),
+      disabled: /* @__PURE__ */ new Set(),
+      watch: /* @__PURE__ */ new Set(),
+      watchAll: false,
+      focus: ""
+    };
+    _state.mount = !_proxyFormState.isValid || !!keepStateOptions.keepIsValid || !!keepStateOptions.keepDirtyValues || !_options2.shouldUnregister && !isEmptyObject(values);
+    _state.watch = !!_options2.shouldUnregister;
+    _state.keepIsValid = !!keepStateOptions.keepIsValid;
+    _state.action = false;
+    if (!keepStateOptions.keepErrors) {
+      _formState.errors = {};
+    }
+    _subjects.state.next({
+      submitCount: keepStateOptions.keepSubmitCount ? _formState.submitCount : 0,
+      isDirty: isEmptyResetValues ? false : keepStateOptions.keepDirty ? _formState.isDirty : !!(keepStateOptions.keepDefaultValues && !deepEqual(formValues, _defaultValues)),
+      isSubmitted: keepStateOptions.keepIsSubmitted ? _formState.isSubmitted : false,
+      dirtyFields: isEmptyResetValues ? {} : keepStateOptions.keepDirtyValues ? keepStateOptions.keepDefaultValues && _formValues ? getDirtyFields(_defaultValues, _formValues) : _formState.dirtyFields : keepStateOptions.keepDefaultValues && formValues ? getDirtyFields(_defaultValues, formValues) : keepStateOptions.keepDirty ? _formState.dirtyFields : {},
+      touchedFields: keepStateOptions.keepTouched ? _formState.touchedFields : {},
+      errors: keepStateOptions.keepErrors ? _formState.errors : {},
+      isSubmitSuccessful: keepStateOptions.keepIsSubmitSuccessful ? _formState.isSubmitSuccessful : false,
+      isSubmitting: false,
+      defaultValues: _defaultValues
+    });
+  };
+  const reset = (formValues, keepStateOptions) => _reset(isFunction(formValues) ? formValues(_formValues) : formValues, { ..._options2.resetOptions, ...keepStateOptions });
+  const setFocus = (name, options = {}) => {
+    const field = get(_fields, name);
+    const fieldReference = field && field._f;
+    if (fieldReference) {
+      const fieldRef = fieldReference.refs ? fieldReference.refs[0] : fieldReference.ref;
+      if (fieldRef.focus) {
+        setTimeout(() => {
+          fieldRef.focus();
+          options.shouldSelect && isFunction(fieldRef.select) && fieldRef.select();
+        });
+      }
+    }
+  };
+  const _setFormState = (updatedFormState) => {
+    _formState = {
+      ..._formState,
+      ...updatedFormState
+    };
+  };
+  const _resetDefaultValues = () => isFunction(_options2.defaultValues) && _options2.defaultValues().then((values) => {
+    reset(values, _options2.resetOptions);
+    _subjects.state.next({
+      isLoading: false
+    });
+  });
+  const methods = {
+    control: {
+      register,
+      unregister,
+      getFieldState,
+      handleSubmit,
+      setError,
+      _subscribe,
+      _runSchema,
+      _updateIsValidating,
+      _focusError,
+      _getWatch,
+      _getDirty,
+      _setValid,
+      _setFieldArray,
+      _setDisabledField,
+      _setErrors,
+      _getFieldArray,
+      _reset,
+      _resetDefaultValues,
+      _removeUnmounted,
+      _disableForm,
+      _subjects,
+      _proxyFormState,
+      get _fields() {
+        return _fields;
+      },
+      get _formValues() {
+        return _formValues;
+      },
+      get _state() {
+        return _state;
+      },
+      set _state(value) {
+        _state = value;
+      },
+      get _defaultValues() {
+        return _defaultValues;
+      },
+      get _names() {
+        return _names;
+      },
+      set _names(value) {
+        _names = value;
+      },
+      get _formState() {
+        return _formState;
+      },
+      get _options() {
+        return _options2;
+      },
+      set _options(value) {
+        _options2 = {
+          ..._options2,
+          ...value
+        };
+      }
+    },
+    subscribe,
+    trigger,
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    getValues,
+    reset,
+    resetField,
+    clearErrors,
+    unregister,
+    setError,
+    setFocus,
+    getFieldState
+  };
+  return {
+    ...methods,
+    formControl: methods
+  };
+}
+function useForm(props = {}) {
+  const _formControl = React$4.useRef(void 0);
+  const _values = React$4.useRef(void 0);
+  const [formState, updateFormState] = React$4.useState({
+    isDirty: false,
+    isValidating: false,
+    isLoading: isFunction(props.defaultValues),
+    isSubmitted: false,
+    isSubmitting: false,
+    isSubmitSuccessful: false,
+    isValid: false,
+    submitCount: 0,
+    dirtyFields: {},
+    touchedFields: {},
+    validatingFields: {},
+    errors: props.errors || {},
+    disabled: props.disabled || false,
+    isReady: false,
+    defaultValues: isFunction(props.defaultValues) ? void 0 : props.defaultValues
+  });
+  if (!_formControl.current) {
+    if (props.formControl) {
+      _formControl.current = {
+        ...props.formControl,
+        formState
+      };
+      if (props.defaultValues && !isFunction(props.defaultValues)) {
+        props.formControl.reset(props.defaultValues, props.resetOptions);
+      }
+    } else {
+      const { formControl, ...rest } = createFormControl(props);
+      _formControl.current = {
+        ...rest,
+        formState
+      };
+    }
+  }
+  const control = _formControl.current.control;
+  control._options = props;
+  useIsomorphicLayoutEffect$1(() => {
+    const sub = control._subscribe({
+      formState: control._proxyFormState,
+      callback: () => updateFormState({ ...control._formState }),
+      reRenderRoot: true
+    });
+    updateFormState((data) => ({
+      ...data,
+      isReady: true
+    }));
+    control._formState.isReady = true;
+    return sub;
+  }, [control]);
+  React$4.useEffect(() => control._disableForm(props.disabled), [control, props.disabled]);
+  React$4.useEffect(() => {
+    if (props.mode) {
+      control._options.mode = props.mode;
+    }
+    if (props.reValidateMode) {
+      control._options.reValidateMode = props.reValidateMode;
+    }
+  }, [control, props.mode, props.reValidateMode]);
+  React$4.useEffect(() => {
+    if (props.errors) {
+      control._setErrors(props.errors);
+      control._focusError();
+    }
+  }, [control, props.errors]);
+  React$4.useEffect(() => {
+    props.shouldUnregister && control._subjects.state.next({
+      values: control._getWatch()
+    });
+  }, [control, props.shouldUnregister]);
+  React$4.useEffect(() => {
+    if (control._proxyFormState.isDirty) {
+      const isDirty = control._getDirty();
+      if (isDirty !== formState.isDirty) {
+        control._subjects.state.next({
+          isDirty
+        });
+      }
+    }
+  }, [control, formState.isDirty]);
+  React$4.useEffect(() => {
+    var _a2;
+    if (props.values && !deepEqual(props.values, _values.current)) {
+      control._reset(props.values, {
+        keepFieldsRef: true,
+        ...control._options.resetOptions
+      });
+      if (!((_a2 = control._options.resetOptions) === null || _a2 === void 0 ? void 0 : _a2.keepIsValid)) {
+        control._setValid();
+      }
+      _values.current = props.values;
+      updateFormState((state2) => ({ ...state2 }));
+    } else {
+      control._resetDefaultValues();
+    }
+  }, [control, props.values]);
+  React$4.useEffect(() => {
+    if (!control._state.mount) {
+      control._setValid();
+      control._state.mount = true;
+    }
+    if (control._state.watch) {
+      control._state.watch = false;
+      control._subjects.state.next({ ...control._formState });
+    }
+    control._removeUnmounted();
+  });
+  _formControl.current.formState = React$4.useMemo(() => getProxyFormState(formState, control), [control, formState]);
+  return _formControl.current;
+}
 function useScrollAnimation(threshold = 0.15) {
   const ref = reactExports.useRef(null);
   const isInView = useInView(ref, { once: true, amount: threshold });
   return { ref, isInView };
+}
+const SPARKLE_POSITIONS$1 = [
+  { top: "8%", left: "6%", size: 14, delay: 0 },
+  { top: "15%", right: "10%", size: 10, delay: 0.5 },
+  { top: "55%", left: "3%", size: 12, delay: 0.9 },
+  { top: "70%", right: "6%", size: 16, delay: 0.3 },
+  { top: "40%", left: "48%", size: 8, delay: 0.7 },
+  { top: "85%", left: "22%", size: 10, delay: 1.1 },
+  { top: "25%", right: "30%", size: 9, delay: 0.2 }
+];
+function SparkleIcon$1({ size }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "svg",
+    {
+      width: size,
+      height: size,
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      "aria-hidden": "true",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M12 2l1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5z" })
+    }
+  );
+}
+function FloatingSparkles$1() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "absolute inset-0 pointer-events-none overflow-hidden",
+      "aria-hidden": "true",
+      children: SPARKLE_POSITIONS$1.map((pos) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          className: "absolute",
+          style: {
+            top: pos.top,
+            left: "left" in pos ? pos.left : void 0,
+            right: "right" in pos ? pos.right : void 0,
+            color: "oklch(0.72 0.1 52 / 0.4)"
+          },
+          animate: {
+            y: [-6, 6, -6],
+            opacity: [0.2, 0.55, 0.2],
+            scale: [0.85, 1.15, 0.85],
+            rotate: [0, 180, 360]
+          },
+          transition: {
+            duration: 4 + pos.delay * 2,
+            delay: pos.delay,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut"
+          },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SparkleIcon$1, { size: pos.size })
+        },
+        `appt-sparkle-${pos.top}-${pos.delay}`
+      ))
+    }
+  );
+}
+const serviceOptions = [
+  "Bridal Makeup",
+  "Engagement Makeup",
+  "Celebrity Makeup",
+  "Party Makeup",
+  "HD Makeup",
+  "Airbrush Makeup"
+];
+const timeOptions = [
+  { value: "morning", label: "Morning (9 AM – 12 PM)" },
+  { value: "afternoon", label: "Afternoon (12 PM – 3 PM)" },
+  { value: "evening", label: "Evening (3 PM – 7 PM)" }
+];
+const infoStrip = [
+  { icon: "📞", text: "Instant response within 2 hours" },
+  { icon: "📅", text: "Book up to 30 days in advance" },
+  { icon: "✨", text: "Free consultation included" }
+];
+const inputStyle = {
+  background: "oklch(0.22 0.06 42 / 0.80)",
+  border: "1px solid oklch(0.55 0.1 52 / 0.40)",
+  color: "oklch(0.92 0.018 52)"
+};
+const focusStyle = "focus:outline-none focus:ring-2 focus:ring-[oklch(0.72_0.1_52_/_0.55)] focus:border-[oklch(0.72_0.1_52)]";
+const labelClass = "block text-sm font-medium mb-2 font-body";
+const today = (/* @__PURE__ */ new Date()).toISOString().split("T")[0];
+function AppointmentSection() {
+  const { ref, isInView } = useScrollAnimation(0.1);
+  const [submitted, setSubmitted] = reactExports.useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      fullName: "",
+      phone: "",
+      email: "",
+      serviceType: "",
+      preferredDate: "",
+      preferredTime: "",
+      notes: ""
+    }
+  });
+  const onSubmit = (data) => {
+    var _a2;
+    const timeLabel = ((_a2 = timeOptions.find((t) => t.value === data.preferredTime)) == null ? void 0 : _a2.label) ?? data.preferredTime;
+    const message = [
+      "✨ *Appointment Request – BEAUTYGRAM BY UNNATI*",
+      "",
+      `👤 *Name:* ${data.fullName}`,
+      `📞 *Phone:* ${data.phone}`,
+      data.email ? `📧 *Email:* ${data.email}` : null,
+      `💄 *Service:* ${data.serviceType}`,
+      `📅 *Date:* ${data.preferredDate}`,
+      `⏰ *Time:* ${timeLabel}`,
+      data.notes ? `📝 *Notes:* ${data.notes}` : null,
+      "",
+      "Looking forward to my transformation! 🌟"
+    ].filter(Boolean).join("\n");
+    const encoded = encodeURIComponent(message);
+    window.open(
+      `https://wa.me/917041937373?text=${encoded}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setSubmitted(true);
+    reset();
+    setTimeout(() => setSubmitted(false), 6e3);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "section",
+    {
+      id: "appointment",
+      className: "relative py-28 overflow-hidden",
+      style: {
+        background: "linear-gradient(135deg, oklch(0.28 0.08 42) 0%, oklch(0.32 0.09 46) 45%, oklch(0.35 0.1 48) 100%)"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-0 pointer-events-none", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-[-10%] left-[-8%] w-96 h-96 blur-orb",
+              style: { background: "oklch(0.62 0.12 52 / 0.14)" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute bottom-[-12%] right-[-6%] w-80 h-80 blur-orb",
+              style: { background: "oklch(0.7 0.09 55 / 0.11)" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-72 blur-orb",
+              style: { background: "oklch(0.55 0.1 50 / 0.07)" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.1_52_/_0.4)] to-transparent" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[oklch(0.62_0.1_50_/_0.28)] to-transparent" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(FloatingSparkles$1, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            ref,
+            className: "relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: { opacity: 0, y: 30 },
+                  animate: isInView ? { opacity: 1, y: 0 } : {},
+                  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                  className: "text-center mb-14",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 text-sm font-medium",
+                        style: {
+                          background: "oklch(0.62 0.1 52 / 0.15)",
+                          border: "1px solid oklch(0.72 0.1 52 / 0.35)",
+                          color: "oklch(0.82 0.1 52)"
+                        },
+                        children: "✦ Reserve Your Slot"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "h2",
+                      {
+                        className: "font-display text-4xl sm:text-5xl xl:text-6xl font-bold mb-5 leading-tight glow-text",
+                        style: { color: "oklch(0.95 0.018 52)" },
+                        children: [
+                          "Book Your",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.78 0.12 52)" }, children: "Appointment" })
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center mb-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "h-1 w-24 rounded-full",
+                        style: {
+                          background: "linear-gradient(90deg, oklch(0.62 0.12 50), oklch(0.78 0.12 52), oklch(0.62 0.12 50))",
+                          boxShadow: "0 0 12px oklch(0.72 0.12 52 / 0.55)"
+                        }
+                      }
+                    ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "font-body text-base sm:text-lg max-w-xl mx-auto leading-relaxed",
+                        style: { color: "oklch(0.75 0.06 48)" },
+                        children: "Secure your date with Unnati for a bespoke bridal or makeup consultation. Fill the form below and your details will be sent directly via WhatsApp."
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: { opacity: 0, y: 40 },
+                  animate: isInView ? { opacity: 1, y: 0 } : {},
+                  transition: { duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] },
+                  className: "relative rounded-3xl p-8 sm:p-10 overflow-hidden",
+                  style: {
+                    background: "oklch(0.3 0.08 45 / 0.72)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid oklch(0.55 0.1 52 / 0.32)",
+                    boxShadow: "0 0 60px oklch(0.45 0.12 48 / 0.22), 0 0 120px oklch(0.62 0.1 52 / 0.10), inset 0 0 40px oklch(0.55 0.1 50 / 0.05)"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "absolute inset-0 rounded-3xl pointer-events-none",
+                        style: {
+                          background: "radial-gradient(ellipse 70% 40% at 50% 0%, oklch(0.72 0.1 52 / 0.10) 0%, transparent 60%)"
+                        }
+                      }
+                    ),
+                    submitted && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      motion.div,
+                      {
+                        initial: { opacity: 0, scale: 0.9 },
+                        animate: { opacity: 1, scale: 1 },
+                        className: "relative z-10 flex flex-col items-center justify-center text-center py-14 gap-4",
+                        "data-ocid": "appointment.success_state",
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              className: "w-20 h-20 rounded-full flex items-center justify-center",
+                              style: {
+                                background: "oklch(0.55 0.12 48 / 0.18)",
+                                border: "1px solid oklch(0.72 0.1 52 / 0.45)",
+                                boxShadow: "0 0 30px oklch(0.72 0.1 52 / 0.35)"
+                              },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                CircleCheckBig,
+                                {
+                                  className: "w-10 h-10",
+                                  style: { color: "oklch(0.78 0.12 52)" }
+                                }
+                              )
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "h3",
+                            {
+                              className: "font-display text-2xl font-bold",
+                              style: { color: "oklch(0.92 0.018 52)" },
+                              children: "Request Sent!"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "p",
+                            {
+                              className: "font-body text-base max-w-sm",
+                              style: { color: "oklch(0.72 0.06 48)" },
+                              children: "Your appointment request has been sent! Unnati will contact you shortly."
+                            }
+                          )
+                        ]
+                      }
+                    ),
+                    !submitted && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "form",
+                      {
+                        onSubmit: handleSubmit(onSubmit),
+                        className: "relative z-10",
+                        "data-ocid": "appointment.form",
+                        noValidate: true,
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-6", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-name",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Full Name",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.72 0.1 52)" }, children: "*" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "input",
+                                {
+                                  id: "appt-name",
+                                  type: "text",
+                                  placeholder: "Your full name",
+                                  "data-ocid": "appointment.name_input",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle}`,
+                                  style: {
+                                    ...inputStyle,
+                                    ...errors.fullName ? { borderColor: "oklch(0.65 0.22 25 / 0.7)" } : {}
+                                  },
+                                  ...register("fullName", {
+                                    required: "Full name is required"
+                                  })
+                                }
+                              ),
+                              errors.fullName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.name.field_error",
+                                  children: errors.fullName.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-phone",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Phone Number",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.72 0.1 52)" }, children: "*" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "input",
+                                {
+                                  id: "appt-phone",
+                                  type: "tel",
+                                  placeholder: "Your mobile number",
+                                  "data-ocid": "appointment.phone_input",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle}`,
+                                  style: {
+                                    ...inputStyle,
+                                    ...errors.phone ? { borderColor: "oklch(0.65 0.22 25 / 0.7)" } : {}
+                                  },
+                                  ...register("phone", {
+                                    required: "Phone number is required",
+                                    pattern: {
+                                      value: /^[0-9+\-\s()]{7,15}$/,
+                                      message: "Enter a valid phone number"
+                                    }
+                                  })
+                                }
+                              ),
+                              errors.phone && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.phone.field_error",
+                                  children: errors.phone.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-email",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Email Address",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.55 0.06 48)" }, children: "(optional)" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "input",
+                                {
+                                  id: "appt-email",
+                                  type: "email",
+                                  placeholder: "your@email.com",
+                                  "data-ocid": "appointment.email_input",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle}`,
+                                  style: inputStyle,
+                                  ...register("email", {
+                                    pattern: {
+                                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                      message: "Enter a valid email"
+                                    }
+                                  })
+                                }
+                              ),
+                              errors.email && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.email.field_error",
+                                  children: errors.email.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-service",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Service Type",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.72 0.1 52)" }, children: "*" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "select",
+                                {
+                                  id: "appt-service",
+                                  "data-ocid": "appointment.service_select",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle} appearance-none`,
+                                  style: {
+                                    ...inputStyle,
+                                    ...errors.serviceType ? { borderColor: "oklch(0.65 0.22 25 / 0.7)" } : {}
+                                  },
+                                  ...register("serviceType", {
+                                    required: "Please select a service"
+                                  }),
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "option",
+                                      {
+                                        value: "",
+                                        style: { background: "oklch(0.22 0.06 42)" },
+                                        children: "Select a service…"
+                                      }
+                                    ),
+                                    serviceOptions.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "option",
+                                      {
+                                        value: s,
+                                        style: { background: "oklch(0.22 0.06 42)" },
+                                        children: s
+                                      },
+                                      s
+                                    ))
+                                  ]
+                                }
+                              ),
+                              errors.serviceType && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.service.field_error",
+                                  children: errors.serviceType.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-date",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Preferred Date",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.72 0.1 52)" }, children: "*" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "input",
+                                {
+                                  id: "appt-date",
+                                  type: "date",
+                                  min: today,
+                                  "data-ocid": "appointment.date_input",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle}`,
+                                  style: {
+                                    ...inputStyle,
+                                    colorScheme: "dark",
+                                    ...errors.preferredDate ? { borderColor: "oklch(0.65 0.22 25 / 0.7)" } : {}
+                                  },
+                                  ...register("preferredDate", {
+                                    required: "Please select a date"
+                                  })
+                                }
+                              ),
+                              errors.preferredDate && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.date.field_error",
+                                  children: errors.preferredDate.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-1", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-time",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Preferred Time",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.72 0.1 52)" }, children: "*" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "select",
+                                {
+                                  id: "appt-time",
+                                  "data-ocid": "appointment.time_select",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth ${focusStyle} appearance-none`,
+                                  style: {
+                                    ...inputStyle,
+                                    ...errors.preferredTime ? { borderColor: "oklch(0.65 0.22 25 / 0.7)" } : {}
+                                  },
+                                  ...register("preferredTime", {
+                                    required: "Please select a time slot"
+                                  }),
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "option",
+                                      {
+                                        value: "",
+                                        style: { background: "oklch(0.22 0.06 42)" },
+                                        children: "Select a time slot…"
+                                      }
+                                    ),
+                                    timeOptions.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                      "option",
+                                      {
+                                        value: t.value,
+                                        style: { background: "oklch(0.22 0.06 42)" },
+                                        children: t.label
+                                      },
+                                      t.value
+                                    ))
+                                  ]
+                                }
+                              ),
+                              errors.preferredTime && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
+                                {
+                                  className: "mt-1.5 text-xs",
+                                  style: { color: "oklch(0.7 0.18 25)" },
+                                  "data-ocid": "appointment.time.field_error",
+                                  children: errors.preferredTime.message
+                                }
+                              )
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "sm:col-span-2", children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "label",
+                                {
+                                  htmlFor: "appt-notes",
+                                  className: labelClass,
+                                  style: { color: "oklch(0.82 0.08 50)" },
+                                  children: [
+                                    "Occasion / Special Notes",
+                                    " ",
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.55 0.06 48)" }, children: "(optional)" })
+                                  ]
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "textarea",
+                                {
+                                  id: "appt-notes",
+                                  rows: 4,
+                                  placeholder: "Tell Unnati about your occasion, skin tone, inspirations, or any special requirements…",
+                                  "data-ocid": "appointment.notes_textarea",
+                                  className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth resize-none ${focusStyle}`,
+                                  style: inputStyle,
+                                  ...register("notes")
+                                }
+                              )
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            motion.button,
+                            {
+                              type: "submit",
+                              "data-ocid": "appointment.submit_button",
+                              whileHover: { scale: 1.015 },
+                              whileTap: { scale: 0.98 },
+                              className: "mt-8 w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-bold text-base transition-smooth relative overflow-hidden",
+                              style: {
+                                background: "linear-gradient(135deg, oklch(0.55 0.12 48) 0%, oklch(0.45 0.13 44) 50%, oklch(0.38 0.11 42) 100%)",
+                                color: "oklch(0.96 0.012 52)",
+                                boxShadow: "0 0 32px oklch(0.55 0.12 48 / 0.48), 0 4px 20px oklch(0.45 0.12 48 / 0.32)",
+                                border: "1px solid oklch(0.65 0.1 52 / 0.35)"
+                              },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "span",
+                                  {
+                                    className: "absolute inset-0 rounded-2xl pointer-events-none",
+                                    style: {
+                                      background: "linear-gradient(105deg, transparent 30%, oklch(0.9 0.06 55 / 0.12) 50%, transparent 70%)"
+                                    }
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5 relative z-10 flex-shrink-0" }),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: "Send Booking Request via WhatsApp" })
+                              ]
+                            }
+                          )
+                        ]
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.div,
+                {
+                  initial: { opacity: 0, y: 20 },
+                  animate: isInView ? { opacity: 1, y: 0 } : {},
+                  transition: { duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] },
+                  className: "mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8",
+                  children: infoStrip.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-body",
+                      style: {
+                        background: "oklch(0.38 0.08 46 / 0.60)",
+                        border: "1px solid oklch(0.62 0.08 50 / 0.28)",
+                        color: "oklch(0.78 0.07 50)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-base", "aria-hidden": "true", children: item.icon }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item.text })
+                      ]
+                    },
+                    item.text
+                  ))
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
 }
 const SPARKLE_POSITIONS = [
   { top: "10%", left: "8%", size: 16, delay: 0 },
@@ -27570,7 +30124,7 @@ function CTAPrimary() {
         {
           className: "absolute inset-0",
           style: {
-            background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.82 0.14 330 / 0.18) 0%, oklch(0.88 0.10 330 / 0.08) 40%, transparent 70%)"
+            background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.65 0.12 52 / 0.16) 0%, oklch(0.72 0.09 54 / 0.08) 40%, transparent 70%)"
           }
         }
       ),
@@ -27589,10 +30143,11 @@ function CTAPrimary() {
             initial: { opacity: 0, scale: 0.92 },
             animate: isInView ? { opacity: 1, scale: 1 } : {},
             transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-            className: "relative rounded-3xl p-12 sm:p-16 border border-primary/30 overflow-hidden",
+            className: "relative rounded-3xl p-12 sm:p-16 overflow-hidden",
             style: {
-              background: "linear-gradient(135deg, oklch(0.98 0.02 325) 0%, oklch(0.97 0.025 335) 50%, oklch(0.98 0.018 320) 100%)",
-              boxShadow: "0 0 60px oklch(0.65 0.22 330 / 0.18), 0 0 120px oklch(0.70 0.18 330 / 0.08), inset 0 0 40px oklch(0.65 0.22 330 / 0.04)"
+              background: "linear-gradient(135deg, oklch(0.95 0.022 52) 0%, oklch(0.94 0.025 48) 50%, oklch(0.95 0.018 55) 100%)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+              boxShadow: "0 0 65px oklch(0.58 0.12 50 / 0.20), 0 0 130px oklch(0.65 0.10 52 / 0.10), inset 0 0 45px oklch(0.60 0.12 50 / 0.05)"
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27600,7 +30155,7 @@ function CTAPrimary() {
                 {
                   className: "absolute inset-0 rounded-3xl pointer-events-none",
                   style: {
-                    background: "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.75 0.18 330 / 0.14) 0%, transparent 60%)"
+                    background: "radial-gradient(ellipse 70% 50% at 50% 0%, oklch(0.62 0.14 50 / 0.14) 0%, transparent 60%)"
                   }
                 }
               ),
@@ -27611,7 +30166,11 @@ function CTAPrimary() {
                     initial: { opacity: 0, y: 20 },
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.6, delay: 0.1 },
-                    className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6 bg-primary/10 border border-primary/35",
+                    className: "inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6",
+                    style: {
+                      background: "oklch(0.55 0.12 48 / 0.12)",
+                      border: "1px solid oklch(0.55 0.10 50 / 0.36)"
+                    },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium tracking-wide", children: "✦ Celebrity Makeup Artist" })
                   }
                 ),
@@ -27654,7 +30213,7 @@ function CTAPrimary() {
                           "data-ocid": "cta-primary-book",
                           className: "inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base bg-primary text-primary-foreground transition-smooth group relative overflow-hidden hover:bg-primary/90",
                           style: {
-                            boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.25)"
+                            boxShadow: "0 0 30px oklch(0.45 0.12 48 / 0.48), 0 4px 20px oklch(0.45 0.12 48 / 0.28)"
                           },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5" }),
@@ -27669,7 +30228,11 @@ function CTAPrimary() {
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-primary-whatsapp",
-                          className: "inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm",
+                          className: "inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-base transition-smooth text-primary backdrop-blur-sm",
+                          style: {
+                            border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                            background: "oklch(0.96 0.014 55 / 0.65)"
+                          },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-5 h-5" }),
                             "WhatsApp Us"
@@ -27712,7 +30275,7 @@ function CTASecondary() {
     {
       className: "relative py-24 overflow-hidden",
       style: {
-        background: "linear-gradient(135deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.022 335) 50%, oklch(0.97 0.015 318) 100%)"
+        background: "linear-gradient(135deg, oklch(0.95 0.020 50) 0%, oklch(0.94 0.024 46) 50%, oklch(0.95 0.018 55) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27720,7 +30283,7 @@ function CTASecondary() {
           {
             className: "absolute inset-0",
             style: {
-              background: "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.75 0.18 330 / 0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.80 0.14 340 / 0.12) 0%, transparent 50%)"
+              background: "radial-gradient(ellipse 90% 70% at 30% 50%, oklch(0.62 0.12 50 / 0.14) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 30%, oklch(0.68 0.10 52 / 0.12) 0%, transparent 50%)"
             }
           }
         ) }),
@@ -27738,7 +30301,17 @@ function CTASecondary() {
                   animate: isInView ? { opacity: 1, x: 0 } : {},
                   transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
                   children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium bg-primary/10 border border-primary/30", children: "✦ Limited Slots Available" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm text-primary font-medium",
+                        style: {
+                          background: "oklch(0.55 0.12 48 / 0.10)",
+                          border: "1px solid oklch(0.55 0.10 50 / 0.32)"
+                        },
+                        children: "✦ Limited Slots Available"
+                      }
+                    ),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "font-display text-4xl sm:text-5xl font-bold text-foreground mb-5 leading-tight", children: [
                       "Your Dream",
                       " ",
@@ -27749,13 +30322,21 @@ function CTASecondary() {
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "div",
                       {
-                        className: "inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8 bg-white/80 backdrop-blur-sm",
+                        className: "inline-flex items-center gap-3 px-6 py-4 rounded-2xl mb-8 backdrop-blur-sm",
                         style: {
-                          border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                          boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.15)"
+                          background: "oklch(0.96 0.014 55 / 0.82)",
+                          border: "1px solid oklch(0.60 0.10 50 / 0.32)",
+                          boxShadow: "0 0 22px oklch(0.52 0.12 48 / 0.16)"
                         },
                         children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-primary/12", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5 text-primary" }) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              className: "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0",
+                              style: { background: "oklch(0.55 0.12 48 / 0.12)" },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-5 h-5 text-primary" })
+                            }
+                          ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mb-0.5", children: "Call or message now" }),
                             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "07041937373" })
@@ -27771,7 +30352,7 @@ function CTASecondary() {
                           "data-ocid": "cta-secondary-call",
                           className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth bg-primary text-primary-foreground hover:bg-primary/90",
                           style: {
-                            boxShadow: "0 0 24px oklch(0.52 0.24 335 / 0.4)"
+                            boxShadow: "0 0 26px oklch(0.45 0.12 48 / 0.42)"
                           },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4" }),
@@ -27786,7 +30367,11 @@ function CTASecondary() {
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-secondary-whatsapp",
-                          className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth border border-primary/40 text-primary hover:bg-primary/10 bg-white/60 backdrop-blur-sm",
+                          className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm transition-smooth text-primary backdrop-blur-sm",
+                          style: {
+                            border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                            background: "oklch(0.96 0.014 55 / 0.65)"
+                          },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-4 h-4" }),
                             "WhatsApp"
@@ -27823,9 +30408,11 @@ function CTASecondary() {
                       initial: { opacity: 0, y: 20 },
                       animate: isInView ? { opacity: 1, y: 0 } : {},
                       transition: { duration: 0.6, delay: 0.3 + i2 * 0.1 },
-                      className: "rounded-2xl p-6 text-center border border-primary/20 bg-white/80 backdrop-blur-sm",
+                      className: "rounded-2xl p-6 text-center backdrop-blur-sm",
                       style: {
-                        boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)"
+                        border: "1px solid oklch(0.68 0.08 52 / 0.24)",
+                        background: "oklch(0.96 0.014 55 / 0.82)",
+                        boxShadow: "0 4px 20px oklch(0.52 0.12 48 / 0.10)"
                       },
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27866,7 +30453,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
-    glowColor: "oklch(0.52 0.24 335 / 0.32)",
+    glowColor: "oklch(0.52 0.12 48 / 0.32)",
     rating: 5
   },
   {
@@ -27879,7 +30466,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/30",
-    glowColor: "oklch(0.52 0.24 335 / 0.36)",
+    glowColor: "oklch(0.52 0.12 48 / 0.36)",
     rating: 5
   },
   {
@@ -27892,7 +30479,7 @@ const celebrities = [
     color: "text-primary",
     bgColor: "bg-primary/8",
     borderColor: "border-primary/25",
-    glowColor: "oklch(0.60 0.20 335 / 0.32)",
+    glowColor: "oklch(0.60 0.10 52 / 0.32)",
     rating: 5
   }
 ];
@@ -27936,10 +30523,20 @@ function CelebritySection() {
       id: "celebrity",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(160deg, oklch(0.97 0.020 330) 0%, oklch(0.98 0.014 320) 50%, oklch(0.96 0.022 340) 100%)"
+        background: "linear-gradient(160deg, oklch(0.94 0.022 50) 0%, oklch(0.96 0.016 55) 50%, oklch(0.93 0.024 46) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none",
+            style: {
+              background: "radial-gradient(circle, oklch(0.60 0.12 50 / 0.14) 0%, transparent 70%)",
+              filter: "blur(80px)"
+            }
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 pointer-events-none overflow-hidden", children: floatingOrbs.map((orb, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
@@ -27967,7 +30564,11 @@ function CelebritySection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "Celebrity & Media Work" })
@@ -28017,9 +30618,11 @@ function CelebritySection() {
                     damping: 20
                   },
                   whileHover: { scale: 1.07, y: -3 },
-                  className: "flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/85 border border-primary/30 cursor-default backdrop-blur-sm",
+                  className: "flex items-center gap-2 px-5 py-2.5 rounded-full cursor-default backdrop-blur-sm",
                   style: {
-                    boxShadow: "0 2px 18px oklch(0.52 0.24 335 / 0.16), inset 0 0 12px oklch(0.52 0.24 335 / 0.04)"
+                    background: "oklch(0.96 0.014 55 / 0.88)",
+                    border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                    boxShadow: "0 2px 18px oklch(0.52 0.12 48 / 0.16), inset 0 0 12px oklch(0.55 0.10 50 / 0.05)"
                   },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-base", children: badge.icon }),
@@ -28049,13 +30652,17 @@ function CelebritySection() {
                     type: "spring",
                     stiffness: 280
                   },
-                  className: "relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl bg-white/85 border border-primary/20 text-center overflow-hidden backdrop-blur-sm",
-                  style: { boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.12)" },
+                  className: "relative flex flex-col items-center justify-center py-6 px-4 rounded-2xl text-center overflow-hidden backdrop-blur-sm",
+                  style: {
+                    background: "oklch(0.96 0.014 55 / 0.88)",
+                    border: "1px solid oklch(0.68 0.10 50 / 0.22)",
+                    boxShadow: "0 4px 20px oklch(0.52 0.12 48 / 0.14)"
+                  },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       motion.div,
                       {
-                        className: "absolute inset-0 bg-primary/5 rounded-2xl",
+                        className: "absolute inset-0 rounded-2xl bg-primary/5",
                         animate: { opacity: [0.3, 0.7, 0.3] },
                         transition: {
                           duration: 3 + i2,
@@ -28081,7 +30688,10 @@ function CelebritySection() {
                 viewport: { once: true },
                 transition: { duration: 0.7, delay: i2 * 0.15 },
                 whileHover: { y: -6 },
-                className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`,
+                className: `relative backdrop-blur-sm rounded-3xl p-8 border ${celeb.borderColor} card-elevated group cursor-default overflow-hidden`,
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.88)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.div,
@@ -28173,7 +30783,7 @@ function CelebritySection() {
                       {
                         className: "w-8 h-8 text-primary",
                         style: {
-                          filter: "drop-shadow(0 0 10px oklch(0.52 0.24 335 / 0.65))"
+                          filter: "drop-shadow(0 0 10px oklch(0.52 0.12 48 / 0.65))"
                         }
                       }
                     )
@@ -28204,8 +30814,11 @@ function CelebritySection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "div",
                   {
-                    className: "relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30",
-                    style: { boxShadow: "0 0 38px oklch(0.52 0.24 335 / 0.22)" },
+                    className: "relative rounded-3xl overflow-hidden aspect-[4/5]",
+                    style: {
+                      border: "1px solid oklch(0.60 0.10 50 / 0.35)",
+                      boxShadow: "0 0 40px oklch(0.52 0.12 48 / 0.22)"
+                    },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
@@ -28215,12 +30828,24 @@ function CelebritySection() {
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
-                          className: "absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20",
-                          style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" },
+                          className: "absolute inset-0",
+                          style: {
+                            background: "linear-gradient(to top, oklch(0.88 0.06 50 / 0.60), transparent)"
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute bottom-4 left-4 right-4 backdrop-blur-sm rounded-xl px-3 py-2",
+                          style: {
+                            background: "oklch(0.96 0.014 55 / 0.90)",
+                            border: "1px solid oklch(0.65 0.10 50 / 0.22)",
+                            boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.16)"
+                          },
                           children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(Crown, { className: "w-3 h-3 text-primary" }),
                             "Celebrity Glam"
@@ -28233,8 +30858,11 @@ function CelebritySection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "div",
                   {
-                    className: "relative rounded-3xl overflow-hidden aspect-[4/5] border border-primary/30",
-                    style: { boxShadow: "0 0 38px oklch(0.60 0.20 335 / 0.2)" },
+                    className: "relative rounded-3xl overflow-hidden aspect-[4/5]",
+                    style: {
+                      border: "1px solid oklch(0.60 0.10 50 / 0.35)",
+                      boxShadow: "0 0 40px oklch(0.60 0.10 52 / 0.20)"
+                    },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "img",
@@ -28244,12 +30872,24 @@ function CelebritySection() {
                           className: "w-full h-full object-cover object-top"
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/60 via-transparent to-transparent" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
-                          className: "absolute bottom-4 left-4 right-4 bg-white/88 backdrop-blur-sm rounded-xl px-3 py-2 border border-primary/20",
-                          style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.14)" },
+                          className: "absolute inset-0",
+                          style: {
+                            background: "linear-gradient(to top, oklch(0.88 0.06 50 / 0.60), transparent)"
+                          }
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          className: "absolute bottom-4 left-4 right-4 backdrop-blur-sm rounded-xl px-3 py-2",
+                          style: {
+                            background: "oklch(0.96 0.014 55 / 0.90)",
+                            border: "1px solid oklch(0.65 0.10 50 / 0.22)",
+                            boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.16)"
+                          },
                           children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-foreground text-xs font-semibold flex items-center gap-1", children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-3 h-3 text-primary" }),
                             "Luxury Editorial"
@@ -28273,9 +30913,7 @@ const contactCards = [
     href: "tel:07041937373",
     icon: Phone,
     iconColor: "text-primary",
-    iconBg: "bg-primary/10 border-primary/30",
-    hoverBg: "group-hover:bg-primary/20",
-    hoverText: "group-hover:text-primary",
+    iconBg: "border-primary/30",
     label: "+91 70419 37373",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false
@@ -28285,9 +30923,7 @@ const contactCards = [
     href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-600",
-    iconBg: "bg-green-100 border-green-300",
-    hoverBg: "group-hover:bg-green-100",
-    hoverText: "group-hover:text-green-600",
+    iconBg: "border-green-300",
     label: "WhatsApp Us",
     sublabel: "Quick reply, instant booking",
     external: true
@@ -28297,9 +30933,7 @@ const contactCards = [
     href: "https://instagram.com/beautygrambyunnati",
     icon: Instagram,
     iconColor: "text-primary",
-    iconBg: "bg-primary/10 border-primary/30",
-    hoverBg: "group-hover:bg-primary/20",
-    hoverText: "group-hover:text-primary",
+    iconBg: "border-primary/30",
     label: "@beautygrambyunnati",
     sublabel: "DM for portfolio & bookings",
     external: true
@@ -28309,9 +30943,7 @@ const contactCards = [
     href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
     icon: MapPin,
     iconColor: "text-accent-foreground",
-    iconBg: "bg-accent/30 border-accent/50",
-    hoverBg: "group-hover:bg-accent/40",
-    hoverText: "group-hover:text-accent-foreground",
+    iconBg: "border-accent/50",
     label: "Plot no. 634/1, Sector-4/C",
     sublabel: "Gandhinagar, Gujarat 382006",
     external: true
@@ -28325,7 +30957,7 @@ function ContactSection() {
       id: "contact",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.96 0.020 325) 0%, oklch(0.97 0.014 320) 100%)"
+        background: "linear-gradient(180deg, oklch(0.94 0.022 50) 0%, oklch(0.95 0.016 54) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
@@ -28335,8 +30967,8 @@ function ContactSection() {
             {
               className: "absolute -bottom-20 -left-20 w-80 h-80 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.74 0.20 330 / 0.3) 0%, transparent 70%)",
-                filter: "blur(60px)"
+                background: "radial-gradient(circle, oklch(0.62 0.12 50 / 0.28) 0%, transparent 70%)",
+                filter: "blur(64px)"
               }
             }
           ),
@@ -28345,8 +30977,8 @@ function ContactSection() {
             {
               className: "absolute top-10 right-0 w-64 h-64 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.78 0.16 340 / 0.25) 0%, transparent 70%)",
-                filter: "blur(50px)"
+                background: "radial-gradient(circle, oklch(0.68 0.10 52 / 0.24) 0%, transparent 70%)",
+                filter: "blur(52px)"
               }
             }
           ),
@@ -28355,8 +30987,8 @@ function ContactSection() {
             {
               className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full",
               style: {
-                background: "radial-gradient(ellipse, oklch(0.82 0.12 330 / 0.18) 0%, transparent 70%)",
-                filter: "blur(70px)"
+                background: "radial-gradient(ellipse, oklch(0.72 0.09 52 / 0.16) 0%, transparent 70%)",
+                filter: "blur(75px)"
               }
             }
           )
@@ -28369,7 +31001,11 @@ function ContactSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium tracking-wide", children: "Get In Touch" })
@@ -28414,23 +31050,25 @@ function ContactSection() {
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6, delay: 0.1 + index2 * 0.1 },
                 whileHover: { y: -6, scale: 1.03 },
-                className: "group flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/85 backdrop-blur-sm border border-primary/15 card-elevated text-center cursor-pointer transition-smooth hover:border-primary/40",
+                className: "group flex flex-col items-center gap-3 p-6 rounded-2xl card-elevated text-center cursor-pointer transition-smooth backdrop-blur-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.85)",
+                  border: "1px solid oklch(0.72 0.08 52 / 0.30)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
                     {
-                      className: `w-14 h-14 rounded-2xl border flex items-center justify-center transition-smooth ${card.iconBg} ${card.hoverBg}`,
+                      className: "w-14 h-14 rounded-2xl border flex items-center justify-center transition-smooth group-hover:scale-110",
+                      style: {
+                        background: "oklch(0.55 0.12 48 / 0.10)",
+                        border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                      },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: `w-6 h-6 ${card.iconColor}` })
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: `text-foreground font-semibold text-sm transition-smooth ${card.hoverText}`,
-                        children: card.label
-                      }
-                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold text-sm transition-smooth group-hover:text-primary", children: card.label }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mt-0.5 leading-relaxed", children: card.sublabel })
                   ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-0.5 mt-auto", children: ["s1", "s2", "s3", "s4", "s5"].map((k2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -28454,36 +31092,46 @@ function ContactSection() {
                 transition: { duration: 0.8, delay: 0.3 },
                 className: "lg:col-span-2 space-y-6",
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white/85 backdrop-blur-sm rounded-3xl p-8 border border-primary/20 card-elevated", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-2xl font-bold text-foreground mb-2", children: "Studio Details" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mb-6 font-body", children: "Walk-ins welcome — appointments preferred for bridal sessions." }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 text-sm", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-primary pulse-glow flex-shrink-0" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
-                          "Mon – Sun:",
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "7:00 AM – 9:00 PM" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "backdrop-blur-sm rounded-3xl p-8 card-elevated",
+                      style: {
+                        background: "oklch(0.96 0.014 55 / 0.88)",
+                        border: "1px solid oklch(0.70 0.08 52 / 0.25)"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-2xl font-bold text-foreground mb-2", children: "Studio Details" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mb-6 font-body", children: "Walk-ins welcome — appointments preferred for bridal sessions." }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 text-sm", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-primary pulse-glow flex-shrink-0" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
+                              "Mon – Sun:",
+                              " ",
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "7:00 AM – 9:00 PM" })
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
+                              "Response time:",
+                              " ",
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Within 30 minutes" })
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-green-500 flex-shrink-0" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
+                              "Home visits:",
+                              " ",
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Gujarat" })
+                            ] })
+                          ] })
                         ] })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
-                          "Response time:",
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Within 30 minutes" })
-                        ] })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2 h-2 rounded-full bg-green-500 flex-shrink-0" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
-                          "Home visits:",
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Gujarat" })
-                        ] })
-                      ] })
-                    ] })
-                  ] }),
+                      ]
+                    }
+                  ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "a",
@@ -28504,7 +31152,11 @@ function ContactSection() {
                         target: "_blank",
                         rel: "noopener noreferrer",
                         "data-ocid": "contact-cta-whatsapp",
-                        className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl border border-primary/40 text-primary font-semibold hover:bg-primary/10 transition-smooth text-sm bg-white/70",
+                        className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl font-semibold hover:bg-primary/10 transition-smooth text-sm backdrop-blur-sm text-primary",
+                        style: {
+                          border: "1px solid oklch(0.55 0.10 50 / 0.42)",
+                          background: "oklch(0.96 0.014 55 / 0.70)"
+                        },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(SiWhatsapp, { className: "w-4 h-4" }),
                           "WhatsApp"
@@ -28526,13 +31178,32 @@ function ContactSection() {
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "div",
                     {
-                      className: "rounded-3xl overflow-hidden border-2 border-primary/30 relative",
+                      className: "rounded-3xl overflow-hidden relative",
                       style: {
-                        boxShadow: "0 0 40px oklch(0.65 0.20 330 / 0.22), 0 0 80px oklch(0.70 0.16 330 / 0.10), 0 20px 60px oklch(0.52 0.24 335 / 0.1)"
+                        border: "2px solid oklch(0.65 0.10 50 / 0.32)",
+                        boxShadow: "0 0 44px oklch(0.58 0.12 50 / 0.22), 0 0 85px oklch(0.65 0.10 52 / 0.10), 0 20px 60px oklch(0.52 0.12 48 / 0.10)"
                       },
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 right-0 w-16 h-16 bg-primary/20 blur-xl rounded-full pointer-events-none z-10" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "absolute top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-10",
+                            style: {
+                              background: "oklch(0.60 0.12 50 / 0.22)",
+                              filter: "blur(20px)"
+                            }
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            className: "absolute bottom-0 right-0 w-16 h-16 rounded-full pointer-events-none z-10",
+                            style: {
+                              background: "oklch(0.60 0.12 50 / 0.22)",
+                              filter: "blur(20px)"
+                            }
+                          }
+                        ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "iframe",
                           {
@@ -28631,7 +31302,11 @@ function FAQAccordionItem({
       whileInView: { opacity: 1, y: 0 },
       viewport: { once: true },
       transition: { duration: 0.5, delay: index2 * 0.05 },
-      className: `rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? "border border-primary/45 shadow-[0_0_22px_oklch(0.52_0.24_335/0.16),inset_0_0_18px_oklch(0.52_0.24_335/0.03)]" : "border border-border hover:border-primary/35"}`,
+      className: "rounded-2xl overflow-hidden transition-all duration-300",
+      style: {
+        border: isOpen ? "1px solid oklch(0.55 0.12 50 / 0.48)" : "1px solid oklch(0.78 0.06 52 / 0.45)",
+        boxShadow: isOpen ? "0 0 22px oklch(0.52 0.12 48 / 0.16), inset 0 0 18px oklch(0.55 0.10 50 / 0.04)" : void 0
+      },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "button",
@@ -28639,14 +31314,21 @@ function FAQAccordionItem({
             type: "button",
             "data-ocid": `faq-toggle-${item.id}`,
             onClick: onToggle,
-            className: "w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-pink-50/60 transition-smooth",
+            className: "w-full flex items-center justify-between px-6 py-5 text-left transition-smooth",
+            style: {
+              background: isOpen ? "oklch(0.94 0.022 50 / 0.80)" : "oklch(0.96 0.014 55 / 0.80)"
+            },
             "aria-expanded": isOpen,
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 pr-4", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
-                    className: `w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-smooth ${isOpen ? "bg-primary/15 text-primary" : "bg-muted text-muted-foreground"}`,
+                    className: "w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-smooth",
+                    style: {
+                      background: isOpen ? "oklch(0.55 0.12 48 / 0.16)" : "oklch(0.90 0.025 52 / 0.80)",
+                      color: isOpen ? "oklch(0.45 0.12 48)" : "oklch(0.55 0.06 50)"
+                    },
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleHelp, { className: "w-3.5 h-3.5" })
                   }
                 ),
@@ -28661,7 +31343,10 @@ function FAQAccordionItem({
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     ChevronDown,
                     {
-                      className: `w-5 h-5 transition-smooth ${isOpen ? "text-primary" : "text-muted-foreground"}`
+                      className: "w-5 h-5 transition-smooth",
+                      style: {
+                        color: isOpen ? "oklch(0.45 0.12 48)" : "oklch(0.55 0.06 50)"
+                      }
                     }
                   )
                 }
@@ -28677,7 +31362,17 @@ function FAQAccordionItem({
             exit: { height: 0, opacity: 0 },
             transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
             className: "overflow-hidden",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-6 pb-6 pt-1 border-t border-border/40 bg-pink-50/40", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed font-body pl-10", children: item.answer }) })
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "px-6 pb-6 pt-1",
+                style: {
+                  borderTop: "1px solid oklch(0.80 0.05 52 / 0.35)",
+                  background: "oklch(0.94 0.020 52 / 0.55)"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed font-body pl-10", children: item.answer })
+              }
+            )
           },
           "content"
         ) })
@@ -28693,7 +31388,7 @@ function FAQSection() {
       id: "faq",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.98 0.010 322) 0%, oklch(0.97 0.016 328) 100%)"
+        background: "linear-gradient(180deg, oklch(0.96 0.014 55) 0%, oklch(0.95 0.018 50) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
@@ -28703,8 +31398,8 @@ function FAQSection() {
             {
               className: "absolute top-20 right-0 w-64 h-64 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.76 0.18 330 / 0.3) 0%, transparent 70%)",
-                filter: "blur(60px)"
+                background: "radial-gradient(circle, oklch(0.65 0.12 52 / 0.28) 0%, transparent 70%)",
+                filter: "blur(64px)"
               }
             }
           ),
@@ -28713,8 +31408,8 @@ function FAQSection() {
             {
               className: "absolute bottom-20 left-0 w-48 h-48 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.25) 0%, transparent 70%)",
-                filter: "blur(50px)"
+                background: "radial-gradient(circle, oklch(0.60 0.13 48 / 0.24) 0%, transparent 70%)",
+                filter: "blur(52px)"
               }
             }
           )
@@ -28728,7 +31423,11 @@ function FAQSection() {
                 whileInView: { opacity: 1, y: 0 },
                 viewport: { once: true },
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/35 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.36)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Got Questions?" })
@@ -28779,8 +31478,12 @@ function FAQSection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.7, delay: 0.3 },
-              className: "mt-12 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-8 border border-primary/20",
-              style: { boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.12)" },
+              className: "mt-12 text-center backdrop-blur-sm rounded-3xl p-8",
+              style: {
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.68 0.08 52 / 0.24)",
+                boxShadow: "0 0 28px oklch(0.52 0.12 48 / 0.14)"
+              },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold font-display text-lg mb-2", children: "Still have questions?" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body text-sm mb-5", children: "We'd love to chat. Reach out directly and we'll get back to you within hours." }),
@@ -59818,7 +62521,7 @@ function WebGLAttributes(gl) {
     }
     attribute.onUploadCallback();
   }
-  function get(attribute) {
+  function get2(attribute) {
     if (attribute.isInterleavedBufferAttribute) attribute = attribute.data;
     return buffers.get(attribute);
   }
@@ -59856,7 +62559,7 @@ function WebGLAttributes(gl) {
     }
   }
   return {
-    get,
+    get: get2,
     remove,
     update: update2
   };
@@ -61299,7 +64002,7 @@ function WebGLCubeMaps(renderer) {
     }
     return texture;
   }
-  function get(texture) {
+  function get2(texture) {
     if (texture && texture.isTexture) {
       const mapping = texture.mapping;
       if (mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping) {
@@ -61335,7 +64038,7 @@ function WebGLCubeMaps(renderer) {
     cubemaps = /* @__PURE__ */ new WeakMap();
   }
   return {
-    get,
+    get: get2,
     dispose: dispose2
   };
 }
@@ -62016,7 +64719,7 @@ function _getCommonVertexShader() {
 function WebGLCubeUVMaps(renderer) {
   let cubeUVmaps = /* @__PURE__ */ new WeakMap();
   let pmremGenerator = null;
-  function get(texture) {
+  function get2(texture) {
     if (texture && texture.isTexture) {
       const mapping = texture.mapping;
       const isEquirectMap = mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping;
@@ -62076,7 +64779,7 @@ function WebGLCubeUVMaps(renderer) {
     }
   }
   return {
-    get,
+    get: get2,
     dispose: dispose2
   };
 }
@@ -62151,7 +64854,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     }
     info.memory.geometries--;
   }
-  function get(object, geometry) {
+  function get2(object, geometry) {
     if (geometries[geometry.id] === true) return geometry;
     geometry.addEventListener("dispose", onGeometryDispose);
     geometries[geometry.id] = true;
@@ -62211,7 +64914,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     return wireframeAttributes.get(geometry);
   }
   return {
-    get,
+    get: get2,
     update: update2,
     getWireframeAttribute
   };
@@ -63736,12 +66439,12 @@ class WebGLShaderCache {
   }
   _getShaderCacheForMaterial(material) {
     const cache = this.materialCache;
-    let set = cache.get(material);
-    if (set === void 0) {
-      set = /* @__PURE__ */ new Set();
-      cache.set(material, set);
+    let set2 = cache.get(material);
+    if (set2 === void 0) {
+      set2 = /* @__PURE__ */ new Set();
+      cache.set(material, set2);
     }
-    return set;
+    return set2;
   }
   _getShaderStage(code) {
     const cache = this.shaderCache;
@@ -64229,7 +66932,7 @@ function WebGLProperties() {
   function has(object) {
     return properties.has(object);
   }
-  function get(object) {
+  function get2(object) {
     let map = properties.get(object);
     if (map === void 0) {
       map = {};
@@ -64248,7 +66951,7 @@ function WebGLProperties() {
   }
   return {
     has,
-    get,
+    get: get2,
     remove,
     update: update2,
     dispose: dispose2
@@ -64366,7 +67069,7 @@ function WebGLRenderList() {
 }
 function WebGLRenderLists() {
   let lists = /* @__PURE__ */ new WeakMap();
-  function get(scene, renderCallDepth) {
+  function get2(scene, renderCallDepth) {
     const listArray = lists.get(scene);
     let list;
     if (listArray === void 0) {
@@ -64386,7 +67089,7 @@ function WebGLRenderLists() {
     lists = /* @__PURE__ */ new WeakMap();
   }
   return {
-    get,
+    get: get2,
     dispose: dispose2
   };
 }
@@ -64790,7 +67493,7 @@ function WebGLRenderState(extensions) {
 }
 function WebGLRenderStates(extensions) {
   let renderStates = /* @__PURE__ */ new WeakMap();
-  function get(scene, renderCallDepth = 0) {
+  function get2(scene, renderCallDepth = 0) {
     const renderStateArray = renderStates.get(scene);
     let renderState;
     if (renderStateArray === void 0) {
@@ -64810,7 +67513,7 @@ function WebGLRenderStates(extensions) {
     renderStates = /* @__PURE__ */ new WeakMap();
   }
   return {
-    get,
+    get: get2,
     dispose: dispose2
   };
 }
@@ -78363,12 +81066,12 @@ function useBridge() {
   }, [fiber, ContextBridge]);
 }
 function Block({
-  set
+  set: set2
 }) {
   useIsomorphicLayoutEffect(() => {
-    set(new Promise(() => null));
-    return () => set(false);
-  }, [set]);
+    set2(new Promise(() => null));
+    return () => set2(false);
+  }, [set2]);
   return null;
 }
 const ErrorBoundary = /* @__PURE__ */ ((_ErrorBoundary) => (_ErrorBoundary = class ErrorBoundary extends reactExports.Component {
@@ -78954,11 +81657,11 @@ function createEvents(store) {
 const isRenderer = (def) => !!(def != null && def.render);
 const context = /* @__PURE__ */ reactExports.createContext(null);
 const createStore = (invalidate2, advance2) => {
-  const rootStore = createWithEqualityFn((set, get) => {
+  const rootStore = createWithEqualityFn((set2, get2) => {
     const position = new Vector3();
     const defaultTarget = new Vector3();
     const tempTarget = new Vector3();
-    function getCurrentViewport(camera = get().camera, target = defaultTarget, size = get().size) {
+    function getCurrentViewport(camera = get2().camera, target = defaultTarget, size = get2().size) {
       const {
         width,
         height,
@@ -78995,7 +81698,7 @@ const createStore = (invalidate2, advance2) => {
       }
     }
     let performanceTimeout = void 0;
-    const setPerformanceCurrent = (current) => set((state3) => ({
+    const setPerformanceCurrent = (current) => set2((state3) => ({
       performance: {
         ...state3.performance,
         current
@@ -79003,8 +81706,8 @@ const createStore = (invalidate2, advance2) => {
     }));
     const pointer = new Vector2();
     const rootState = {
-      set,
-      get,
+      set: set2,
+      get: get2,
       // Mock objects that have to be configured
       gl: null,
       camera: null,
@@ -79016,8 +81719,8 @@ const createStore = (invalidate2, advance2) => {
       },
       scene: null,
       xr: null,
-      invalidate: (frames = 1) => invalidate2(get(), frames),
-      advance: (timestamp, runGlobalEffects) => advance2(timestamp, runGlobalEffects, get()),
+      invalidate: (frames = 1) => invalidate2(get2(), frames),
+      advance: (timestamp, runGlobalEffects) => advance2(timestamp, runGlobalEffects, get2()),
       legacy: false,
       linear: false,
       flat: false,
@@ -79033,10 +81736,10 @@ const createStore = (invalidate2, advance2) => {
         max: 1,
         debounce: 200,
         regress: () => {
-          const state3 = get();
+          const state3 = get2();
           if (performanceTimeout) clearTimeout(performanceTimeout);
           if (state3.performance.current !== state3.performance.min) setPerformanceCurrent(state3.performance.min);
-          performanceTimeout = setTimeout(() => setPerformanceCurrent(get().performance.max), state3.performance.debounce);
+          performanceTimeout = setTimeout(() => setPerformanceCurrent(get2().performance.max), state3.performance.debounce);
         }
       },
       size: {
@@ -79057,7 +81760,7 @@ const createStore = (invalidate2, advance2) => {
         factor: 0,
         getCurrentViewport
       },
-      setEvents: (events2) => set((state3) => ({
+      setEvents: (events2) => set2((state3) => ({
         ...state3,
         events: {
           ...state3.events,
@@ -79065,14 +81768,14 @@ const createStore = (invalidate2, advance2) => {
         }
       })),
       setSize: (width, height, top = 0, left = 0) => {
-        const camera = get().camera;
+        const camera = get2().camera;
         const size = {
           width,
           height,
           top,
           left
         };
-        set((state3) => ({
+        set2((state3) => ({
           size,
           viewport: {
             ...state3.viewport,
@@ -79080,7 +81783,7 @@ const createStore = (invalidate2, advance2) => {
           }
         }));
       },
-      setDpr: (dpr) => set((state3) => {
+      setDpr: (dpr) => set2((state3) => {
         const resolved = calculateDpr(dpr);
         return {
           viewport: {
@@ -79091,14 +81794,14 @@ const createStore = (invalidate2, advance2) => {
         };
       }),
       setFrameloop: (frameloop = "always") => {
-        const clock = get().clock;
+        const clock = get2().clock;
         clock.stop();
         clock.elapsedTime = 0;
         if (frameloop !== "never") {
           clock.start();
           clock.elapsedTime = 0;
         }
-        set(() => ({
+        set2(() => ({
           frameloop
         }));
       },
@@ -79117,7 +81820,7 @@ const createStore = (invalidate2, advance2) => {
         frames: 0,
         priority: 0,
         subscribe: (ref, priority, store) => {
-          const internal = get().internal;
+          const internal = get2().internal;
           internal.priority = internal.priority + (priority > 0 ? 1 : 0);
           internal.subscribers.push({
             ref,
@@ -79126,7 +81829,7 @@ const createStore = (invalidate2, advance2) => {
           });
           internal.subscribers = internal.subscribers.sort((a2, b2) => a2.priority - b2.priority);
           return () => {
-            const internal2 = get().internal;
+            const internal2 = get2().internal;
             if (internal2 != null && internal2.subscribers) {
               internal2.priority = internal2.priority - (priority > 0 ? 1 : 0);
               internal2.subscribers = internal2.subscribers.filter((s) => s.ref !== ref);
@@ -79147,7 +81850,7 @@ const createStore = (invalidate2, advance2) => {
       size,
       viewport,
       gl,
-      set
+      set: set2
     } = rootStore.getState();
     if (size.width !== oldSize.width || size.height !== oldSize.height || viewport.dpr !== oldDpr) {
       oldSize = size;
@@ -79159,7 +81862,7 @@ const createStore = (invalidate2, advance2) => {
     }
     if (camera !== oldCamera) {
       oldCamera = camera;
-      set((state3) => ({
+      set2((state3) => ({
         viewport: {
           ...state3.viewport,
           ...state3.viewport.getCurrentViewport(camera)
@@ -79982,11 +82685,11 @@ function createPointerEvents(store) {
     },
     connect: (target) => {
       const {
-        set,
+        set: set2,
         events: events2
       } = store.getState();
       events2.disconnect == null ? void 0 : events2.disconnect();
-      set((state2) => ({
+      set2((state2) => ({
         events: {
           ...state2.events,
           connected: target
@@ -80004,7 +82707,7 @@ function createPointerEvents(store) {
     },
     disconnect: () => {
       const {
-        set,
+        set: set2,
         events: events2
       } = store.getState();
       if (events2.connected) {
@@ -80015,7 +82718,7 @@ function createPointerEvents(store) {
             events2.connected.removeEventListener(eventName, event);
           }
         }
-        set((state2) => ({
+        set2((state2) => ({
           events: {
             ...state2.events,
             connected: void 0
@@ -80343,17 +83046,17 @@ function AnimatedSphere({
     mesh.current.rotation.x = state2.clock.elapsedTime * speed * 0.3;
     mesh.current.rotation.y = state2.clock.elapsedTime * speed * 0.5;
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed, rotationIntensity: 0.5, floatIntensity: 1.5, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sphere2, { ref: mesh, args: [1, 64, 64], position, scale: scale2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed, rotationIntensity: 0.5, floatIntensity: 1.8, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sphere2, { ref: mesh, args: [1, 64, 64], position, scale: scale2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     MeshDistortMaterial,
     {
       color: color2,
       attach: "material",
-      distort: 0.4,
-      speed: 2,
-      roughness: 0.1,
-      metalness: 0.6,
+      distort: 0.45,
+      speed: 2.2,
+      roughness: 0.08,
+      metalness: 0.75,
       transparent: true,
-      opacity: 0.55
+      opacity: 0.6
     }
   ) }) });
 }
@@ -80370,7 +83073,7 @@ function AnimatedTorus({
     mesh.current.rotation.y = state2.clock.elapsedTime * speed * 0.6;
     mesh.current.rotation.z = state2.clock.elapsedTime * speed * 0.2;
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed: speed * 0.8, rotationIntensity: 1, floatIntensity: 2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Float, { speed: speed * 0.8, rotationIntensity: 1.2, floatIntensity: 2.2, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     Torus,
     {
       ref: mesh,
@@ -80381,10 +83084,10 @@ function AnimatedTorus({
         "meshStandardMaterial",
         {
           color: color2,
-          roughness: 0.05,
-          metalness: 0.8,
+          roughness: 0.04,
+          metalness: 0.9,
           transparent: true,
-          opacity: 0.5,
+          opacity: 0.55,
           wireframe: false
         }
       )
@@ -80392,13 +83095,13 @@ function AnimatedTorus({
   ) });
 }
 function ParticleField() {
-  const count = 220;
+  const count = 320;
   const positions = reactExports.useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i2 = 0; i2 < count; i2++) {
-      arr[i2 * 3] = (Math.random() - 0.5) * 28;
-      arr[i2 * 3 + 1] = (Math.random() - 0.5) * 20;
-      arr[i2 * 3 + 2] = (Math.random() - 0.5) * 16;
+      arr[i2 * 3] = (Math.random() - 0.5) * 30;
+      arr[i2 * 3 + 1] = (Math.random() - 0.5) * 22;
+      arr[i2 * 3 + 2] = (Math.random() - 0.5) * 18;
     }
     return arr;
   }, []);
@@ -80413,10 +83116,10 @@ function ParticleField() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "pointsMaterial",
       {
-        size: 0.06,
-        color: "#E8559A",
+        size: 0.07,
+        color: "#C49A6C",
         transparent: true,
-        opacity: 0.55,
+        opacity: 0.65,
         sizeAttenuation: true
       }
     )
@@ -80436,30 +83139,30 @@ function RingOrbiter({
     mesh.current.position.z = Math.sin(t) * radius * 0.5;
   });
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("mesh", { ref: mesh, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [0.12, 16, 16] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("sphereGeometry", { args: [0.14, 16, 16] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "meshStandardMaterial",
       {
         color: color2,
         emissive: color2,
-        emissiveIntensity: 1.2
+        emissiveIntensity: 1.5
       }
     )
   ] });
 }
 function Scene2() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 1, color: "#FFE8F5" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2, color: "#FF69B4" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -4, -4], intensity: 1.5, color: "#FFB6D9" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 8, -6], intensity: 1, color: "#FF1493" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("ambientLight", { intensity: 1.1, color: "#FFF8F0" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [6, 6, 4], intensity: 2.2, color: "#D4AA7D" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [-6, -4, -4], intensity: 1.6, color: "#8B5E3C" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("pointLight", { position: [0, 8, -6], intensity: 1.2, color: "#C49A6C" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ParticleField, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       AnimatedSphere,
       {
         position: [-4.5, 2, -3],
-        scale: 1.4,
-        color: "#FF69B4",
+        scale: 1.5,
+        color: "#C49A6C",
         speed: 0.8
       }
     ),
@@ -80467,8 +83170,8 @@ function Scene2() {
       AnimatedSphere,
       {
         position: [4.8, -1.5, -4],
-        scale: 1,
-        color: "#FFB6D9",
+        scale: 1.1,
+        color: "#8B5E3C",
         speed: 0.6
       }
     ),
@@ -80476,17 +83179,26 @@ function Scene2() {
       AnimatedSphere,
       {
         position: [0.5, 3.5, -5],
-        scale: 0.7,
-        color: "#FF1493",
+        scale: 0.75,
+        color: "#6B4226",
         speed: 1.1
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AnimatedSphere,
+      {
+        position: [-2.2, -2.8, -6],
+        scale: 0.6,
+        color: "#D4AA7D",
+        speed: 0.9
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       AnimatedTorus,
       {
         position: [3.5, 2.5, -2],
-        scale: 0.9,
-        color: "#FF69B4",
+        scale: 1,
+        color: "#B8875A",
         speed: 0.7
       }
     ),
@@ -80494,8 +83206,8 @@ function Scene2() {
       AnimatedTorus,
       {
         position: [-3.5, -1.5, -3],
-        scale: 0.65,
-        color: "#FFB6D9",
+        scale: 0.7,
+        color: "#A0714A",
         speed: 0.9
       }
     ),
@@ -80503,14 +83215,14 @@ function Scene2() {
       AnimatedTorus,
       {
         position: [0, -3, -5],
-        scale: 1.2,
-        color: "#FF8DC7",
+        scale: 1.3,
+        color: "#C49A6C",
         speed: 0.5
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 3.5, speed: 0.45, color: "#FFB6D9" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 2.8, speed: 0.7, color: "#FF69B4" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 4.2, speed: 0.3, color: "#FFD6E8" })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 3.5, speed: 0.45, color: "#D4AA7D" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 2.8, speed: 0.7, color: "#C49A6C" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RingOrbiter, { radius: 4.2, speed: 0.3, color: "#E8D5B0" })
   ] });
 }
 function FloatingOrb({
@@ -80530,14 +83242,14 @@ function FloatingOrb({
         top,
         left,
         background: color2,
-        filter: `blur(${size * 0.45}px)`,
-        opacity: 0.5
+        filter: `blur(${size * 0.5}px)`,
+        opacity: 0.55
       },
       animate: {
-        y: [0, -30, 0],
-        x: [0, 15, 0],
-        scale: [1, 1.15, 1],
-        opacity: [0.35, 0.65, 0.35]
+        y: [0, -35, 0],
+        x: [0, 18, 0],
+        scale: [1, 1.18, 1],
+        opacity: [0.38, 0.68, 0.38]
       },
       transition: {
         duration: 7 + delay2,
@@ -80563,7 +83275,7 @@ function HeroSection() {
       id: "home",
       className: "relative min-h-screen flex items-center overflow-hidden",
       style: {
-        background: "linear-gradient(135deg, oklch(0.99 0.01 318) 0%, oklch(0.97 0.022 330) 50%, oklch(0.98 0.015 312) 100%)"
+        background: "linear-gradient(135deg, oklch(0.97 0.018 58) 0%, oklch(0.95 0.025 50) 50%, oklch(0.96 0.020 45) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 z-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80580,7 +83292,7 @@ function HeroSection() {
           {
             className: "absolute inset-0 z-[1] pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.98 0.015 325 / 0.18) 0%, oklch(0.98 0.01 320 / 0.45) 65%, oklch(0.99 0.006 318 / 0.78) 100%)"
+              background: "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.96 0.018 55 / 0.16) 0%, oklch(0.95 0.022 50 / 0.42) 65%, oklch(0.96 0.014 48 / 0.75) 100%)"
             }
           }
         ),
@@ -80588,40 +83300,49 @@ function HeroSection() {
           FloatingOrb,
           {
             delay: 0,
-            size: 380,
+            size: 420,
             top: "3%",
             left: "2%",
-            color: "radial-gradient(circle, oklch(0.72 0.22 330 / 0.55), oklch(0.85 0.12 330 / 0.22))"
+            color: "radial-gradient(circle, oklch(0.65 0.14 52 / 0.52), oklch(0.78 0.09 55 / 0.22))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 1.8,
-            size: 240,
+            size: 260,
             top: "58%",
             left: "0%",
-            color: "radial-gradient(circle, oklch(0.68 0.24 338 / 0.5), oklch(0.82 0.14 330 / 0.18))"
+            color: "radial-gradient(circle, oklch(0.55 0.12 48 / 0.45), oklch(0.70 0.08 52 / 0.18))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 0.9,
-            size: 300,
+            size: 320,
             top: "12%",
             left: "70%",
-            color: "radial-gradient(circle, oklch(0.70 0.22 322 / 0.48), oklch(0.84 0.10 325 / 0.2))"
+            color: "radial-gradient(circle, oklch(0.62 0.13 50 / 0.44), oklch(0.76 0.08 55 / 0.20))"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           FloatingOrb,
           {
             delay: 2.2,
-            size: 200,
+            size: 220,
             top: "70%",
             left: "76%",
-            color: "radial-gradient(circle, oklch(0.76 0.18 342 / 0.45), oklch(0.88 0.08 340 / 0.2))"
+            color: "radial-gradient(circle, oklch(0.70 0.11 54 / 0.40), oklch(0.82 0.07 56 / 0.18))"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0 z-[1] pointer-events-none",
+            style: {
+              background: "radial-gradient(ellipse 55% 40% at 50% 50%, oklch(0.62 0.12 50 / 0.12) 0%, transparent 70%)"
+            }
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80687,7 +83408,11 @@ function HeroSection() {
                     initial: { opacity: 0, y: 24 },
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.6 },
-                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/75 border border-primary/35 mb-6 backdrop-blur-sm shadow-glow-sm",
+                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm mb-6 shadow-glow-sm",
+                    style: {
+                      background: "oklch(0.96 0.014 55 / 0.80)",
+                      border: "1px solid oklch(0.70 0.10 50 / 0.38)"
+                    },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium font-body", children: "Luxury Bridal & Celebrity Makeup" })
@@ -80736,8 +83461,12 @@ function HeroSection() {
                     initial: { opacity: 0, scale: 0.9 },
                     animate: isInView ? { opacity: 1, scale: 1 } : {},
                     transition: { duration: 0.6, delay: 0.38 },
-                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-primary/30 backdrop-blur-sm mb-8",
-                    style: { boxShadow: "0 2px 20px oklch(0.52 0.24 335 / 0.18)" },
+                    className: "inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm mb-8",
+                    style: {
+                      background: "oklch(0.96 0.014 55 / 0.88)",
+                      border: "1px solid oklch(0.70 0.10 50 / 0.32)",
+                      boxShadow: "0 2px 20px oklch(0.52 0.12 48 / 0.20)"
+                    },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: STARS.map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                         Star,
@@ -80765,11 +83494,11 @@ function HeroSection() {
                           href: "tel:07041937373",
                           className: "px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth relative overflow-hidden group",
                           style: {
-                            boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.28)"
+                            boxShadow: "0 0 32px oklch(0.45 0.12 48 / 0.5), 0 4px 20px oklch(0.45 0.12 48 / 0.30)"
                           },
                           children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: "Book Your Bridal Look" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-smooth" })
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-white/15 opacity-0 group-hover:opacity-100 transition-smooth" })
                           ]
                         }
                       ),
@@ -80782,7 +83511,12 @@ function HeroSection() {
                             var _a2;
                             return (_a2 = document.querySelector("#portfolio")) == null ? void 0 : _a2.scrollIntoView({ behavior: "smooth" });
                           },
-                          className: "px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm bg-white/60",
+                          className: "px-8 py-4 rounded-full font-semibold text-base transition-smooth backdrop-blur-sm",
+                          style: {
+                            border: "1px solid oklch(0.55 0.10 50 / 0.45)",
+                            color: "oklch(0.45 0.12 48)",
+                            background: "oklch(0.96 0.014 55 / 0.65)"
+                          },
                           children: "View Portfolio"
                         }
                       )
@@ -80821,7 +83555,17 @@ function HeroSection() {
                       {
                         className: "absolute inset-0 rounded-full blur-3xl scale-75",
                         style: {
-                          background: "radial-gradient(circle, oklch(0.72 0.22 330 / 0.5) 0%, oklch(0.88 0.10 330 / 0.2) 70%, transparent 100%)"
+                          background: "radial-gradient(circle, oklch(0.62 0.13 50 / 0.5) 0%, oklch(0.78 0.08 55 / 0.22) 70%, transparent 100%)"
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        className: "absolute inset-[-12px] rounded-3xl pointer-events-none",
+                        style: {
+                          background: "radial-gradient(ellipse, oklch(0.58 0.12 50 / 0.20) 0%, transparent 70%)",
+                          filter: "blur(20px)"
                         }
                       }
                     ),
@@ -80830,8 +83574,8 @@ function HeroSection() {
                       {
                         className: "relative w-80 h-[420px] sm:w-96 sm:h-[500px] rounded-3xl overflow-hidden float-animation",
                         style: {
-                          border: "1.5px solid oklch(0.52 0.24 335 / 0.4)",
-                          boxShadow: "0 0 45px oklch(0.52 0.24 335 / 0.3), 0 0 90px oklch(0.65 0.18 335 / 0.15), inset 0 0 25px oklch(0.52 0.24 335 / 0.05)"
+                          border: "1.5px solid oklch(0.55 0.12 50 / 0.45)",
+                          boxShadow: "0 0 50px oklch(0.52 0.12 48 / 0.32), 0 0 100px oklch(0.62 0.10 52 / 0.16), inset 0 0 28px oklch(0.55 0.10 50 / 0.07)"
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80842,17 +83586,26 @@ function HeroSection() {
                               className: "w-full h-full object-cover object-top"
                             }
                           ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/50 via-transparent to-transparent" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              className: "absolute inset-0",
+                              style: {
+                                background: "linear-gradient(to top, oklch(0.88 0.04 52 / 0.55), transparent 60%)"
+                              }
+                            }
+                          ),
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
                             motion.div,
                             {
                               initial: { opacity: 0, y: 20 },
                               animate: isInView ? { opacity: 1, y: 0 } : {},
                               transition: { delay: 1, type: "spring" },
-                              className: "absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3",
+                              className: "absolute bottom-4 left-4 right-4 backdrop-blur-md rounded-2xl px-4 py-3",
                               style: {
-                                border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                                boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.18)"
+                                background: "oklch(0.96 0.014 55 / 0.92)",
+                                border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                                boxShadow: "0 4px 20px oklch(0.45 0.12 48 / 0.20)"
                               },
                               children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                                 /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-5 h-5 text-primary flex-shrink-0" }),
@@ -80875,10 +83628,11 @@ function HeroSection() {
                           repeat: Number.POSITIVE_INFINITY,
                           ease: "easeInOut"
                         },
-                        className: "absolute -right-4 top-16 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3",
+                        className: "absolute -right-4 top-16 backdrop-blur-md rounded-2xl px-4 py-3",
                         style: {
-                          border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                          boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.22)"
+                          background: "oklch(0.96 0.014 55 / 0.92)",
+                          border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                          boxShadow: "0 0 22px oklch(0.52 0.12 48 / 0.25)"
                         },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex", children: STARS.map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -80902,10 +83656,11 @@ function HeroSection() {
                           ease: "easeInOut",
                           delay: 1.2
                         },
-                        className: "absolute -left-4 bottom-28 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3",
+                        className: "absolute -left-4 bottom-28 backdrop-blur-md rounded-2xl px-4 py-3",
                         style: {
-                          border: "1px solid oklch(0.75 0.12 340 / 0.4)",
-                          boxShadow: "0 0 18px oklch(0.65 0.18 340 / 0.22)"
+                          background: "oklch(0.96 0.014 55 / 0.92)",
+                          border: "1px solid oklch(0.72 0.10 52 / 0.42)",
+                          boxShadow: "0 0 20px oklch(0.60 0.11 50 / 0.25)"
                         },
                         children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(Heart, { className: "w-4 h-4 text-primary fill-primary" }),
@@ -80917,7 +83672,7 @@ function HeroSection() {
                       motion.div,
                       {
                         className: "absolute -bottom-4 -right-4 w-20 h-20 rounded-full pointer-events-none",
-                        style: { border: "2px dashed oklch(0.52 0.24 335 / 0.4)" },
+                        style: { border: "2px dashed oklch(0.52 0.12 48 / 0.42)" },
                         animate: { rotate: [0, 360] },
                         transition: {
                           duration: 16,
@@ -81019,7 +83774,7 @@ function PortfolioSection() {
       id: "portfolio",
       className: "relative py-24 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.016 325) 100%)"
+        background: "linear-gradient(180deg, oklch(0.97 0.012 55) 0%, oklch(0.95 0.018 50) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
@@ -81029,8 +83784,8 @@ function PortfolioSection() {
             {
               className: "absolute top-20 right-10 w-72 h-72 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.3) 0%, transparent 70%)",
-                filter: "blur(55px)"
+                background: "radial-gradient(circle, oklch(0.62 0.12 50 / 0.28) 0%, transparent 70%)",
+                filter: "blur(60px)"
               }
             }
           ),
@@ -81039,8 +83794,18 @@ function PortfolioSection() {
             {
               className: "absolute bottom-20 left-10 w-64 h-64 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.70 0.22 338 / 0.25) 0%, transparent 70%)",
-                filter: "blur(48px)"
+                background: "radial-gradient(circle, oklch(0.58 0.13 48 / 0.24) 0%, transparent 70%)",
+                filter: "blur(50px)"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full",
+              style: {
+                background: "radial-gradient(ellipse, oklch(0.72 0.09 52 / 0.14) 0%, transparent 70%)",
+                filter: "blur(80px)"
               }
             }
           )
@@ -81053,7 +83818,11 @@ function PortfolioSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Real Work, Real Beauty" })
@@ -81091,9 +83860,11 @@ function PortfolioSection() {
               whileInView: { opacity: 1, scale: 1 },
               viewport: { once: true, amount: 0.2 },
               transition: { duration: 0.6, delay: i2 * 0.07 },
-              className: "relative group break-inside-avoid rounded-2xl overflow-hidden border border-border hover:border-primary/40 transition-smooth bg-white",
+              className: "relative group break-inside-avoid rounded-2xl overflow-hidden transition-smooth",
               style: {
-                boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.1)"
+                border: "1px solid oklch(0.80 0.06 52 / 0.4)",
+                boxShadow: "0 4px 20px oklch(0.45 0.12 48 / 0.10)",
+                background: "oklch(0.96 0.014 55)"
               },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -81104,8 +83875,25 @@ function PortfolioSection() {
                     className: "w-full object-cover group-hover:scale-105 transition-all duration-700"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-100/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground text-sm font-semibold font-body", children: photo.label }) })
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-smooth",
+                    style: {
+                      background: "linear-gradient(to top, oklch(0.35 0.10 45 / 0.75), transparent 55%)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-smooth", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-primary-foreground text-sm font-semibold font-body drop-shadow", children: photo.label }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    className: "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+                    style: {
+                      boxShadow: "inset 0 0 25px oklch(0.60 0.12 50 / 0.18)"
+                    }
+                  }
+                )
               ]
             },
             photo.id
@@ -81208,10 +83996,21 @@ function TiltCard({
       },
       onMouseMove: handleMouseMove,
       onMouseLeave: handleMouseLeave,
-      className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${active ? "border-primary/45 shadow-[0_0_40px_oklch(0.52_0.24_335/0.22)]" : "border-border/70"}`,
+      className: "relative backdrop-blur-sm rounded-3xl p-8 transition-all duration-300 card-elevated cursor-default select-none",
       children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "absolute inset-0 rounded-3xl",
+            style: {
+              background: "oklch(0.96 0.014 55 / 0.88)",
+              border: active ? "1px solid oklch(0.55 0.12 50 / 0.45)" : "1px solid oklch(0.80 0.05 52 / 0.50)",
+              boxShadow: active ? "0 0 40px oklch(0.52 0.12 48 / 0.22)" : void 0
+            }
+          }
+        ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/4 via-transparent to-primary/3 pointer-events-none" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between mb-5", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex items-start justify-between mb-5", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Quote, { className: "w-9 h-9 text-primary/30" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1", children: Array.from({ length: testimonial.stars }, (_, i2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             Star,
@@ -81221,32 +84020,43 @@ function TiltCard({
             `star-${testimonial.id}-${i2}`
           )) })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("blockquote", { className: "text-muted-foreground text-sm leading-relaxed font-body italic mb-7 line-clamp-5", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("blockquote", { className: "relative text-muted-foreground text-sm leading-relaxed font-body italic mb-7 line-clamp-5", children: [
           '"',
           testimonial.quote,
           '"'
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4 pt-5 border-t border-border/50", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/15 border-2 border-primary/40 flex items-center justify-center flex-shrink-0",
-              style: { boxShadow: "0 0 14px oklch(0.52 0.24 335 / 0.28)" },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary font-bold text-sm font-display", children: initials })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold text-sm font-display truncate", children: testimonial.name }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mt-0.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-3 h-3 text-primary/70 flex-shrink-0" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs truncate", children: [
-                testimonial.role,
-                " · ",
-                CITIES[testimonial.id]
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "relative flex items-center gap-4 pt-5",
+            style: { borderTop: "1px solid oklch(0.80 0.05 52 / 0.40)" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0",
+                  style: {
+                    background: "linear-gradient(135deg, oklch(0.65 0.12 52 / 0.32), oklch(0.75 0.08 55 / 0.18))",
+                    border: "2px solid oklch(0.60 0.10 50 / 0.42)",
+                    boxShadow: "0 0 14px oklch(0.52 0.12 48 / 0.28)"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary font-bold text-sm font-display", children: initials })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-semibold text-sm font-display truncate", children: testimonial.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 mt-0.5", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-3 h-3 text-primary/70 flex-shrink-0" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground text-xs truncate", children: [
+                    testimonial.role,
+                    " · ",
+                    CITIES[testimonial.id]
+                  ] })
+                ] })
               ] })
-            ] })
-          ] })
-        ] })
+            ]
+          }
+        )
       ]
     }
   );
@@ -81313,7 +84123,7 @@ function ReviewsSection() {
       id: "reviews",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.018 328) 100%)"
+        background: "linear-gradient(180deg, oklch(0.97 0.010 55) 0%, oklch(0.95 0.020 50) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" }),
@@ -81323,8 +84133,8 @@ function ReviewsSection() {
             {
               className: "absolute bottom-10 right-10 w-80 h-80 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.73 0.20 325 / 0.32) 0%, transparent 70%)",
-                filter: "blur(55px)"
+                background: "radial-gradient(circle, oklch(0.62 0.12 50 / 0.30) 0%, transparent 70%)",
+                filter: "blur(58px)"
               }
             }
           ),
@@ -81333,8 +84143,8 @@ function ReviewsSection() {
             {
               className: "absolute top-20 left-10 w-56 h-56 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.70 0.22 338 / 0.28) 0%, transparent 70%)",
-                filter: "blur(42px)"
+                background: "radial-gradient(circle, oklch(0.58 0.13 48 / 0.26) 0%, transparent 70%)",
+                filter: "blur(44px)"
               }
             }
           ),
@@ -81343,8 +84153,8 @@ function ReviewsSection() {
             {
               className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.80 0.14 330 / 0.2) 0%, transparent 70%)",
-                filter: "blur(80px)"
+                background: "radial-gradient(circle, oklch(0.72 0.09 52 / 0.18) 0%, transparent 70%)",
+                filter: "blur(85px)"
               }
             }
           )
@@ -81358,7 +84168,11 @@ function ReviewsSection() {
                 whileInView: { opacity: 1, y: 0 },
                 viewport: { once: true },
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium", children: "Client Love" })
@@ -81428,7 +84242,11 @@ function ReviewsSection() {
                 "data-ocid": "reviews-prev",
                 onClick: handlePrev,
                 "aria-label": "Previous review",
-                className: "w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
+                className: "w-11 h-11 rounded-full flex items-center justify-center transition-smooth group",
+                style: {
+                  border: "1px solid oklch(0.75 0.06 52 / 0.50)",
+                  background: "oklch(0.96 0.014 55 / 0.80)"
+                },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" })
               }
             ),
@@ -81442,7 +84260,13 @@ function ReviewsSection() {
                   resetTimer();
                 },
                 "aria-label": `Go to review ${i2 + 1}`,
-                className: `rounded-full transition-all duration-300 ${i2 === current ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.52_0.24_335/0.5)]" : "w-2.5 h-2.5 bg-border hover:bg-primary/40"}`
+                className: "rounded-full transition-all duration-300",
+                style: {
+                  width: i2 === current ? "2rem" : "0.625rem",
+                  height: "0.625rem",
+                  background: i2 === current ? "oklch(0.45 0.12 48)" : "oklch(0.75 0.06 52 / 0.60)",
+                  boxShadow: i2 === current ? "0 0 10px oklch(0.52 0.12 48 / 0.5)" : void 0
+                }
               },
               t.id
             )) }),
@@ -81453,7 +84277,11 @@ function ReviewsSection() {
                 "data-ocid": "reviews-next",
                 onClick: handleNext,
                 "aria-label": "Next review",
-                className: "w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group",
+                className: "w-11 h-11 rounded-full flex items-center justify-center transition-smooth group",
+                style: {
+                  border: "1px solid oklch(0.75 0.06 52 / 0.50)",
+                  background: "oklch(0.96 0.014 55 / 0.80)"
+                },
                 children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" })
               }
             )
@@ -81465,8 +84293,12 @@ function ReviewsSection() {
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true },
               transition: { duration: 0.8, delay: 0.3 },
-              className: "mt-16 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto",
-              style: { boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.14)" },
+              className: "mt-16 text-center backdrop-blur-sm rounded-3xl p-10 max-w-xl mx-auto",
+              style: {
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.68 0.08 52 / 0.24)",
+                boxShadow: "0 0 42px oklch(0.52 0.12 48 / 0.15)"
+              },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display text-6xl font-bold text-primary glow-text mb-2", children: "5.0" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center gap-1 mb-3", children: ["s1", "s2", "s3", "s4", "s5"].map((id2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Star, { className: "w-6 h-6 text-primary fill-primary" }, id2)) }),
@@ -81607,15 +84439,25 @@ function ServiceCard({
           onMouseMove: handleMouseMove,
           onMouseLeave: handleMouseLeave,
           style: { rotateX, rotateY, transformStyle: "preserve-3d" },
-          className: "group relative bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden border border-primary/20 transition-colors duration-300 card-elevated cursor-pointer hover:border-primary/45",
+          className: "group relative backdrop-blur-sm rounded-3xl overflow-hidden transition-colors duration-300 card-elevated cursor-pointer",
           "data-ocid": `service-card-${service.id}`,
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
+                className: "absolute inset-0 rounded-3xl",
+                style: {
+                  background: "oklch(0.96 0.016 55 / 0.88)",
+                  border: "1px solid oklch(0.75 0.08 52 / 0.25)"
+                }
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
                 className: "absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20",
                 style: {
-                  background: "linear-gradient(135deg, oklch(0.52 0.24 335 / 0.45), oklch(0.65 0.18 340 / 0.35), oklch(0.52 0.24 335 / 0.45))",
+                  background: "linear-gradient(135deg, oklch(0.55 0.12 50 / 0.48), oklch(0.65 0.10 52 / 0.38), oklch(0.55 0.12 50 / 0.48))",
                   padding: "1.5px",
                   WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   WebkitMaskComposite: "xor",
@@ -81628,7 +84470,7 @@ function ServiceCard({
               {
                 className: "absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10",
                 style: {
-                  boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.25), 0 0 70px oklch(0.60 0.20 335 / 0.12)"
+                  boxShadow: "0 0 42px oklch(0.52 0.12 48 / 0.28), 0 0 75px oklch(0.62 0.10 52 / 0.14)"
                 }
               }
             ),
@@ -81647,19 +84489,31 @@ function ServiceCard({
                       style: { transition: "transform 0.7s cubic-bezier(0.4,0,0.2,1)" }
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-pink-50/70 via-pink-50/10 to-transparent" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
                     {
-                      className: "absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1 border border-primary/40 bg-white/85",
-                      style: { boxShadow: "0 2px 12px oklch(0.52 0.24 335 / 0.2)" },
+                      className: "absolute inset-0",
+                      style: {
+                        background: "linear-gradient(to top, oklch(0.90 0.04 52 / 0.72), oklch(0.90 0.04 52 / 0.12), transparent)"
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      className: "absolute top-4 right-4 backdrop-blur-md rounded-full px-3 py-1",
+                      style: {
+                        border: "1px solid oklch(0.60 0.10 50 / 0.45)",
+                        background: "oklch(0.96 0.014 55 / 0.88)",
+                        boxShadow: "0 2px 12px oklch(0.52 0.12 48 / 0.22)"
+                      },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-xs font-semibold tracking-wide", children: service.price })
                     }
                   )
                 ]
               }
             ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-6", style: { transform: "translateZ(12px)" }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative p-6", style: { transform: "translateZ(12px)" }, children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-smooth", children: service.title }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm leading-relaxed mb-5 font-body line-clamp-3", children: service.description }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "space-y-1.5 mb-6", children: service.highlights.map((h2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -81700,17 +84554,17 @@ function ServicesSection() {
       id: "services",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.98 0.012 320) 100%)"
+        background: "linear-gradient(180deg, oklch(0.95 0.022 50) 0%, oklch(0.96 0.016 55) 100%)"
       },
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-px bg-gradient-to-r from-transparent via-primary/45 to-transparent" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
             className: "absolute -top-24 -left-24 w-96 h-96 rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, oklch(0.76 0.18 325 / 0.35) 0%, transparent 70%)",
-              filter: "blur(55px)"
+              background: "radial-gradient(circle, oklch(0.65 0.12 50 / 0.32) 0%, transparent 70%)",
+              filter: "blur(60px)"
             },
             animate: { scale: [1, 1.15, 1], opacity: [0.5, 0.85, 0.5] },
             transition: {
@@ -81725,8 +84579,8 @@ function ServicesSection() {
           {
             className: "absolute -bottom-32 -right-24 w-[28rem] h-[28rem] rounded-full pointer-events-none",
             style: {
-              background: "radial-gradient(circle, oklch(0.70 0.20 335 / 0.3) 0%, transparent 70%)",
-              filter: "blur(65px)"
+              background: "radial-gradient(circle, oklch(0.58 0.13 48 / 0.28) 0%, transparent 70%)",
+              filter: "blur(70px)"
             },
             animate: { scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] },
             transition: {
@@ -81742,8 +84596,8 @@ function ServicesSection() {
           {
             className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-64 pointer-events-none",
             style: {
-              background: "radial-gradient(ellipse, oklch(0.82 0.12 325 / 0.2) 0%, transparent 70%)",
-              filter: "blur(70px)"
+              background: "radial-gradient(ellipse, oklch(0.74 0.09 52 / 0.18) 0%, transparent 70%)",
+              filter: "blur(75px)"
             },
             animate: { scaleX: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] },
             transition: {
@@ -81762,7 +84616,11 @@ function ServicesSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6",
+                style: {
+                  background: "oklch(0.55 0.12 48 / 0.10)",
+                  border: "1px solid oklch(0.55 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-medium tracking-wide uppercase", children: "What We Offer" })
@@ -81831,7 +84689,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { rotate: [0, 15, -10, 0] }
   },
   {
@@ -81842,7 +84700,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { scale: [1, 1.2, 1] }
   },
   {
@@ -81853,7 +84711,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.60 0.20 340 / 0.32)",
+    glow: "oklch(0.60 0.10 52 / 0.32)",
     iconAnim: { rotate: [0, 360] }
   },
   {
@@ -81864,7 +84722,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { y: [0, -5, 0] }
   },
   {
@@ -81875,7 +84733,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { y: [0, -6, 0] }
   },
   {
@@ -81886,7 +84744,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.60 0.20 340 / 0.32)",
+    glow: "oklch(0.60 0.10 52 / 0.32)",
     iconAnim: { rotate: [0, 5, -5, 0] }
   }
 ];
@@ -81898,7 +84756,7 @@ function WhyUsSection() {
       id: "why-us",
       className: "relative py-28 overflow-hidden",
       style: {
-        background: "linear-gradient(180deg, oklch(0.98 0.010 316) 0%, oklch(0.97 0.018 326) 50%, oklch(0.98 0.010 320) 100%)"
+        background: "linear-gradient(180deg, oklch(0.96 0.014 55) 0%, oklch(0.95 0.020 50) 50%, oklch(0.96 0.014 55) 100%)"
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent" }),
@@ -81908,8 +84766,8 @@ function WhyUsSection() {
             {
               className: "absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.72 0.18 325 / 0.22) 0%, transparent 70%)",
-                filter: "blur(65px)"
+                background: "radial-gradient(circle, oklch(0.62 0.12 50 / 0.18) 0%, transparent 70%)",
+                filter: "blur(70px)"
               },
               animate: { scale: [1, 1.1, 1], opacity: [0.5, 0.85, 0.5] },
               transition: {
@@ -81924,8 +84782,8 @@ function WhyUsSection() {
             {
               className: "absolute bottom-20 right-10 w-56 h-56 rounded-full",
               style: {
-                background: "radial-gradient(circle, oklch(0.68 0.22 332 / 0.28) 0%, transparent 70%)",
-                filter: "blur(44px)"
+                background: "radial-gradient(circle, oklch(0.58 0.13 48 / 0.26) 0%, transparent 70%)",
+                filter: "blur(46px)"
               },
               animate: { scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] },
               transition: {
@@ -81945,7 +84803,11 @@ function WhyUsSection() {
                 initial: { opacity: 0, y: 20 },
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.6 },
-                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm",
+                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm",
+                style: {
+                  background: "oklch(0.96 0.014 55 / 0.82)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Unnati Difference" })
@@ -81967,7 +84829,7 @@ function WhyUsSection() {
                     {
                       className: "text-primary",
                       style: {
-                        textShadow: "0 0 36px oklch(0.52 0.24 335 / 0.5), 0 0 72px oklch(0.52 0.24 335 / 0.22)"
+                        textShadow: "0 0 36px oklch(0.52 0.12 48 / 0.5), 0 0 72px oklch(0.62 0.10 52 / 0.22)"
                       },
                       children: "Unnati"
                     }
@@ -82001,11 +84863,15 @@ function WhyUsSection() {
                 },
                 whileHover: {
                   y: -8,
-                  boxShadow: `0 0 38px ${reason.glow}, 0 20px 38px oklch(0.52 0.24 335 / 0.1)`
+                  boxShadow: `0 0 40px ${reason.glow}, 0 20px 38px oklch(0.45 0.12 48 / 0.10)`
                 },
                 "data-ocid": `why-us-card-${reason.id}`,
-                className: `relative bg-white/88 backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`,
-                style: { transformStyle: "preserve-3d", perspective: "800px" },
+                className: `relative backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`,
+                style: {
+                  transformStyle: "preserve-3d",
+                  perspective: "800px",
+                  background: "oklch(0.96 0.014 55 / 0.88)"
+                },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
@@ -82080,8 +84946,12 @@ function WhyUsSection() {
               children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  className: "inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-primary/30",
-                  style: { boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.18)" },
+                  className: "inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm",
+                  style: {
+                    background: "oklch(0.96 0.014 55 / 0.82)",
+                    border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                    boxShadow: "0 0 28px oklch(0.52 0.12 48 / 0.18)"
+                  },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Clock$1, { className: "w-4 h-4 text-primary" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground text-sm font-body", children: [
@@ -82117,6 +84987,7 @@ function App() {
     /* @__PURE__ */ jsxRuntimeExports.jsx(ReviewsSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(FAQSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(CTASecondary, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AppointmentSection, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ContactSection, {})
   ] });
 }

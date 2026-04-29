@@ -26,17 +26,17 @@ function AnimatedSphere({
     mesh.current.rotation.y = state.clock.elapsedTime * speed * 0.5;
   });
   return (
-    <Float speed={speed} rotationIntensity={0.5} floatIntensity={1.5}>
+    <Float speed={speed} rotationIntensity={0.5} floatIntensity={1.8}>
       <Sphere ref={mesh} args={[1, 64, 64]} position={position} scale={scale}>
         <MeshDistortMaterial
           color={color}
           attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.1}
-          metalness={0.6}
+          distort={0.45}
+          speed={2.2}
+          roughness={0.08}
+          metalness={0.75}
           transparent
-          opacity={0.55}
+          opacity={0.6}
         />
       </Sphere>
     </Float>
@@ -62,7 +62,7 @@ function AnimatedTorus({
     mesh.current.rotation.z = state.clock.elapsedTime * speed * 0.2;
   });
   return (
-    <Float speed={speed * 0.8} rotationIntensity={1} floatIntensity={2}>
+    <Float speed={speed * 0.8} rotationIntensity={1.2} floatIntensity={2.2}>
       <Torus
         ref={mesh}
         args={[1, 0.35, 32, 64]}
@@ -71,10 +71,10 @@ function AnimatedTorus({
       >
         <meshStandardMaterial
           color={color}
-          roughness={0.05}
-          metalness={0.8}
+          roughness={0.04}
+          metalness={0.9}
           transparent
-          opacity={0.5}
+          opacity={0.55}
           wireframe={false}
         />
       </Torus>
@@ -83,13 +83,13 @@ function AnimatedTorus({
 }
 
 function ParticleField() {
-  const count = 220;
+  const count = 320;
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 28;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 16;
+      arr[i * 3] = (Math.random() - 0.5) * 30;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 22;
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 18;
     }
     return arr;
   }, []);
@@ -108,10 +108,10 @@ function ParticleField() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.06}
-        color="#E8559A"
+        size={0.07}
+        color="#C49A6C"
         transparent
-        opacity={0.55}
+        opacity={0.65}
         sizeAttenuation
       />
     </points>
@@ -133,11 +133,11 @@ function RingOrbiter({
   });
   return (
     <mesh ref={mesh}>
-      <sphereGeometry args={[0.12, 16, 16]} />
+      <sphereGeometry args={[0.14, 16, 16]} />
       <meshStandardMaterial
         color={color}
         emissive={color}
-        emissiveIntensity={1.2}
+        emissiveIntensity={1.5}
       />
     </mesh>
   );
@@ -146,54 +146,64 @@ function RingOrbiter({
 function Scene() {
   return (
     <>
-      <ambientLight intensity={1.0} color="#FFE8F5" />
-      <pointLight position={[6, 6, 4]} intensity={2.0} color="#FF69B4" />
-      <pointLight position={[-6, -4, -4]} intensity={1.5} color="#FFB6D9" />
-      <pointLight position={[0, 8, -6]} intensity={1.0} color="#FF1493" />
+      {/* Warm ambient + golden-brown point lights */}
+      <ambientLight intensity={1.1} color="#FFF8F0" />
+      <pointLight position={[6, 6, 4]} intensity={2.2} color="#D4AA7D" />
+      <pointLight position={[-6, -4, -4]} intensity={1.6} color="#8B5E3C" />
+      <pointLight position={[0, 8, -6]} intensity={1.2} color="#C49A6C" />
 
       <ParticleField />
 
+      {/* Caramel / brown / gold spheres */}
       <AnimatedSphere
         position={[-4.5, 2, -3]}
-        scale={1.4}
-        color="#FF69B4"
+        scale={1.5}
+        color="#C49A6C"
         speed={0.8}
       />
       <AnimatedSphere
         position={[4.8, -1.5, -4]}
-        scale={1.0}
-        color="#FFB6D9"
+        scale={1.1}
+        color="#8B5E3C"
         speed={0.6}
       />
       <AnimatedSphere
         position={[0.5, 3.5, -5]}
-        scale={0.7}
-        color="#FF1493"
+        scale={0.75}
+        color="#6B4226"
         speed={1.1}
       />
+      <AnimatedSphere
+        position={[-2.2, -2.8, -6]}
+        scale={0.6}
+        color="#D4AA7D"
+        speed={0.9}
+      />
 
+      {/* Warm brown toruses */}
       <AnimatedTorus
         position={[3.5, 2.5, -2]}
-        scale={0.9}
-        color="#FF69B4"
+        scale={1.0}
+        color="#B8875A"
         speed={0.7}
       />
       <AnimatedTorus
         position={[-3.5, -1.5, -3]}
-        scale={0.65}
-        color="#FFB6D9"
+        scale={0.7}
+        color="#A0714A"
         speed={0.9}
       />
       <AnimatedTorus
         position={[0, -3, -5]}
-        scale={1.2}
-        color="#FF8DC7"
+        scale={1.3}
+        color="#C49A6C"
         speed={0.5}
       />
 
-      <RingOrbiter radius={3.5} speed={0.45} color="#FFB6D9" />
-      <RingOrbiter radius={2.8} speed={0.7} color="#FF69B4" />
-      <RingOrbiter radius={4.2} speed={0.3} color="#FFD6E8" />
+      {/* Golden orbiters */}
+      <RingOrbiter radius={3.5} speed={0.45} color="#D4AA7D" />
+      <RingOrbiter radius={2.8} speed={0.7} color="#C49A6C" />
+      <RingOrbiter radius={4.2} speed={0.3} color="#E8D5B0" />
     </>
   );
 }
@@ -222,14 +232,14 @@ function FloatingOrb({
         top,
         left,
         background: color,
-        filter: `blur(${size * 0.45}px)`,
-        opacity: 0.5,
+        filter: `blur(${size * 0.5}px)`,
+        opacity: 0.55,
       }}
       animate={{
-        y: [0, -30, 0],
-        x: [0, 15, 0],
-        scale: [1, 1.15, 1],
-        opacity: [0.35, 0.65, 0.35],
+        y: [0, -35, 0],
+        x: [0, 18, 0],
+        scale: [1, 1.18, 1],
+        opacity: [0.38, 0.68, 0.38],
       }}
       transition={{
         duration: 7 + delay,
@@ -263,7 +273,7 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, oklch(0.99 0.01 318) 0%, oklch(0.97 0.022 330) 50%, oklch(0.98 0.015 312) 100%)",
+          "linear-gradient(135deg, oklch(0.97 0.018 58) 0%, oklch(0.95 0.025 50) 50%, oklch(0.96 0.020 45) 100%)",
       }}
     >
       {/* React Three Fiber 3D Canvas — full background */}
@@ -279,43 +289,52 @@ export function HeroSection() {
         </Canvas>
       </div>
 
-      {/* Soft overlay so 3D objects read on bright bg */}
+      {/* Soft warm beige overlay */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.98 0.015 325 / 0.18) 0%, oklch(0.98 0.01 320 / 0.45) 65%, oklch(0.99 0.006 318 / 0.78) 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.96 0.018 55 / 0.16) 0%, oklch(0.95 0.022 50 / 0.42) 65%, oklch(0.96 0.014 48 / 0.75) 100%)",
         }}
       />
 
-      {/* CSS glowing pink orbs */}
+      {/* CSS glowing warm caramel/brown orbs */}
       <FloatingOrb
         delay={0}
-        size={380}
+        size={420}
         top="3%"
         left="2%"
-        color="radial-gradient(circle, oklch(0.72 0.22 330 / 0.55), oklch(0.85 0.12 330 / 0.22))"
+        color="radial-gradient(circle, oklch(0.65 0.14 52 / 0.52), oklch(0.78 0.09 55 / 0.22))"
       />
       <FloatingOrb
         delay={1.8}
-        size={240}
+        size={260}
         top="58%"
         left="0%"
-        color="radial-gradient(circle, oklch(0.68 0.24 338 / 0.5), oklch(0.82 0.14 330 / 0.18))"
+        color="radial-gradient(circle, oklch(0.55 0.12 48 / 0.45), oklch(0.70 0.08 52 / 0.18))"
       />
       <FloatingOrb
         delay={0.9}
-        size={300}
+        size={320}
         top="12%"
         left="70%"
-        color="radial-gradient(circle, oklch(0.70 0.22 322 / 0.48), oklch(0.84 0.10 325 / 0.2))"
+        color="radial-gradient(circle, oklch(0.62 0.13 50 / 0.44), oklch(0.76 0.08 55 / 0.20))"
       />
       <FloatingOrb
         delay={2.2}
-        size={200}
+        size={220}
         top="70%"
         left="76%"
-        color="radial-gradient(circle, oklch(0.76 0.18 342 / 0.45), oklch(0.88 0.08 340 / 0.2))"
+        color="radial-gradient(circle, oklch(0.70 0.11 54 / 0.40), oklch(0.82 0.07 56 / 0.18))"
+      />
+
+      {/* Extra large deep glow blob — center */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 40% at 50% 50%, oklch(0.62 0.12 50 / 0.12) 0%, transparent 70%)",
+        }}
       />
 
       {/* Floating decorative CSS shapes */}
@@ -371,7 +390,11 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/75 border border-primary/35 mb-6 backdrop-blur-sm shadow-glow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm mb-6 shadow-glow-sm"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.80)",
+                border: "1px solid oklch(0.70 0.10 50 / 0.38)",
+              }}
             >
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-primary text-sm font-medium font-body">
@@ -419,8 +442,12 @@ export function HeroSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.38 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-primary/30 backdrop-blur-sm mb-8"
-              style={{ boxShadow: "0 2px 20px oklch(0.52 0.24 335 / 0.18)" }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm mb-8"
+              style={{
+                background: "oklch(0.96 0.014 55 / 0.88)",
+                border: "1px solid oklch(0.70 0.10 50 / 0.32)",
+                boxShadow: "0 2px 20px oklch(0.52 0.12 48 / 0.20)",
+              }}
             >
               <div className="flex">
                 {STARS.map((id) => (
@@ -448,11 +475,11 @@ export function HeroSection() {
                 className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth relative overflow-hidden group"
                 style={{
                   boxShadow:
-                    "0 0 28px oklch(0.52 0.24 335 / 0.45), 0 4px 18px oklch(0.52 0.24 335 / 0.28)",
+                    "0 0 32px oklch(0.45 0.12 48 / 0.5), 0 4px 20px oklch(0.45 0.12 48 / 0.30)",
                 }}
               >
                 <span className="relative z-10">Book Your Bridal Look</span>
-                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-smooth" />
+                <div className="absolute inset-0 bg-white/15 opacity-0 group-hover:opacity-100 transition-smooth" />
               </a>
               <button
                 type="button"
@@ -462,7 +489,12 @@ export function HeroSection() {
                     .querySelector("#portfolio")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="px-8 py-4 rounded-full border border-primary/40 text-primary font-semibold text-base hover:bg-primary/10 transition-smooth backdrop-blur-sm bg-white/60"
+                className="px-8 py-4 rounded-full font-semibold text-base transition-smooth backdrop-blur-sm"
+                style={{
+                  border: "1px solid oklch(0.55 0.10 50 / 0.45)",
+                  color: "oklch(0.45 0.12 48)",
+                  background: "oklch(0.96 0.014 55 / 0.65)",
+                }}
               >
                 View Portfolio
               </button>
@@ -500,12 +532,22 @@ export function HeroSection() {
             }}
             className="relative flex justify-center"
           >
-            {/* Background pink glow blob */}
+            {/* Background warm brown glow blob */}
             <div
               className="absolute inset-0 rounded-full blur-3xl scale-75"
               style={{
                 background:
-                  "radial-gradient(circle, oklch(0.72 0.22 330 / 0.5) 0%, oklch(0.88 0.10 330 / 0.2) 70%, transparent 100%)",
+                  "radial-gradient(circle, oklch(0.62 0.13 50 / 0.5) 0%, oklch(0.78 0.08 55 / 0.22) 70%, transparent 100%)",
+              }}
+            />
+
+            {/* Outer glow ring */}
+            <div
+              className="absolute inset-[-12px] rounded-3xl pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse, oklch(0.58 0.12 50 / 0.20) 0%, transparent 70%)",
+                filter: "blur(20px)",
               }}
             />
 
@@ -513,9 +555,9 @@ export function HeroSection() {
             <div
               className="relative w-80 h-[420px] sm:w-96 sm:h-[500px] rounded-3xl overflow-hidden float-animation"
               style={{
-                border: "1.5px solid oklch(0.52 0.24 335 / 0.4)",
+                border: "1.5px solid oklch(0.55 0.12 50 / 0.45)",
                 boxShadow:
-                  "0 0 45px oklch(0.52 0.24 335 / 0.3), 0 0 90px oklch(0.65 0.18 335 / 0.15), inset 0 0 25px oklch(0.52 0.24 335 / 0.05)",
+                  "0 0 50px oklch(0.52 0.12 48 / 0.32), 0 0 100px oklch(0.62 0.10 52 / 0.16), inset 0 0 28px oklch(0.55 0.10 50 / 0.07)",
               }}
             >
               <img
@@ -523,17 +565,24 @@ export function HeroSection() {
                 alt="BEAUTYGRAM BY UNNATI GANDHINAGAR — Luxury Bridal Makeup Artist"
                 className="w-full h-full object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-pink-50/50 via-transparent to-transparent" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, oklch(0.88 0.04 52 / 0.55), transparent 60%)",
+                }}
+              />
 
               {/* Card overlay at bottom */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1.0, type: "spring" }}
-                className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3"
+                className="absolute bottom-4 left-4 right-4 backdrop-blur-md rounded-2xl px-4 py-3"
                 style={{
-                  border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                  boxShadow: "0 4px 20px oklch(0.52 0.24 335 / 0.18)",
+                  background: "oklch(0.96 0.014 55 / 0.92)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                  boxShadow: "0 4px 20px oklch(0.45 0.12 48 / 0.20)",
                 }}
               >
                 <div className="flex items-center gap-2">
@@ -558,10 +607,11 @@ export function HeroSection() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="absolute -right-4 top-16 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3"
+              className="absolute -right-4 top-16 backdrop-blur-md rounded-2xl px-4 py-3"
               style={{
-                border: "1px solid oklch(0.52 0.24 335 / 0.3)",
-                boxShadow: "0 0 20px oklch(0.52 0.24 335 / 0.22)",
+                background: "oklch(0.96 0.014 55 / 0.92)",
+                border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+                boxShadow: "0 0 22px oklch(0.52 0.12 48 / 0.25)",
               }}
             >
               <div className="flex items-center gap-2">
@@ -588,10 +638,11 @@ export function HeroSection() {
                 ease: "easeInOut",
                 delay: 1.2,
               }}
-              className="absolute -left-4 bottom-28 bg-white/92 backdrop-blur-md rounded-2xl px-4 py-3"
+              className="absolute -left-4 bottom-28 backdrop-blur-md rounded-2xl px-4 py-3"
               style={{
-                border: "1px solid oklch(0.75 0.12 340 / 0.4)",
-                boxShadow: "0 0 18px oklch(0.65 0.18 340 / 0.22)",
+                background: "oklch(0.96 0.014 55 / 0.92)",
+                border: "1px solid oklch(0.72 0.10 52 / 0.42)",
+                boxShadow: "0 0 20px oklch(0.60 0.11 50 / 0.25)",
               }}
             >
               <div className="flex items-center gap-2">
@@ -605,7 +656,7 @@ export function HeroSection() {
             {/* Rotating ring decoration */}
             <motion.div
               className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full pointer-events-none"
-              style={{ border: "2px dashed oklch(0.52 0.24 335 / 0.4)" }}
+              style={{ border: "2px dashed oklch(0.52 0.12 48 / 0.42)" }}
               animate={{ rotate: [0, 360] }}
               transition={{
                 duration: 16,

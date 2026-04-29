@@ -124,17 +124,25 @@ function TiltCard({
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative bg-white/88 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-300 card-elevated cursor-default select-none ${
-        active
-          ? "border-primary/45 shadow-[0_0_40px_oklch(0.52_0.24_335/0.22)]"
-          : "border-border/70"
-      }`}
+      className="relative backdrop-blur-sm rounded-3xl p-8 transition-all duration-300 card-elevated cursor-default select-none"
     >
+      {/* Card background */}
+      <div
+        className="absolute inset-0 rounded-3xl"
+        style={{
+          background: "oklch(0.96 0.014 55 / 0.88)",
+          border: active
+            ? "1px solid oklch(0.55 0.12 50 / 0.45)"
+            : "1px solid oklch(0.80 0.05 52 / 0.50)",
+          boxShadow: active ? "0 0 40px oklch(0.52 0.12 48 / 0.22)" : undefined,
+        }}
+      />
+
       {/* Soft shimmer overlay */}
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/4 via-transparent to-primary/3 pointer-events-none" />
 
       {/* Quote icon */}
-      <div className="flex items-start justify-between mb-5">
+      <div className="relative flex items-start justify-between mb-5">
         <Quote className="w-9 h-9 text-primary/30" />
         <div className="flex gap-1">
           {Array.from({ length: testimonial.stars }, (_, i) => (
@@ -147,15 +155,23 @@ function TiltCard({
       </div>
 
       {/* Quote text */}
-      <blockquote className="text-muted-foreground text-sm leading-relaxed font-body italic mb-7 line-clamp-5">
+      <blockquote className="relative text-muted-foreground text-sm leading-relaxed font-body italic mb-7 line-clamp-5">
         "{testimonial.quote}"
       </blockquote>
 
       {/* Author */}
-      <div className="flex items-center gap-4 pt-5 border-t border-border/50">
+      <div
+        className="relative flex items-center gap-4 pt-5"
+        style={{ borderTop: "1px solid oklch(0.80 0.05 52 / 0.40)" }}
+      >
         <div
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/15 border-2 border-primary/40 flex items-center justify-center flex-shrink-0"
-          style={{ boxShadow: "0 0 14px oklch(0.52 0.24 335 / 0.28)" }}
+          className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.65 0.12 52 / 0.32), oklch(0.75 0.08 55 / 0.18))",
+            border: "2px solid oklch(0.60 0.10 50 / 0.42)",
+            boxShadow: "0 0 14px oklch(0.52 0.12 48 / 0.28)",
+          }}
         >
           <span className="text-primary font-bold text-sm font-display">
             {initials}
@@ -248,36 +264,36 @@ export function ReviewsSection() {
       className="relative py-28 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.99 0.006 318) 0%, oklch(0.97 0.018 328) 100%)",
+          "linear-gradient(180deg, oklch(0.97 0.010 55) 0%, oklch(0.95 0.020 50) 100%)",
       }}
     >
       {/* Section divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      {/* Ambient pink glows */}
+      {/* Ambient warm brown glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute bottom-10 right-10 w-80 h-80 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.73 0.20 325 / 0.32) 0%, transparent 70%)",
-            filter: "blur(55px)",
+              "radial-gradient(circle, oklch(0.62 0.12 50 / 0.30) 0%, transparent 70%)",
+            filter: "blur(58px)",
           }}
         />
         <div
           className="absolute top-20 left-10 w-56 h-56 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.70 0.22 338 / 0.28) 0%, transparent 70%)",
-            filter: "blur(42px)",
+              "radial-gradient(circle, oklch(0.58 0.13 48 / 0.26) 0%, transparent 70%)",
+            filter: "blur(44px)",
           }}
         />
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.80 0.14 330 / 0.2) 0%, transparent 70%)",
-            filter: "blur(80px)",
+              "radial-gradient(circle, oklch(0.72 0.09 52 / 0.18) 0%, transparent 70%)",
+            filter: "blur(85px)",
           }}
         />
       </div>
@@ -290,7 +306,11 @@ export function ReviewsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm"
+            style={{
+              background: "oklch(0.96 0.014 55 / 0.82)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+            }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-medium">
@@ -366,7 +386,11 @@ export function ReviewsSection() {
             data-ocid="reviews-prev"
             onClick={handlePrev}
             aria-label="Previous review"
-            className="w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
+            className="w-11 h-11 rounded-full flex items-center justify-center transition-smooth group"
+            style={{
+              border: "1px solid oklch(0.75 0.06 52 / 0.50)",
+              background: "oklch(0.96 0.014 55 / 0.80)",
+            }}
           >
             <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
           </button>
@@ -383,11 +407,19 @@ export function ReviewsSection() {
                   resetTimer();
                 }}
                 aria-label={`Go to review ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  i === current
-                    ? "w-8 h-2.5 bg-primary shadow-[0_0_10px_oklch(0.52_0.24_335/0.5)]"
-                    : "w-2.5 h-2.5 bg-border hover:bg-primary/40"
-                }`}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width: i === current ? "2rem" : "0.625rem",
+                  height: "0.625rem",
+                  background:
+                    i === current
+                      ? "oklch(0.45 0.12 48)"
+                      : "oklch(0.75 0.06 52 / 0.60)",
+                  boxShadow:
+                    i === current
+                      ? "0 0 10px oklch(0.52 0.12 48 / 0.5)"
+                      : undefined,
+                }}
               />
             ))}
           </div>
@@ -397,7 +429,11 @@ export function ReviewsSection() {
             data-ocid="reviews-next"
             onClick={handleNext}
             aria-label="Next review"
-            className="w-11 h-11 rounded-full border border-border bg-white hover:border-primary/60 hover:bg-primary/10 flex items-center justify-center transition-smooth group"
+            className="w-11 h-11 rounded-full flex items-center justify-center transition-smooth group"
+            style={{
+              border: "1px solid oklch(0.75 0.06 52 / 0.50)",
+              background: "oklch(0.96 0.014 55 / 0.80)",
+            }}
           >
             <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-smooth" />
           </button>
@@ -409,8 +445,12 @@ export function ReviewsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 text-center bg-white/88 backdrop-blur-sm rounded-3xl p-10 border border-primary/20 max-w-xl mx-auto"
-          style={{ boxShadow: "0 0 40px oklch(0.52 0.24 335 / 0.14)" }}
+          className="mt-16 text-center backdrop-blur-sm rounded-3xl p-10 max-w-xl mx-auto"
+          style={{
+            background: "oklch(0.96 0.014 55 / 0.88)",
+            border: "1px solid oklch(0.68 0.08 52 / 0.24)",
+            boxShadow: "0 0 42px oklch(0.52 0.12 48 / 0.15)",
+          }}
         >
           <p className="font-display text-6xl font-bold text-primary glow-text mb-2">
             5.0

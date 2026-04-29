@@ -1,4 +1,5 @@
 import { Layout } from "./components/Layout";
+import { AppointmentSection } from "./pages/AppointmentSection";
 import { CTAPrimary, CTASecondary } from "./pages/CTASection";
 import { CelebritySection } from "./pages/CelebritySection";
 import { ContactSection } from "./pages/ContactSection";
@@ -21,6 +22,7 @@ export default function App() {
       <ReviewsSection />
       <FAQSection />
       <CTASecondary />
+      <AppointmentSection />
       <ContactSection />
     </Layout>
   );

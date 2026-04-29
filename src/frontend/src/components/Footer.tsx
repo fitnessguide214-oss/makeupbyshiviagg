@@ -23,20 +23,37 @@ export function Footer() {
 
   return (
     <footer
-      className="relative overflow-hidden border-t border-primary/15"
+      className="relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.97 0.018 325) 0%, oklch(0.96 0.024 330) 100%)",
+          "linear-gradient(180deg, oklch(0.28 0.08 42) 0%, oklch(0.22 0.06 40) 100%)",
+        borderTop: "1px solid oklch(0.45 0.10 48 / 0.35)",
       }}
     >
-      {/* Glow background orb */}
+      {/* Deep warm brown glow background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-36 rounded-full"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-40 rounded-full"
           style={{
             background:
-              "radial-gradient(ellipse, oklch(0.72 0.20 330 / 0.22) 0%, transparent 70%)",
-            filter: "blur(40px)",
+              "radial-gradient(ellipse, oklch(0.52 0.12 48 / 0.22) 0%, transparent 70%)",
+            filter: "blur(45px)",
+          }}
+        />
+        <div
+          className="absolute top-10 right-10 w-48 h-48 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.58 0.12 52 / 0.14) 0%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
+        <div
+          className="absolute top-10 left-10 w-48 h-48 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.55 0.10 50 / 0.12) 0%, transparent 70%)",
+            filter: "blur(50px)",
           }}
         />
       </div>
@@ -46,15 +63,24 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/50 flex items-center justify-center">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{
+                  background: "oklch(0.55 0.12 48 / 0.22)",
+                  border: "1px solid oklch(0.65 0.10 50 / 0.45)",
+                }}
+              >
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <span className="font-display text-xl font-bold">
-                <span className="text-foreground">BEAUTYGRAM</span>
+                <span style={{ color: "oklch(0.90 0.04 55)" }}>BEAUTYGRAM</span>
                 <span className="text-primary"> BY UNNATI</span>
               </span>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "oklch(0.68 0.04 52)" }}
+            >
               Luxury bridal & celebrity makeup artistry. Transforming faces,
               creating timeless beauty across India from our Gandhinagar studio.
             </p>
@@ -64,7 +90,12 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-smooth hover:scale-110"
+                style={{
+                  background: "oklch(0.55 0.12 48 / 0.18)",
+                  border: "1px solid oklch(0.60 0.10 50 / 0.38)",
+                  color: "oklch(0.72 0.10 52)",
+                }}
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -73,7 +104,12 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/20 transition-smooth"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-smooth hover:scale-110"
+                style={{
+                  background: "oklch(0.55 0.12 48 / 0.18)",
+                  border: "1px solid oklch(0.60 0.10 50 / 0.38)",
+                  color: "oklch(0.72 0.10 52)",
+                }}
               >
                 <SiWhatsapp className="w-5 h-5" />
               </a>
@@ -82,7 +118,10 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-display text-foreground font-semibold mb-5 text-lg">
+            <h3
+              className="font-display font-semibold mb-5 text-lg"
+              style={{ color: "oklch(0.90 0.04 55)" }}
+            >
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -91,7 +130,8 @@ export function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNavClick(link.href)}
-                    className="text-muted-foreground hover:text-primary transition-smooth text-sm"
+                    className="transition-smooth text-sm"
+                    style={{ color: "oklch(0.65 0.05 52)" }}
                   >
                     {link.label}
                   </button>
@@ -102,12 +142,18 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-foreground font-semibold mb-5 text-lg">
+            <h3
+              className="font-display font-semibold mb-5 text-lg"
+              style={{ color: "oklch(0.90 0.04 55)" }}
+            >
               Studio Address
             </h3>
             <div className="space-y-4">
-              <div className="flex gap-3 text-muted-foreground text-sm">
-                <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+              <div
+                className="flex gap-3 text-sm"
+                style={{ color: "oklch(0.65 0.05 52)" }}
+              >
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                 <p>
                   Plot no. 634/1, Sector-4/C, Sector 4,
                   <br />
@@ -116,7 +162,8 @@ export function Footer() {
               </div>
               <a
                 href="tel:07041937373"
-                className="flex gap-3 text-muted-foreground hover:text-primary transition-smooth text-sm items-center"
+                className="flex gap-3 transition-smooth text-sm items-center hover:text-primary"
+                style={{ color: "oklch(0.65 0.05 52)" }}
               >
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <span>+91 70419 37373</span>
@@ -125,22 +172,45 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary/12 flex flex-col sm:flex-row items-center justify-between gap-4 text-muted-foreground text-xs">
+        <div
+          className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+          style={{
+            borderTop: "1px solid oklch(0.45 0.08 48 / 0.25)",
+            color: "oklch(0.58 0.04 50)",
+          }}
+        >
           <p className="flex items-center gap-1">
             &copy; {year} BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with{" "}
-            <Heart className="w-3 h-3 text-primary fill-primary" /> in
-            Gandhinagar.
+            <Heart
+              className="w-3 h-3 flex-shrink-0"
+              style={{
+                color: "oklch(0.65 0.12 50)",
+                fill: "oklch(0.65 0.12 50)",
+              }}
+            />{" "}
+            in Gandhinagar.
           </p>
           <a
-            href={`https://kavya=${encodeURIComponent(hostname)}`}
+            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-smooth"
           >
-            Designed By Kavya Chaudhary
+            Built with caffeine.ai
           </a>
         </div>
       </div>
+
+      {/* Bottom golden shimmer line */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, oklch(0.62 0.12 50 / 0.55), transparent)",
+        }}
+        animate={{ opacity: [0.4, 0.9, 0.4] }}
+        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+      />
     </footer>
   );
 }

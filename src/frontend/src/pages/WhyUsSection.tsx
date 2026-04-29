@@ -21,7 +21,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { rotate: [0, 15, -10, 0] },
   },
   {
@@ -33,7 +33,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { scale: [1, 1.2, 1] },
   },
   {
@@ -45,7 +45,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.60 0.20 340 / 0.32)",
+    glow: "oklch(0.60 0.10 52 / 0.32)",
     iconAnim: { rotate: [0, 360] },
   },
   {
@@ -57,7 +57,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { y: [0, -5, 0] },
   },
   {
@@ -69,7 +69,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.52 0.24 335 / 0.32)",
+    glow: "oklch(0.52 0.12 48 / 0.32)",
     iconAnim: { y: [0, -6, 0] },
   },
   {
@@ -81,7 +81,7 @@ const reasons = [
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
-    glow: "oklch(0.60 0.20 340 / 0.32)",
+    glow: "oklch(0.60 0.10 52 / 0.32)",
     iconAnim: { rotate: [0, 5, -5, 0] },
   },
 ];
@@ -95,7 +95,7 @@ export function WhyUsSection() {
       className="relative py-28 overflow-hidden"
       style={{
         background:
-          "linear-gradient(180deg, oklch(0.98 0.010 316) 0%, oklch(0.97 0.018 326) 50%, oklch(0.98 0.010 320) 100%)",
+          "linear-gradient(180deg, oklch(0.96 0.014 55) 0%, oklch(0.95 0.020 50) 50%, oklch(0.96 0.014 55) 100%)",
       }}
     >
       {/* Top section divider */}
@@ -107,8 +107,8 @@ export function WhyUsSection() {
           className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.72 0.18 325 / 0.22) 0%, transparent 70%)",
-            filter: "blur(65px)",
+              "radial-gradient(circle, oklch(0.62 0.12 50 / 0.18) 0%, transparent 70%)",
+            filter: "blur(70px)",
           }}
           animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.85, 0.5] }}
           transition={{
@@ -121,8 +121,8 @@ export function WhyUsSection() {
           className="absolute bottom-20 right-10 w-56 h-56 rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.68 0.22 332 / 0.28) 0%, transparent 70%)",
-            filter: "blur(44px)",
+              "radial-gradient(circle, oklch(0.58 0.13 48 / 0.26) 0%, transparent 70%)",
+            filter: "blur(46px)",
           }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.75, 0.4] }}
           transition={{
@@ -141,7 +141,11 @@ export function WhyUsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-primary/30 mb-6 shadow-glow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 shadow-glow-sm"
+            style={{
+              background: "oklch(0.96 0.014 55 / 0.82)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+            }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold tracking-wide">
@@ -160,7 +164,7 @@ export function WhyUsSection() {
               className="text-primary"
               style={{
                 textShadow:
-                  "0 0 36px oklch(0.52 0.24 335 / 0.5), 0 0 72px oklch(0.52 0.24 335 / 0.22)",
+                  "0 0 36px oklch(0.52 0.12 48 / 0.5), 0 0 72px oklch(0.62 0.10 52 / 0.22)",
               }}
             >
               Unnati
@@ -195,11 +199,15 @@ export function WhyUsSection() {
                 }}
                 whileHover={{
                   y: -8,
-                  boxShadow: `0 0 38px ${reason.glow}, 0 20px 38px oklch(0.52 0.24 335 / 0.1)`,
+                  boxShadow: `0 0 40px ${reason.glow}, 0 20px 38px oklch(0.45 0.12 48 / 0.10)`,
                 }}
                 data-ocid={`why-us-card-${reason.id}`}
-                className={`relative bg-white/88 backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`}
-                style={{ transformStyle: "preserve-3d", perspective: "800px" }}
+                className={`relative backdrop-blur-sm rounded-3xl p-7 border ${reason.border} card-elevated group cursor-default overflow-hidden transition-smooth`}
+                style={{
+                  transformStyle: "preserve-3d",
+                  perspective: "800px",
+                  background: "oklch(0.96 0.014 55 / 0.88)",
+                }}
               >
                 {/* Animated background on hover */}
                 <div
@@ -266,8 +274,12 @@ export function WhyUsSection() {
           className="text-center mt-14"
         >
           <div
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-primary/30"
-            style={{ boxShadow: "0 0 28px oklch(0.52 0.24 335 / 0.18)" }}
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-sm"
+            style={{
+              background: "oklch(0.96 0.014 55 / 0.82)",
+              border: "1px solid oklch(0.65 0.10 50 / 0.32)",
+              boxShadow: "0 0 28px oklch(0.52 0.12 48 / 0.18)",
+            }}
           >
             <Clock className="w-4 h-4 text-primary" />
             <span className="text-muted-foreground text-sm font-body">
