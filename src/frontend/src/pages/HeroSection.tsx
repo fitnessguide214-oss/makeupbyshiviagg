@@ -561,7 +561,7 @@ export function HeroSection() {
               }}
             >
               <img
-                 src="/assets/screenshot_2026-04-26_154049-019dc9be-5e4f-726f-8a74-b39b031d2f2a.png"
+                 src="/assets/hero.png"
                 alt="Sujata's Makeover — Luxury Bridal Makeup Artist"
                 className="w-full h-full object-cover object-top"
               />
