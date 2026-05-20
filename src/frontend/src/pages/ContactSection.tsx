@@ -6,17 +6,17 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 const contactCards = [
   {
     id: "phone",
-    href: "tel:07041937373",
+    href: "tel:08007777104",
     icon: Phone,
     iconColor: "text-primary",
     iconBg: "border-primary/30",
-    label: "+91 70419 37373",
+    label: "+91 80077 77104",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false,
   },
   {
     id: "whatsapp",
-    href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
+    href: "https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-600",
     iconBg: "border-green-300",
@@ -36,12 +36,12 @@ const contactCards = [
   },
   {
     id: "address",
-    href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
+    href: "https://maps.google.com/?q=Grand+10+Housing+Society+Golwadi+Beed+Bypass+Kanchanwadi+Golwadi+Maharashtra+431011",
     icon: MapPin,
     iconColor: "text-accent-foreground",
     iconBg: "border-accent/50",
-    label: "Plot no. 634/1, Sector-4/C",
-    sublabel: "Gandhinagar, Gujarat 382006",
+    label: "Grand 10 Housing Society, B-3",
+    sublabel: "Golwadi Beed Bypass, Kanchanwadi, Golwadi, Maharashtra 431011",
     external: true,
   },
 ];
@@ -125,7 +125,7 @@ export function ContactSection() {
             className="text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed"
           >
             Whether it's your wedding day, a special event, or a celebrity
-            photoshoot — Unnati is ready to bring your vision to life. Reach out
+            photoshoot — Sujata is ready to bring your vision to life. Reach out
             and let's talk beauty.
           </motion.p>
         </div>
@@ -228,7 +228,7 @@ export function ContactSection() {
                   <span className="text-muted-foreground">
                     Home visits:{" "}
                     <span className="text-foreground font-medium">
-                      Available across Gujarat
+                      Available across Maharashtra
                     </span>
                   </span>
                 </div>
@@ -238,7 +238,7 @@ export function ContactSection() {
             {/* CTA buttons */}
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 data-ocid="contact-cta-call"
                 className="flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-smooth shadow-glow-md text-sm"
               >
@@ -246,7 +246,7 @@ export function ContactSection() {
                 Call Now
               </a>
               <a
-                href="https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session."
+                href="https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20session."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="contact-cta-whatsapp"
@@ -294,8 +294,8 @@ export function ContactSection() {
               />
 
               <iframe
-                title="BEAUTYGRAM BY UNNATI GANDHINAGAR Studio — Plot no. 634/1, Sector-4/C, Gandhinagar"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.123456789!2d72.6369!3d23.2156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2a81e2bf67b7%3A0x0!2sSector%204%2C%20Gandhinagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1234567890"
+                title="Sujata's Makeover Studio — Grand 10 Housing Society, B-3, Golwadi Beed Bypass, Golwadi"
+                src="https://maps.google.com/maps?q=Golwadi+Beed+Bypass+Kanchanwadi+Golwadi+Maharashtra+431011&output=embed"
                 style={{
                   border: 0,
                   width: "100%",
@@ -311,7 +311,8 @@ export function ContactSection() {
 
             <p className="text-center text-muted-foreground text-xs mt-3 flex items-center justify-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-primary" />
-              Plot no. 634/1, Sector-4/C, Sector 4, Gandhinagar, Gujarat 382006
+              Grand 10 Housing Society, B-3, Golwadi Beed Bypass, opp. Sai
+              Srushti Park, Kanchanwadi, Golwadi, Maharashtra 431011
             </p>
           </motion.div>
         </div>

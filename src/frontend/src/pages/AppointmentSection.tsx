@@ -136,7 +136,7 @@ export function AppointmentSection() {
       data.preferredTime;
 
     const message = [
-      "✨ *Appointment Request – BEAUTYGRAM BY UNNATI*",
+      "✨ *Appointment Request – Sujata's Makeover*",
       "",
       `👤 *Name:* ${data.fullName}`,
       `📞 *Phone:* ${data.phone}`,
@@ -153,7 +153,7 @@ export function AppointmentSection() {
 
     const encoded = encodeURIComponent(message);
     window.open(
-      `https://wa.me/917041937373?text=${encoded}`,
+      `https://wa.me/918007777104?text=${encoded}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -234,7 +234,7 @@ export function AppointmentSection() {
             className="font-body text-base sm:text-lg max-w-xl mx-auto leading-relaxed"
             style={{ color: "oklch(0.75 0.06 48)" }}
           >
-            Secure your date with Unnati for a bespoke bridal or makeup
+            Secure your date with Sujata for a bespoke bridal or makeup
             consultation. Fill the form below and your details will be sent
             directly via WhatsApp.
           </p>
@@ -295,7 +295,7 @@ export function AppointmentSection() {
                 className="font-body text-base max-w-sm"
                 style={{ color: "oklch(0.72 0.06 48)" }}
               >
-                Your appointment request has been sent! Unnati will contact you
+                Your appointment request has been sent! Sujata will contact you
                 shortly.
               </p>
             </motion.div>
@@ -579,7 +579,7 @@ export function AppointmentSection() {
                   <textarea
                     id="appt-notes"
                     rows={4}
-                    placeholder="Tell Unnati about your occasion, skin tone, inspirations, or any special requirements…"
+                    placeholder="Tell Sujata about your occasion, skin tone, inspirations, or any special requirements…"
                     data-ocid="appointment.notes_textarea"
                     className={`w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth resize-none ${focusStyle}`}
                     style={inputStyle}

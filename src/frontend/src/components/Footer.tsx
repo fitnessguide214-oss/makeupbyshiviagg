@@ -73,8 +73,8 @@ export function Footer() {
                 <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <span className="font-display text-xl font-bold">
-                <span style={{ color: "oklch(0.90 0.04 55)" }}>BEAUTYGRAM</span>
-                <span className="text-primary"> BY UNNATI</span>
+                <span style={{ color: "oklch(0.90 0.04 55)" }}>SUJATA'S</span>
+                <span className="text-primary"> MAKEOVER</span>
               </span>
             </div>
             <p
@@ -82,7 +82,7 @@ export function Footer() {
               style={{ color: "oklch(0.68 0.04 52)" }}
             >
               Luxury bridal & celebrity makeup artistry. Transforming faces,
-              creating timeless beauty across India from our Gandhinagar studio.
+              creating timeless beauty across India from our Golwadi studio.
             </p>
             <div className="flex gap-3">
               <a
@@ -100,7 +100,7 @@ export function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/917041937373"
+                href="https://wa.me/918007777104"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -155,18 +155,20 @@ export function Footer() {
               >
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
                 <p>
-                  Plot no. 634/1, Sector-4/C, Sector 4,
+                  Grand 10 Housing Society, B-3,
                   <br />
-                  Gandhinagar, Gujarat 382006
+                  Golwadi Beed Bypass, opp. Sai Srushti Park,
+                  <br />
+                  Kanchanwadi, Golwadi, Maharashtra 431011
                 </p>
               </div>
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 className="flex gap-3 transition-smooth text-sm items-center hover:text-primary"
                 style={{ color: "oklch(0.65 0.05 52)" }}
               >
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>+91 70419 37373</span>
+                <span>+91 80077 77104</span>
               </a>
             </div>
           </div>
@@ -180,7 +182,7 @@ export function Footer() {
           }}
         >
           <p className="flex items-center gap-1">
-            &copy; {year} BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with{" "}
+            &copy; {year} SUJATA'S MAKEOVER. Made with{" "}
             <Heart
               className="w-3 h-3 flex-shrink-0"
               style={{
@@ -188,15 +190,15 @@ export function Footer() {
                 fill: "oklch(0.65 0.12 50)",
               }}
             />{" "}
-            in Gandhinagar.
+            in Golwadi.
           </p>
           <a
-            href={`https://kavyat=${encodeURIComponent(hostname)}`}
+            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(hostname)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-smooth"
           >
-            Designed By Kavya Chaudhary
+            Built with caffeine.ai
           </a>
         </div>
       </div>

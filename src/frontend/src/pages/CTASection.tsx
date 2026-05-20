@@ -142,7 +142,7 @@ export function CTAPrimary() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body"
             >
-              Join hundreds of brides and stars who trusted Unnati to look their
+              Join hundreds of brides and stars who trusted Sujata to look their
               most radiant. Your transformation starts with one call.
             </motion.p>
 
@@ -153,7 +153,7 @@ export function CTAPrimary() {
               className="flex flex-wrap gap-4 justify-center"
             >
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 data-ocid="cta-primary-book"
                 className="inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base bg-primary text-primary-foreground transition-smooth group relative overflow-hidden hover:bg-primary/90"
                 style={{
@@ -165,7 +165,7 @@ export function CTAPrimary() {
                 Book Your Bridal Consultation
               </a>
               <a
-                href="https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20consultation."
+                href="https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="cta-primary-whatsapp"
@@ -191,7 +191,7 @@ export function CTAPrimary() {
                 "500+ Brides",
                 "Celebrity Clients",
                 "10+ Years Experience",
-                "Gandhinagar, Gujarat",
+                "Golwadi, Maharashtra",
               ].map((badge) => (
                 <span key={badge} className="flex items-center gap-1.5">
                   <span className="w-1 h-1 rounded-full bg-primary inline-block" />
@@ -258,7 +258,7 @@ export function CTASecondary() {
             </h2>
 
             <p className="text-muted-foreground text-base leading-relaxed mb-8 font-body">
-              Every bride deserves to feel like a queen. Let Unnati craft a
+              Every bride deserves to feel like a queen. Let Sujata craft a
               bespoke bridal look that's timeless, flawless, and entirely you.
               Slots fill fast — secure yours today.
             </p>
@@ -283,14 +283,14 @@ export function CTASecondary() {
                   Call or message now
                 </p>
                 <p className="text-foreground font-bold text-xl tracking-wide">
-                  07041937373
+                  08007777104
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 data-ocid="cta-secondary-call"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth bg-primary text-primary-foreground hover:bg-primary/90"
                 style={{
@@ -301,7 +301,7 @@ export function CTASecondary() {
                 Call Now
               </a>
               <a
-                href="https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20my%20bridal%20makeup."
+                href="https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20my%20bridal%20makeup."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-ocid="cta-secondary-whatsapp"

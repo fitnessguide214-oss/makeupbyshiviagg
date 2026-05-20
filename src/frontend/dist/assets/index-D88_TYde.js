@@ -27320,8 +27320,8 @@ function Footer() {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xl font-bold", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.90 0.04 55)" }, children: "BEAUTYGRAM" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "oklch(0.90 0.04 55)" }, children: "SUJATA'S" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " MAKEOVER" })
                 ] })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -27329,7 +27329,7 @@ function Footer() {
                 {
                   className: "text-sm leading-relaxed mb-6",
                   style: { color: "oklch(0.68 0.04 52)" },
-                  children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Gandhinagar studio."
+                  children: "Luxury bridal & celebrity makeup artistry. Transforming faces, creating timeless beauty across India from our Golwadi studio."
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
@@ -27352,7 +27352,7 @@ function Footer() {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "a",
                   {
-                    href: "https://wa.me/917041937373",
+                    href: "https://wa.me/918007777104",
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "aria-label": "WhatsApp",
@@ -27405,9 +27405,11 @@ function Footer() {
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-4 h-4 mt-0.5 flex-shrink-0 text-primary" }),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
-                        "Plot no. 634/1, Sector-4/C, Sector 4,",
+                        "Grand 10 Housing Society, B-3,",
                         /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                        "Gandhinagar, Gujarat 382006"
+                        "Golwadi Beed Bypass, opp. Sai Srushti Park,",
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+                        "Kanchanwadi, Golwadi, Maharashtra 431011"
                       ] })
                     ]
                   }
@@ -27415,12 +27417,12 @@ function Footer() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "a",
                   {
-                    href: "tel:07041937373",
+                    href: "tel:08007777104",
                     className: "flex gap-3 transition-smooth text-sm items-center hover:text-primary",
                     style: { color: "oklch(0.65 0.05 52)" },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-4 h-4 text-primary flex-shrink-0" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 70419 37373" })
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "+91 80077 77104" })
                     ]
                   }
                 )
@@ -27439,7 +27441,7 @@ function Footer() {
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "flex items-center gap-1", children: [
                   "© ",
                   year,
-                  " BEAUTYGRAM BY UNNATI GANDHINAGAR. Made with",
+                  " SUJATA'S MAKEOVER. Made with",
                   " ",
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Heart,
@@ -27452,7 +27454,7 @@ function Footer() {
                     }
                   ),
                   " ",
-                  "in Gandhinagar."
+                  "in Golwadi."
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "a",
@@ -27552,8 +27554,8 @@ function Navigation() {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-lg sm:text-xl font-bold tracking-wide", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "BEAUTYGRAM" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " BY UNNATI" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground", children: "SUJATA'S" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary", children: " MAKEOVER" })
                 ] })
               ]
             }
@@ -27575,7 +27577,7 @@ function Navigation() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "a",
               {
-                href: "tel:07041937373",
+                href: "tel:08007777104",
                 "data-ocid": "nav-cta",
                 className: "hidden sm:flex items-center gap-2 px-5 py-2 rounded-full text-primary text-sm font-semibold hover:bg-primary/20 transition-smooth shadow-glow-sm",
                 style: {
@@ -27635,7 +27637,7 @@ function Navigation() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "a",
             {
-              href: "tel:07041937373",
+              href: "tel:08007777104",
               className: "mt-2 px-4 py-3 rounded-xl text-primary text-center font-semibold",
               style: {
                 background: "oklch(0.55 0.12 48 / 0.14)",
@@ -29482,7 +29484,7 @@ function AppointmentSection() {
     var _a2;
     const timeLabel = ((_a2 = timeOptions.find((t) => t.value === data.preferredTime)) == null ? void 0 : _a2.label) ?? data.preferredTime;
     const message = [
-      "✨ *Appointment Request – BEAUTYGRAM BY UNNATI*",
+      "✨ *Appointment Request – Sujata's Makeover*",
       "",
       `👤 *Name:* ${data.fullName}`,
       `📞 *Phone:* ${data.phone}`,
@@ -29496,7 +29498,7 @@ function AppointmentSection() {
     ].filter(Boolean).join("\n");
     const encoded = encodeURIComponent(message);
     window.open(
-      `https://wa.me/917041937373?text=${encoded}`,
+      `https://wa.me/918007777104?text=${encoded}`,
       "_blank",
       "noopener,noreferrer"
     );
@@ -29592,7 +29594,7 @@ function AppointmentSection() {
                       {
                         className: "font-body text-base sm:text-lg max-w-xl mx-auto leading-relaxed",
                         style: { color: "oklch(0.75 0.06 48)" },
-                        children: "Secure your date with Unnati for a bespoke bridal or makeup consultation. Fill the form below and your details will be sent directly via WhatsApp."
+                        children: "Secure your date with Sujata for a bespoke bridal or makeup consultation. Fill the form below and your details will be sent directly via WhatsApp."
                       }
                     )
                   ]
@@ -29661,7 +29663,7 @@ function AppointmentSection() {
                             {
                               className: "font-body text-base max-w-sm",
                               style: { color: "oklch(0.72 0.06 48)" },
-                              children: "Your appointment request has been sent! Unnati will contact you shortly."
+                              children: "Your appointment request has been sent! Sujata will contact you shortly."
                             }
                           )
                         ]
@@ -29980,7 +29982,7 @@ function AppointmentSection() {
                                 {
                                   id: "appt-notes",
                                   rows: 4,
-                                  placeholder: "Tell Unnati about your occasion, skin tone, inspirations, or any special requirements…",
+                                  placeholder: "Tell Sujata about your occasion, skin tone, inspirations, or any special requirements…",
                                   "data-ocid": "appointment.notes_textarea",
                                   className: `w-full px-4 py-3 rounded-xl font-body text-sm transition-smooth resize-none ${focusStyle}`,
                                   style: inputStyle,
@@ -30195,7 +30197,7 @@ function CTAPrimary() {
                     animate: isInView ? { opacity: 1, y: 0 } : {},
                     transition: { duration: 0.7, delay: 0.3 },
                     className: "text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body",
-                    children: "Join hundreds of brides and stars who trusted Unnati to look their most radiant. Your transformation starts with one call."
+                    children: "Join hundreds of brides and stars who trusted Sujata to look their most radiant. Your transformation starts with one call."
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -30209,7 +30211,7 @@ function CTAPrimary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "tel:07041937373",
+                          href: "tel:08007777104",
                           "data-ocid": "cta-primary-book",
                           className: "inline-flex items-center gap-3 px-9 py-4 rounded-full font-bold text-base bg-primary text-primary-foreground transition-smooth group relative overflow-hidden hover:bg-primary/90",
                           style: {
@@ -30224,7 +30226,7 @@ function CTAPrimary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20consultation.",
+                          href: "https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20consultation.",
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-primary-whatsapp",
@@ -30253,7 +30255,7 @@ function CTAPrimary() {
                       "500+ Brides",
                       "Celebrity Clients",
                       "10+ Years Experience",
-                      "Gandhinagar, Gujarat"
+                      "Golwadi, Maharashtra"
                     ].map((badge) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1.5", children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-1 h-1 rounded-full bg-primary inline-block" }),
                       badge
@@ -30318,7 +30320,7 @@ function CTASecondary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary glow-text", children: "Bridal Look" }),
                       " Awaits"
                     ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Unnati craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-base leading-relaxed mb-8 font-body", children: "Every bride deserves to feel like a queen. Let Sujata craft a bespoke bridal look that's timeless, flawless, and entirely you. Slots fill fast — secure yours today." }),
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "div",
                       {
@@ -30339,7 +30341,7 @@ function CTASecondary() {
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mb-0.5", children: "Call or message now" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "07041937373" })
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground font-bold text-xl tracking-wide", children: "08007777104" })
                           ] })
                         ]
                       }
@@ -30348,7 +30350,7 @@ function CTASecondary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "tel:07041937373",
+                          href: "tel:08007777104",
                           "data-ocid": "cta-secondary-call",
                           className: "inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm transition-smooth bg-primary text-primary-foreground hover:bg-primary/90",
                           style: {
@@ -30363,7 +30365,7 @@ function CTASecondary() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(
                         "a",
                         {
-                          href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20my%20bridal%20makeup.",
+                          href: "https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20my%20bridal%20makeup.",
                           target: "_blank",
                           rel: "noopener noreferrer",
                           "data-ocid": "cta-secondary-whatsapp",
@@ -30910,17 +30912,17 @@ function CelebritySection() {
 const contactCards = [
   {
     id: "phone",
-    href: "tel:07041937373",
+    href: "tel:08007777104",
     icon: Phone,
     iconColor: "text-primary",
     iconBg: "border-primary/30",
-    label: "+91 70419 37373",
+    label: "+91 80077 77104",
     sublabel: "Available 7 AM – 9 PM, every day",
     external: false
   },
   {
     id: "whatsapp",
-    href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
+    href: "https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20session.",
     icon: SiWhatsapp,
     iconColor: "text-green-600",
     iconBg: "border-green-300",
@@ -30940,12 +30942,12 @@ const contactCards = [
   },
   {
     id: "address",
-    href: "https://maps.google.com/?q=Plot+634/1+Sector-4/C+Sector+4+Gandhinagar+Gujarat",
+    href: "https://maps.google.com/?q=Grand+10+Housing+Society+Golwadi+Beed+Bypass+Kanchanwadi+Golwadi+Maharashtra+431011",
     icon: MapPin,
     iconColor: "text-accent-foreground",
     iconBg: "border-accent/50",
-    label: "Plot no. 634/1, Sector-4/C",
-    sublabel: "Gandhinagar, Gujarat 382006",
+    label: "Grand 10 Housing Society, B-3",
+    sublabel: "Golwadi Beed Bypass, Kanchanwadi, Golwadi, Maharashtra 431011",
     external: true
   }
 ];
@@ -31033,7 +31035,7 @@ function ContactSection() {
                 animate: isInView ? { opacity: 1, y: 0 } : {},
                 transition: { duration: 0.7, delay: 0.2 },
                 className: "text-muted-foreground text-lg max-w-2xl mx-auto font-body leading-relaxed",
-                children: "Whether it's your wedding day, a special event, or a celebrity photoshoot — Unnati is ready to bring your vision to life. Reach out and let's talk beauty."
+                children: "Whether it's your wedding day, a special event, or a celebrity photoshoot — Sujata is ready to bring your vision to life. Reach out and let's talk beauty."
               }
             )
           ] }),
@@ -31125,7 +31127,7 @@ function ContactSection() {
                             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
                               "Home visits:",
                               " ",
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Gujarat" })
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-foreground font-medium", children: "Available across Maharashtra" })
                             ] })
                           ] })
                         ] })
@@ -31136,7 +31138,7 @@ function ContactSection() {
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "a",
                       {
-                        href: "tel:07041937373",
+                        href: "tel:08007777104",
                         "data-ocid": "contact-cta-call",
                         className: "flex items-center justify-center gap-2 px-5 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-smooth shadow-glow-md text-sm",
                         children: [
@@ -31148,7 +31150,7 @@ function ContactSection() {
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "a",
                       {
-                        href: "https://wa.me/917041937373?text=Hi%20Unnati!%20I%20want%20to%20book%20a%20bridal%20session.",
+                        href: "https://wa.me/918007777104?text=Hi%20Sujata!%20I%20want%20to%20book%20a%20bridal%20session.",
                         target: "_blank",
                         rel: "noopener noreferrer",
                         "data-ocid": "contact-cta-whatsapp",
@@ -31207,8 +31209,8 @@ function ContactSection() {
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "iframe",
                           {
-                            title: "BEAUTYGRAM BY UNNATI GANDHINAGAR Studio — Plot no. 634/1, Sector-4/C, Gandhinagar",
-                            src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.123456789!2d72.6369!3d23.2156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2a81e2bf67b7%3A0x0!2sSector%204%2C%20Gandhinagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1234567890",
+                            title: "Sujata's Makeover Studio — Grand 10 Housing Society, B-3, Golwadi Beed Bypass, Golwadi",
+                            src: "https://maps.google.com/maps?q=Golwadi+Beed+Bypass+Kanchanwadi+Golwadi+Maharashtra+431011&output=embed",
                             style: {
                               border: 0,
                               width: "100%",
@@ -31226,7 +31228,7 @@ function ContactSection() {
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-center text-muted-foreground text-xs mt-3 flex items-center justify-center gap-1.5", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "w-3.5 h-3.5 text-primary" }),
-                    "Plot no. 634/1, Sector-4/C, Sector 4, Gandhinagar, Gujarat 382006"
+                    "Grand 10 Housing Society, B-3, Golwadi Beed Bypass, opp. Sai Srushti Park, Kanchanwadi, Golwadi, Maharashtra 431011"
                   ] })
                 ]
               }
@@ -31240,8 +31242,8 @@ function ContactSection() {
 const faqs = [
   {
     id: "f1",
-    question: "How do I book a makeup session with BEAUTYGRAM BY UNNATI?",
-    answer: "Simply call or WhatsApp us at 07041937373 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment."
+    question: "How do I book a makeup session with Sujata's Makeover?",
+    answer: "Simply call or WhatsApp us at 08007777104 to check availability for your date. For bridal bookings, we strongly recommend reaching out at least 3–6 months in advance to secure your date. We'll schedule a detailed consultation to understand your vision, review inspo images, and confirm the booking with an advance payment."
   },
   {
     id: "f2",
@@ -31490,7 +31492,7 @@ function FAQSection() {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "a",
                   {
-                    href: "https://wa.me/917041937373",
+                    href: "https://wa.me/918007777104",
                     target: "_blank",
                     rel: "noopener noreferrer",
                     "data-ocid": "faq-whatsapp-cta",
@@ -83491,7 +83493,7 @@ function HeroSection() {
                         "a",
                         {
                           "data-ocid": "hero-cta-book",
-                          href: "tel:07041937373",
+                          href: "tel:08007777104",
                           className: "px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base transition-smooth relative overflow-hidden group",
                           style: {
                             boxShadow: "0 0 32px oklch(0.45 0.12 48 / 0.5), 0 4px 20px oklch(0.45 0.12 48 / 0.30)"
@@ -83582,7 +83584,7 @@ function HeroSection() {
                             "img",
                             {
                               src: "/assets/photos/beautygram-01.png",
-                              alt: "BEAUTYGRAM BY UNNATI GANDHINAGAR — Luxury Bridal Makeup Artist",
+                              alt: "Sujata's Makeover — Luxury Bridal Makeup Artist",
                               className: "w-full h-full object-cover object-top"
                             }
                           ),
@@ -83611,7 +83613,7 @@ function HeroSection() {
                                 /* @__PURE__ */ jsxRuntimeExports.jsx(Award, { className: "w-5 h-5 text-primary flex-shrink-0" }),
                                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                                   /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-foreground text-sm font-semibold font-body", children: "Celebrity Makeup Artist" }),
-                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "Gandhinagar, Gujarat · Est. 2015" })
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs", children: "Golwadi, Maharashtra · Est. 2015" })
                                 ] })
                               ] })
                             }
@@ -84312,7 +84314,7 @@ function ReviewsSection() {
     }
   );
 }
-const PHONE = "07041937373";
+const PHONE = "08007777104";
 const services = [
   {
     id: "bridal",
@@ -84729,7 +84731,7 @@ const reasons = [
     id: "r5",
     icon: MapPin,
     title: "On-Site Services Available",
-    description: "Visit our Gandhinagar studio or let us come to you. We offer home service across Gujarat and travel nationwide for destination weddings.",
+    description: "Visit our Golwadi studio or let us come to you. We offer home service across Maharashtra and travel nationwide for destination weddings.",
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
@@ -84810,7 +84812,7 @@ function WhyUsSection() {
                 },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "w-4 h-4 text-primary" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Unnati Difference" })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-primary text-sm font-semibold tracking-wide", children: "The Sujata Difference" })
                 ]
               }
             ),
@@ -84831,7 +84833,7 @@ function WhyUsSection() {
                       style: {
                         textShadow: "0 0 36px oklch(0.52 0.12 48 / 0.5), 0 0 72px oklch(0.62 0.10 52 / 0.22)"
                       },
-                      children: "Unnati"
+                      children: "Sujata"
                     }
                   )
                 ]
@@ -84960,9 +84962,9 @@ function WhyUsSection() {
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "a",
                         {
-                          href: "tel:+917041937373",
+                          href: "tel:+918007777104",
                           className: "text-primary font-semibold hover:text-primary/80 transition-smooth",
-                          children: "07041937373"
+                          children: "08007777104"
                         }
                       )
                     ] })

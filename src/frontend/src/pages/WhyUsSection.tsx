@@ -65,7 +65,7 @@ const reasons = [
     icon: MapPin,
     title: "On-Site Services Available",
     description:
-      "Visit our Gandhinagar studio or let us come to you. We offer home service across Gujarat and travel nationwide for destination weddings.",
+      "Visit our Golwadi studio or let us come to you. We offer home service across Maharashtra and travel nationwide for destination weddings.",
     color: "text-primary",
     bg: "bg-primary/10",
     border: "border-primary/30",
@@ -149,7 +149,7 @@ export function WhyUsSection() {
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-primary text-sm font-semibold tracking-wide">
-              The Unnati Difference
+              The Sujata Difference
             </span>
           </motion.div>
 
@@ -167,7 +167,7 @@ export function WhyUsSection() {
                   "0 0 36px oklch(0.52 0.12 48 / 0.5), 0 0 72px oklch(0.62 0.10 52 / 0.22)",
               }}
             >
-              Unnati
+              Sujata
             </span>
           </motion.h2>
 
@@ -285,10 +285,10 @@ export function WhyUsSection() {
             <span className="text-muted-foreground text-sm font-body">
               Bookings available 7 days a week · Call{" "}
               <a
-                href="tel:+917041937373"
+                href="tel:+918007777104"
                 className="text-primary font-semibold hover:text-primary/80 transition-smooth"
               >
-                07041937373
+                08007777104
               </a>
             </span>
           </div>

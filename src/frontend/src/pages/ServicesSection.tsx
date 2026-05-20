@@ -4,7 +4,7 @@ import { type MouseEvent, useRef } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import type { ServiceItem } from "../types";
 
-const PHONE = "07041937373";
+const PHONE = "08007777104";
 
 const services: ServiceItem[] = [
   {

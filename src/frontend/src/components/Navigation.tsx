@@ -73,8 +73,8 @@ export function Navigation() {
                 />
               </div>
               <span className="font-display text-lg sm:text-xl font-bold tracking-wide">
-                <span className="text-foreground">BEAUTYGRAM</span>
-                <span className="text-primary"> BY UNNATI</span>
+                <span className="text-foreground">SUJATA'S</span>
+                <span className="text-primary"> MAKEOVER</span>
               </span>
             </button>
 
@@ -96,7 +96,7 @@ export function Navigation() {
             {/* CTA + Mobile Menu */}
             <div className="flex items-center gap-3">
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 data-ocid="nav-cta"
                 className="hidden sm:flex items-center gap-2 px-5 py-2 rounded-full text-primary text-sm font-semibold hover:bg-primary/20 transition-smooth shadow-glow-sm"
                 style={{
@@ -159,7 +159,7 @@ export function Navigation() {
                 </motion.button>
               ))}
               <a
-                href="tel:07041937373"
+                href="tel:08007777104"
                 className="mt-2 px-4 py-3 rounded-xl text-primary text-center font-semibold"
                 style={{
                   background: "oklch(0.55 0.12 48 / 0.14)",
