@@ -561,7 +561,7 @@ export function HeroSection() {
               }}
             >
               <img
-                src="/assets/photos/beautygram-01.png"
+                src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop"
                 alt="Sujata's Makeover — Luxury Bridal Makeup Artist"
                 className="w-full h-full object-cover object-top"
               />
